@@ -10,8 +10,12 @@ export const loginAdmin  = (password) => client.post('/auth/login', { password }
 
 // ─── Books ─────────────────────────────────────────────────────
 export const getBooks    = ()           => client.get('/books');
-export const createBook  = (data)       => client.post('/books', data);
-export const updateBook  = (id, data)   => client.put(`/books/${id}`, data);
+export const createBook  = (data)       => client.post('/books', data, {
+  headers: data instanceof FormData ? { 'Content-Type': 'multipart/form-data' } : {},
+});
+export const updateBook  = (id, data)   => client.put(`/books/${id}`, data, {
+  headers: data instanceof FormData ? { 'Content-Type': 'multipart/form-data' } : {},
+});
 export const deleteBook  = (id)         => client.delete(`/books/${id}`);
 
 // ─── Content (Blog / Devotional / Testimony) ────────────────────
@@ -52,7 +56,9 @@ export const updateStream = (data) => client.put('/stream', data);
 // ─── Gallery ────────────────────────────────────────────────────
 export const getGallery       = (mediaType) =>
   client.get('/gallery', { params: mediaType ? { mediaType } : {} });
-export const addGalleryItem   = (data)      => client.post('/gallery', data);
+export const addGalleryItem   = (data)      => client.post('/gallery', data, {
+  headers: data instanceof FormData ? { 'Content-Type': 'multipart/form-data' } : {},
+});
 export const deleteGalleryItem = (id)       => client.delete(`/gallery/${id}`);
 
 // ─── Contact / Volunteer / Enrollment / Counseling ─────────────
