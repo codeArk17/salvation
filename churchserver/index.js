@@ -102,3 +102,20 @@ mongoose
     console.error('❌ MongoDB connection error:', err.message);
     process.exit(1);
   });
+
+// ─── Graceful shutdown — release all ports before nodemon restarts ────────────
+const shutdown = () => {
+  console.log('\n🛑 Shutting down gracefully...');
+  try { nms.stop(); } catch (_) {}
+  server.close(() => {
+    mongoose.connection.close(false, () => {
+      console.log('✅ All ports released.');
+      process.exit(0);
+    });
+  });
+  // Force exit after 3 seconds if graceful close hangs
+  setTimeout(() => process.exit(0), 3000);
+};
+
+process.on('SIGTERM', shutdown);
+process.on('SIGINT',  shutdown);  // Ctrl+C

@@ -65,6 +65,20 @@ export default function Admin() {
   const [prayerFilter,    setPrayerFilter]    = useState('Pending');
   const [prayerAnswerText, setPrayerAnswerText] = useState({});
 
+  // ── Events ──────────────────────────────────────────────────────────────────
+  const [editingEvent,  setEditingEvent]  = useState(null);
+  const [eventTitle,    setEventTitle]    = useState('');
+  const [eventDate,     setEventDate]     = useState('');
+  const [eventLocation, setEventLocation] = useState('');
+  const [eventDesc,     setEventDesc]     = useState('');
+
+  // ── Projects ─────────────────────────────────────────────────────────────────
+  const [editingProject,  setEditingProject]  = useState(null);
+  const [projectTitle,    setProjectTitle]    = useState('');
+  const [projectDesc,     setProjectDesc]     = useState('');
+  const [projectStatus,   setProjectStatus]   = useState('Current');
+  const [projectProgress, setProjectProgress] = useState('0');
+
   // ─── Login ────────────────────────────────────────────────────────────────────
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -272,6 +286,28 @@ export default function Admin() {
     setPrayerAnswerText(prev => { const u = { ...prev }; delete u[id]; return u; });
   };
 
+  // ─── Event handlers ───────────────────────────────────────────────────────────
+  const resetEventForm = () => { setEditingEvent(null); setEventTitle(''); setEventDate(''); setEventLocation(''); setEventDesc(''); };
+  const handleEditEvent = (evt) => { setEditingEvent(evt); setEventTitle(evt.title); setEventDate(evt.date); setEventLocation(evt.location || ''); setEventDesc(evt.description || ''); };
+  const handleSaveEvent = async (e) => {
+    e.preventDefault();
+    try {
+      await addOrUpdateEvent({ ...(editingEvent || {}), title: eventTitle, date: eventDate, location: eventLocation, description: eventDesc });
+      alert('✅ Event saved!'); resetEventForm();
+    } catch (err) { alert('❌ Error: ' + err.message); }
+  };
+
+  // ─── Project handlers ─────────────────────────────────────────────────────────
+  const resetProjectForm = () => { setEditingProject(null); setProjectTitle(''); setProjectDesc(''); setProjectStatus('Current'); setProjectProgress('0'); };
+  const handleEditProject = (proj) => { setEditingProject(proj); setProjectTitle(proj.title); setProjectDesc(proj.description || ''); setProjectStatus(proj.status || 'Current'); setProjectProgress(String(proj.progress || 0)); };
+  const handleSaveProject = async (e) => {
+    e.preventDefault();
+    try {
+      await addOrUpdateProject({ ...(editingProject || {}), title: projectTitle, description: projectDesc, status: projectStatus, progress: parseInt(projectProgress) || 0 });
+      alert('✅ Project saved!'); resetProjectForm();
+    } catch (err) { alert('❌ Error: ' + err.message); }
+  };
+
   // ─── Ledger stats ────────────────────────────────────────────────────────────
   const donationByCampaign = (donations?.ledger || []).reduce((acc, d) => {
     acc[d.campaign] = (acc[d.campaign] || 0) + d.amount;
@@ -279,12 +315,14 @@ export default function Admin() {
   }, {});
 
   const tabs = [
-    { id: 'Stream',  label: 'Livestream',  icon: 'sensors' },
-    { id: 'Books',   label: 'Books',       icon: 'auto_stories' },
-    { id: 'Gallery', label: 'Gallery',     icon: 'photo_library' },
-    { id: 'Content', label: 'Blog/Updates', icon: 'article' },
-    { id: 'Prayers', label: 'Prayers',     icon: 'volunteer_activism' },
-    { id: 'Ledger',  label: 'Ledger',      icon: 'payments' },
+    { id: 'Stream',   label: 'Livestream',   icon: 'sensors' },
+    { id: 'Books',    label: 'Books',        icon: 'auto_stories' },
+    { id: 'Gallery',  label: 'Gallery',      icon: 'photo_library' },
+    { id: 'Content',  label: 'Blog/Updates', icon: 'article' },
+    { id: 'Events',   label: 'Events',       icon: 'event' },
+    { id: 'Projects', label: 'Projects',     icon: 'construction' },
+    { id: 'Prayers',  label: 'Prayers',      icon: 'volunteer_activism' },
+    { id: 'Ledger',   label: 'Ledger',       icon: 'payments' },
   ];
 
   const CATEGORIES = ['General', 'Outreach', 'Community', 'Crusades', 'Trips', 'Events'];
@@ -724,6 +762,129 @@ export default function Admin() {
                   <div className="admin-item-actions">
                     <button className="btn btn-sm btn-outline-blue" onClick={() => handleEditContent(c)}><span className="material-symbols-outlined" style={{ fontSize: '16px' }}>edit</span></button>
                     <button className="btn btn-sm btn-danger" onClick={() => window.confirm('Delete this article?') && deleteContent(c._id || c.id)}><span className="material-symbols-outlined" style={{ fontSize: '16px' }}>delete</span></button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── EVENTS TAB ──────────────────────────────────────────────────────────── */}
+      {activeTab === 'Events' && (
+        <div className="admin-panel grid-2 animate-fade-in">
+          <div className="card">
+            <h3>{editingEvent ? 'Edit Event' : 'Add New Event'}</h3>
+            <p className="form-sub-desc">Add or update events shown on the About page and Home page calendar.</p>
+            <form onSubmit={handleSaveEvent}>
+              <div className="form-group">
+                <label className="form-label">Event Title *</label>
+                <input type="text" placeholder="e.g. Holy Fire Crusade" value={eventTitle} onChange={e => setEventTitle(e.target.value)} className="form-input" required />
+              </div>
+              <div className="form-group">
+                <label className="form-label">Date *</label>
+                <input type="text" placeholder="e.g. July 12–15, 2026" value={eventDate} onChange={e => setEventDate(e.target.value)} className="form-input" required />
+              </div>
+              <div className="form-group">
+                <label className="form-label">Location</label>
+                <input type="text" placeholder="e.g. Kakamega Main Field" value={eventLocation} onChange={e => setEventLocation(e.target.value)} className="form-input" />
+              </div>
+              <div className="form-group">
+                <label className="form-label">Description</label>
+                <textarea placeholder="Brief description of the event…" value={eventDesc} onChange={e => setEventDesc(e.target.value)} className="form-textarea" style={{ minHeight: 100 }} />
+              </div>
+              <div style={{ display: 'flex', gap: '0.75rem' }}>
+                <button type="submit" className="btn btn-primary">{editingEvent ? 'Save Changes' : 'Add Event'}</button>
+                {editingEvent && <button type="button" className="btn btn-outline-blue" onClick={resetEventForm}>Cancel</button>}
+              </div>
+            </form>
+          </div>
+          <div className="card">
+            <h3>All Events ({events.length})</h3>
+            <div className="admin-list-scroll">
+              {events.length === 0 && <p style={{ color: 'var(--text-muted)', textAlign: 'center', padding: '2rem 0' }}>No events yet.</p>}
+              {events.map(evt => (
+                <div key={evt._id || evt.id} className="admin-list-item">
+                  <div className="admin-thumb-img" style={{ background: 'var(--bg-800)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <span className="material-symbols-outlined" style={{ fontSize: '1.5rem', color: 'var(--primary-gold)' }}>event</span>
+                  </div>
+                  <div className="admin-item-details">
+                    <h4>{evt.title}</h4>
+                    <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{evt.date} {evt.location ? `· ${evt.location}` : ''}</span>
+                  </div>
+                  <div className="admin-item-actions">
+                    <button className="btn btn-sm btn-outline-blue" onClick={() => handleEditEvent(evt)}>
+                      <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>edit</span>
+                    </button>
+                    <button className="btn btn-sm btn-danger" onClick={() => window.confirm('Delete this event?') && deleteEvent(evt._id || evt.id)}>
+                      <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>delete</span>
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── PROJECTS TAB ─────────────────────────────────────────────────────────── */}
+      {activeTab === 'Projects' && (
+        <div className="admin-panel grid-2 animate-fade-in">
+          <div className="card">
+            <h3>{editingProject ? 'Edit Project' : 'Add New Project'}</h3>
+            <p className="form-sub-desc">Manage ministry projects shown on the About page.</p>
+            <form onSubmit={handleSaveProject}>
+              <div className="form-group">
+                <label className="form-label">Project Title *</label>
+                <input type="text" placeholder="e.g. Clean Water Wells" value={projectTitle} onChange={e => setProjectTitle(e.target.value)} className="form-input" required />
+              </div>
+              <div className="form-group">
+                <label className="form-label">Description</label>
+                <textarea placeholder="Brief project description…" value={projectDesc} onChange={e => setProjectDesc(e.target.value)} className="form-textarea" style={{ minHeight: 80 }} />
+              </div>
+              <div className="grid-2">
+                <div className="form-group">
+                  <label className="form-label">Status</label>
+                  <select value={projectStatus} onChange={e => setProjectStatus(e.target.value)} className="form-select">
+                    <option>Current</option>
+                    <option>Completed</option>
+                    <option>Upcoming</option>
+                  </select>
+                </div>
+                <div className="form-group">
+                  <label className="form-label">Progress (%)</label>
+                  <input type="number" min="0" max="100" value={projectProgress} onChange={e => setProjectProgress(e.target.value)} className="form-input" />
+                </div>
+              </div>
+              <div style={{ display: 'flex', gap: '0.75rem' }}>
+                <button type="submit" className="btn btn-primary">{editingProject ? 'Save Changes' : 'Add Project'}</button>
+                {editingProject && <button type="button" className="btn btn-outline-blue" onClick={resetProjectForm}>Cancel</button>}
+              </div>
+            </form>
+          </div>
+          <div className="card">
+            <h3>All Projects ({projects.length})</h3>
+            <div className="admin-list-scroll">
+              {projects.length === 0 && <p style={{ color: 'var(--text-muted)', textAlign: 'center', padding: '2rem 0' }}>No projects yet.</p>}
+              {projects.map(proj => (
+                <div key={proj._id || proj.id} className="admin-list-item">
+                  <div className="admin-thumb-img" style={{ background: 'var(--bg-800)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <span className="material-symbols-outlined" style={{ fontSize: '1.5rem', color: 'var(--primary-blue)' }}>construction</span>
+                  </div>
+                  <div className="admin-item-details">
+                    <h4>{proj.title}</h4>
+                    <div style={{ display: 'flex', gap: '0.4rem', alignItems: 'center', marginTop: '0.2rem' }}>
+                      <span className={`badge ${proj.status === 'Completed' ? 'badge-success' : proj.status === 'Current' ? 'badge-gold' : 'badge-info'}`} style={{ fontSize: '0.62rem' }}>{proj.status}</span>
+                      <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>{proj.progress}%</span>
+                    </div>
+                  </div>
+                  <div className="admin-item-actions">
+                    <button className="btn btn-sm btn-outline-blue" onClick={() => handleEditProject(proj)}>
+                      <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>edit</span>
+                    </button>
+                    <button className="btn btn-sm btn-danger" onClick={() => window.confirm('Delete this project?') && deleteProject(proj._id || proj.id)}>
+                      <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>delete</span>
+                    </button>
                   </div>
                 </div>
               ))}
