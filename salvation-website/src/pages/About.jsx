@@ -63,22 +63,25 @@ export default function About() {
 
           <div className="bio-text-col">
             <span className="section-tag">THE MAN BEHIND THE MINISTRY</span>
-            <h2 className="bio-heading">Called to Preach, Heal & Restore</h2>
+            <h2 className="bio-heading">Brother Ifeanyi Raphael Solomon Ohiri</h2>
             <div className="bio-gold-rule" />
 
             <p className="bio-lead">
-              <em>"The Spirit of the Lord is upon me, because he hath anointed me to preach the gospel to the poor; he hath sent me to heal the brokenhearted, to preach deliverance to the captives…"</em>
-              <br /><cite>— Luke 4:18</cite>
+              <em>"How beautiful are the feet of those who preach the gospel of peace, who bring glad tidings of good things!"</em>
+              <br /><cite>— Romans 10:15 (NKJV)</cite>
             </p>
 
             <p>
-              Bro Ifeanyi Ohiri is a man marked by God — called by divine mandate to preach the undiluted gospel of Jesus Christ and to minister healing, deliverance, and restoration to the nations. His ministry is characterised by a raw dependence on the Holy Spirit, a deep reverence for Scripture, and an uncompromising pursuit of souls.
+              Brother Ifeanyi Raphael Solomon Ohiri is a devoted minister of God whose life reflects a deep passion for the Gospel of Jesus Christ and the advancement of God's Kingdom. Called to serve with humility, faith, and dedication, he has committed himself to the work of evangelism, discipleship, and the nurturing of believers in their spiritual journey.
             </p>
             <p>
-              From open-air crusades in remote communities to discipleship training in local churches, Bro Ifeanyi carries the fire of revival wherever he goes. Signs, wonders, and miraculous healings regularly accompany his ministry, drawing thousands into saving faith and freedom in Christ.
+              As a missionary, Brother Ifeanyi carries the message of salvation beyond the walls of the church, reaching people from different backgrounds with the love, hope, and transforming power of Christ. His ministry emphasizes winning souls, strengthening faith, and inspiring others to live according to biblical principles and the leading of the Holy Spirit.
             </p>
             <p>
-              Operating from the ministry's base on the Abeokuta–Ibadan Expressway in Ogun State, Nigeria, Salvation Series World Outreach continues to expand its reach — training ministers, planting churches, and taking the gospel to unreached people.
+              He also serves as a preceding ambassador of Salvation Series World Outreach, representing the vision and mission of the ministry with zeal and integrity. Through preaching, teaching, prayer, and compassionate service, he continues to encourage individuals and communities to embrace God's purpose for their lives.
+            </p>
+            <p>
+              Brother Ifeanyi Raphael Solomon Ohiri remains committed to being a vessel in God's hands, advancing the cause of Christ and leaving a lasting impact on lives for the glory of God.
             </p>
 
             <div className="bio-affiliation-row">
@@ -88,7 +91,7 @@ export default function About() {
               </div>
               <div className="bio-aff-item">
                 <span className="bio-aff-label">Focus</span>
-                <span className="bio-aff-value">Evangelism · Healing · Deliverance · Church Planting</span>
+                <span className="bio-aff-value">Evangelism · Discipleship · Missions · Soul Winning</span>
               </div>
             </div>
 

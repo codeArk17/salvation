@@ -104,6 +104,7 @@ export default function LiveTv() {
     setChatText('');
   };
 
+  const [streamEnded, setStreamEnded]   = useState(false);
   const videoSermons = sermons.filter(s => s.type === 'Video');
   const isUrlStream  = streamState.isLive && streamState.streamUrl && streamState.streamUrl !== 'zego' && streamState.streamUrl.startsWith('http');
 
@@ -126,6 +127,7 @@ export default function LiveTv() {
                     title={streamState.streamTitle}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowFullScreen
+                    onError={() => setStreamEnded(true)}
                   />
                 ) : (
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', background: '#0d1321', color: '#94a3b8', flexDirection: 'column', gap: '0.75rem', padding: '2rem', textAlign: 'center' }}>

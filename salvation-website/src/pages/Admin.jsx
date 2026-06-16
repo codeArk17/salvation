@@ -116,6 +116,13 @@ export default function Admin() {
     alert('✅ Stream settings saved!');
   };
 
+  const handleEndStream = () => {
+    if (!window.confirm('End the live stream? This will set the site to offline.')) return;
+    setStreamLive(false);
+    setLiveStream(false, streamUrl, streamTitleInput);
+    alert('✅ Stream ended. Site is now showing offline.');
+  };
+
   // ─── Book handlers ────────────────────────────────────────────────────────────
   const resetBookForm = () => {
     setEditingBook(null); setBookTitle(''); setBookDesc(''); setBookPrice('0');
@@ -377,6 +384,18 @@ export default function Admin() {
                 <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase' }}>Title</span>
                 <p style={{ margin: '0.25rem 0 0', fontWeight: 600, color: 'var(--primary-blue)', fontSize: '0.9rem' }}>{streamState.streamTitle}</p>
               </div>
+
+              {/* End stream button — shown only when live */}
+              {streamState.isLive && (
+                <button
+                  className="btn btn-danger"
+                  onClick={handleEndStream}
+                  style={{ width: '100%', marginTop: '0.5rem' }}
+                >
+                  <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>stop_circle</span>
+                  End Stream Now
+                </button>
+              )}
             </div>
 
             {/* Streaming Setup Guide */}
