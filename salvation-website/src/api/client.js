@@ -2,17 +2,11 @@ import axios from 'axios';
 
 /**
  * Central axios instance.
- * - baseURL points at the Vite proxy (/api), which forwards to
- *   http://localhost:5000 in development (see vite.config.js).
- * - The request interceptor attaches the stored admin token to every
- *   request that needs it (the server checks x-admin-token).
- *
- * NOTE: Do NOT set a default Content-Type here. For FormData requests,
- * axios must auto-set multipart/form-data with the correct boundary.
- * A hardcoded application/json default would break all file uploads.
+ * - In development: baseURL is /api (proxied by Vite to localhost:5000)
+ * - In production: baseURL is VITE_API_URL (your deployed backend)
  */
 const client = axios.create({
-  baseURL: '/api',
+  baseURL: import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL}/api` : '/api',
 });
 
 // Attach admin token header on every request when logged in

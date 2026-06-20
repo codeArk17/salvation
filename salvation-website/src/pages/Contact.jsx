@@ -82,7 +82,7 @@ export default function Contact() {
                 <span className="material-symbols-outlined contact-icon" style={{ color: 'var(--primary-blue)' }}>location_on</span>
                 <div className="contact-text">
                   <h5>Office Address</h5>
-                  <p>104 Faith Temple Way, Suite A, Richmond, VA 23220</p>
+                  <p>SALVATION CAMP: Orile Ilugun, Opposite Adeaga Poultry, Abeokuta-Ibadan Expressway, Abeokuta, Ogun State.</p>
                 </div>
               </div>
 
@@ -90,7 +90,7 @@ export default function Contact() {
                 <span className="material-symbols-outlined contact-icon" style={{ color: 'var(--primary-blue)' }}>call</span>
                 <div className="contact-text">
                   <h5>General Inquiries</h5>
-                  <p>+1 (800) 555-FAITH (3248)</p>
+                  <p>+234 802 367 0737 &nbsp;|&nbsp; +234 815 854 8307 &nbsp;|&nbsp; +234 815 854 8322</p>
                 </div>
               </div>
 
@@ -98,7 +98,7 @@ export default function Contact() {
                 <span className="material-symbols-outlined contact-icon" style={{ color: 'var(--primary-blue)' }}>mail</span>
                 <div className="contact-text">
                   <h5>Email Address</h5>
-                  <p>contact@salvationoutreach.org</p>
+                  <p>salvationseriesworldoutreach1@gmail.com</p>
                 </div>
               </div>
 
@@ -106,7 +106,7 @@ export default function Contact() {
                 <span className="material-symbols-outlined contact-icon" style={{ color: 'var(--primary-blue)' }}>schedule</span>
                 <div className="contact-text">
                   <h5>Office Hours</h5>
-                  <p>Monday – Friday: 9:00 AM – 5:00 PM EST</p>
+                  <p>Monday – Saturday: 8:00 AM – 6:00 PM WAT</p>
                 </div>
               </div>
             </div>
