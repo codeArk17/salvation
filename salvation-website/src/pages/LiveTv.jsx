@@ -3,7 +3,7 @@ import { io } from 'socket.io-client';
 import { ZegoUIKitPrebuilt } from '@zegocloud/zego-uikit-prebuilt';
 import { AppContext } from '../context/AppContext';
 
-const SOCKET_URL  = import.meta.env.VITE_SOCKET_URL || 'http://localhost:5000';
+const SOCKET_URL  = import.meta.env.VITE_SOCKET_URL || 'https://salvationback.onrender.com';
 const ZEGO_APP_ID = 283892766;
 const ZEGO_SECRET = 'c62fd50e10ca57da3dcb2a6d2db9ed56'; // ServerSecret for generateKitTokenForTest
 const ZEGO_ROOM   = 'salvation-live';

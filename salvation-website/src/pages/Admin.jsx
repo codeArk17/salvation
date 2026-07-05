@@ -185,7 +185,7 @@ export default function Admin() {
 
       // Pass editing ID if updating
       if (editingBook) {
-        fd.append('_id', editingBook._id || editingBook.id);
+        fd.append('_id', String(editingBook._id || editingBook.id));
       }
 
       await addOrUpdateBook(fd);
@@ -268,7 +268,7 @@ export default function Admin() {
           'https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&q=80&w=800');
       }
 
-      if (editingContent) fd.append('_id', editingContent._id || editingContent.id);
+      if (editingContent) fd.append('_id', String(editingContent._id || editingContent.id));
 
       await addOrUpdateContent(fd);
       alert('✅ Article saved!');
@@ -391,7 +391,7 @@ export default function Admin() {
                     Stream is set to ZegoCloud. Click below to open the host broadcaster — your camera will go live immediately.
                   </p>
                   <a
-                    href="http://localhost:5173/#live-tv"
+                    href={`${window.location.origin}/#live-tv`}
                     target="_blank"
                     rel="noreferrer"
                     className="btn btn-crimson"
