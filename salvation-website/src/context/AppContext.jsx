@@ -92,6 +92,7 @@ export const AppProvider = ({ children }) => {
   const [prayers,     setPrayers]     = useState(normArr(SEED_PRAYERS));
   const [projects,    setProjects]    = useState(normArr(SEED_PROJECTS));
   const [events,      setEvents]      = useState(normArr(SEED_EVENTS));
+  const [teamMembers, setTeamMembers] = useState([]);
   const [streamState, setStreamState] = useState(SEED_STREAM);
   const [donations,   setDonations]   = useState({
     totalRaised: 14500000,
@@ -111,11 +112,11 @@ export const AppProvider = ({ children }) => {
     setLoading(true);
     setApiError(null);
     try {
-      const [booksRes, contentRes, photosRes, videosRes, streamRes, projectsRes, eventsRes, prayersRes] = await Promise.all([
+      const [booksRes, contentRes, photosRes, videosRes, streamRes, projectsRes, eventsRes, prayersRes, sermonsRes] = await Promise.all([
         api.getBooks(), api.getContent(),
         api.getGallery('photo'), api.getGallery('video'),
         api.getStream(), api.getProjects(), api.getEvents(),
-        api.getPublicPrayers(),
+        api.getPublicPrayers(), api.getSermons(),
       ]);
 
       if (booksRes.data.length)    setBooks(normArr(booksRes.data));
@@ -125,6 +126,7 @@ export const AppProvider = ({ children }) => {
       if (projectsRes.data.length) setProjects(normArr(projectsRes.data));
       if (eventsRes.data.length)   setEvents(normArr(eventsRes.data));
       if (prayersRes.data.length)  setPrayers(normArr(prayersRes.data));
+      if (sermonsRes.data.length)  setSermons(normArr(sermonsRes.data));
 
       // Donation summary
       try {
@@ -268,12 +270,29 @@ export const AppProvider = ({ children }) => {
     } catch (err) { console.error('Gallery delete error:', err.message); throw err; }
   };
 
-  // ── Sermons (local only — no separate route) ──────────────────────────────────
-  const addOrUpdateSermon = (sermon) => {
-    if (sermon.id) { setSermons(prev => prev.map(s => s.id === sermon.id ? sermon : s)); }
-    else { setSermons(prev => [{ ...sermon, id: 's-' + Date.now() }, ...prev]); }
+  // ── Sermons ──────────────────────────────────────────────────────────────────
+  const addOrUpdateSermon = async (sermon) => {
+    try {
+      const isSeed = !sermon.id || String(sermon.id).startsWith('s-seed') || String(sermon.id).startsWith('s-');
+      if (!isSeed && (sermon._id || sermon.id)) {
+        const id = sermon._id || sermon.id;
+        const res = await api.updateSermonApi(id, sermon);
+        setSermons(prev => prev.map(s => (s._id === id || s.id === id) ? norm(res.data) : s));
+      } else {
+        const { id, _id, ...clean } = sermon;
+        const res = await api.createSermon(clean);
+        setSermons(prev => [norm(res.data), ...prev]);
+      }
+    } catch (err) { console.error('Sermon save error:', err.message); throw err; }
   };
-  const deleteSermon = (id) => { setSermons(prev => prev.filter(s => s.id !== id)); };
+  const deleteSermon = async (id) => {
+    if (!id || String(id).startsWith('s-seed') || (String(id).startsWith('s-') && id.length < 20)) {
+      setSermons(prev => prev.filter(s => s.id !== id && s._id !== id));
+      return;
+    }
+    try { await api.deleteSermonApi(id); setSermons(prev => prev.filter(s => s._id !== id && s.id !== id)); }
+    catch (err) { console.error('Sermon delete error:', err.message); throw err; }
+  };
 
   // ── Prayers ──────────────────────────────────────────────────────────────────
   const submitPrayerRequest = async (name, text) => {

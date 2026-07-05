@@ -52,6 +52,18 @@ export const deleteEvent = (id)        => client.delete(`/events/${id}`);
 export const getStream    = ()     => client.get('/stream');
 export const updateStream = (data) => client.put('/stream', data);
 
+// ─── Sermons ─────────────────────────────────────────────────────
+export const getSermons      = ()         => client.get('/sermons');
+export const createSermon    = (data)     => client.post('/sermons', data);
+export const updateSermonApi = (id, data) => client.put(`/sermons/${id}`, data);
+export const deleteSermonApi = (id)       => client.delete(`/sermons/${id}`);
+
+// ─── Team ────────────────────────────────────────────────────────
+export const getTeamMembers    = ()          => client.get('/team');
+export const createTeamMember  = (data)      => client.post('/team', data);
+export const updateTeamMember  = (id, data)  => client.put(`/team/${id}`, data);
+export const deleteTeamMember  = (id)        => client.delete(`/team/${id}`);
+
 // ─── Gallery ────────────────────────────────────────────────────
 // Always send FormData so the server's multer middleware can handle file uploads
 export const getGallery        = (mediaType) =>

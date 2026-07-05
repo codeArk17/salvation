@@ -163,7 +163,7 @@ export default function Media() {
           {/* Newsletter Archive */}
           <div className="card text-left">
             <h3>Monthly Newsletter Archive</h3>
-            <p className="tab-section-intro">Download past monthly prayer letters and ministry announcements (PDF format).</p>
+            <p className="tab-section-intro">Download past monthly prayer letters and ministry announcements.</p>
             <div className="resource-list">
               {newsletters.map(nl => (
                 <div key={nl.id} className="resource-item">
@@ -172,8 +172,8 @@ export default function Media() {
                     <h4>{nl.title}</h4>
                     <span className="res-meta">{nl.date} • {nl.size}</span>
                     <p className="res-desc">{nl.desc}</p>
-                    <a href="#" className="res-download-link" onClick={(e) => {e.preventDefault(); alert("Mock Download Started: " + nl.title)}}>
-                      📥 Download PDF
+                    <a href="#contact" className="res-download-link">
+                      ✉️ Contact us to receive this newsletter
                     </a>
                   </div>
                 </div>
@@ -181,10 +181,10 @@ export default function Media() {
             </div>
           </div>
 
-          {/* Study Guides & Materials */}
+          {/* Study Guides */}
           <div className="card text-left">
             <h3>Bible Study Guides & Books</h3>
-            <p className="tab-section-intro">Free study guides, booklets, and materials to grow your discipleship walks.</p>
+            <p className="tab-section-intro">Free study guides and materials for your discipleship journey.</p>
             <div className="resource-list">
               {studyGuides.map(sg => (
                 <div key={sg.id} className="resource-item">
@@ -192,12 +192,15 @@ export default function Media() {
                   <div className="res-info font-sans">
                     <h4>{sg.title}</h4>
                     <span className="res-meta">Written by {sg.author} • {sg.fileType} ({sg.size})</span>
-                    <a href="#" className="res-download-link" onClick={(e) => {e.preventDefault(); alert("Mock Download Started: " + sg.title)}}>
-                      📥 Download Guide
+                    <a href="#publications" className="res-download-link">
+                      📖 View in Publications Store →
                     </a>
                   </div>
                 </div>
               ))}
+            </div>
+            <div style={{ marginTop: '1.5rem', padding: '1rem', background: 'rgba(26,58,107,0.04)', borderRadius: 8, border: '1px solid var(--glass-border)', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+              💡 More books and study materials are available in our <a href="#publications" style={{ color: 'var(--primary-blue)', fontWeight: 600 }}>Publications Store</a>.
             </div>
           </div>
 
