@@ -1200,6 +1200,115 @@ a:hover { color: var(--blue-hover); }
   .nav-logo-img { height: 44px; }
   .mobile-drawer { top: 60px; padding: 1rem 1.1rem 1.25rem; }
   .mobile-nav-link { font-size: 0.88rem; padding: 0.4rem 0; }
+
+  /* ── ADMIN DASHBOARD ─────────────────────────────────── */
+  .admin-header { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+  .admin-tabs {
+    display: flex;
+    overflow-x: auto;
+    gap: 0.35rem;
+    padding-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    flex-wrap: nowrap;
+  }
+  .admin-tabs::-webkit-scrollbar { display: none; }
+  .admin-tab-btn { white-space: nowrap; font-size: 0.75rem; padding: 0.4rem 0.75rem; }
+  .admin-panel.grid-2 { grid-template-columns: 1fr; gap: 1.25rem; }
+  .admin-panel.grid-3 { grid-template-columns: 1fr; gap: 1.25rem; }
+  .admin-list-scroll { max-height: 280px; }
+  .admin-list-item { flex-wrap: wrap; gap: 0.5rem; }
+  .admin-item-actions { margin-left: auto; }
+
+  /* ── SUPPORT PAGE ────────────────────────────────────── */
+  .support-main-grid { grid-template-columns: 1fr; }
+  .amount-grid { grid-template-columns: repeat(3, 1fr); gap: 0.4rem; }
+  .amount-select-btn { font-size: 0.85rem; padding: 0.6rem 0.25rem; }
+  .goal-info-row { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+  .raised-txt { font-size: 1.6rem; }
+  .target-txt { font-size: 1.1rem; }
+  .prayer-grid { grid-template-columns: 1fr; }
+
+  /* ── RECEIPT CARDS ───────────────────────────────────── */
+  .receipt-card { font-size: 0.72rem; padding: 1rem; }
+  .receipt-amt-big { font-size: 1rem; }
+  .checkout-modal-content { max-width: 100%; }
+  .checkout-book-banner { flex-direction: row; }
+  .payment-modal-actions { flex-direction: column; gap: 0.6rem; }
+  .payment-modal-actions .btn { width: 100%; justify-content: center; }
+
+  /* ── BOOKS / PUBLICATIONS ────────────────────────────── */
+  .book-card { min-height: unset; }
+  .book-cover-container { height: 220px; }
+  .books-catalog .grid-3 { grid-template-columns: 1fr; }
+  .preview-modal-grid { grid-template-columns: 1fr; max-height: 90vh; }
+  .preview-details-col { max-height: 45vh; border-right: none; border-bottom: 1px solid var(--glass-border); }
+  .preview-text-col { max-height: 45vh; }
+  .reader-body { padding: 1.25rem; }
+  .reader-header { padding: 1rem 1.25rem; }
+
+  /* ── GALLERY ─────────────────────────────────────────── */
+  .gallery-photos-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 0.6rem; }
+  .gallery-photo-item { height: 150px; }
+  .lightbox-image { max-height: 60vh; }
+
+  /* ── CONTACT ─────────────────────────────────────────── */
+  .contact-grid { grid-template-columns: 1fr; }
+  .contact-methods { gap: 1rem; }
+  .contact-item { gap: 0.75rem; }
+  .prayer-phone { flex-direction: column; align-items: flex-start; }
+  .prayer-phone-link { font-size: 1rem; }
+  .form-wrapper-card { padding: 1.25rem; }
+
+  /* ── BIBLE SCHOOL ────────────────────────────────────── */
+  .school-intro-section { grid-template-columns: 1fr; }
+  .courses-catalog-section .grid-3 { grid-template-columns: 1fr; }
+
+  /* ── COUNSELING ──────────────────────────────────────── */
+  .counsel-main { grid-template-columns: 1fr; }
+  .counsel-info { padding-left: 0; margin-top: 1rem; }
+
+  /* ── LIVE TV CHAT ────────────────────────────────────── */
+  .stream-chat-col { height: 300px; }
+  .chat-name-input { font-size: 0.78rem; }
+  .chat-text-input { font-size: 0.82rem; }
+
+  /* ── PRAYER PROGRAMS ─────────────────────────────────── */
+  .wall-layout-grid { grid-template-columns: 1fr; }
+  .sticky-prayer-form { position: static; }
+  .programs-content-section .grid-2 { grid-template-columns: 1fr; }
+
+  /* ── UPDATES / BLOG ──────────────────────────────────── */
+  .featured-grid { grid-template-columns: 1fr; }
+  .featured-img-wrapper { height: 200px; }
+  .articles-feed .grid-3 { grid-template-columns: 1fr; }
+  .article-modal-content { max-width: 100%; padding: 0; }
+  .modal-hero-img { height: 180px; }
+  .modal-article-header, .modal-article-body, .modal-actions {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* ── FOOTER ──────────────────────────────────────────── */
+  .footer-main { grid-template-columns: 1fr; gap: 1.5rem; padding: 2.5rem 1rem 2rem; }
+  .brand-col { grid-column: span 1; }
+  .footer-contact-inner { flex-direction: column; align-items: flex-start; gap: 0.75rem; padding: 1rem; }
+  .footer-contact-item { font-size: 0.75rem; }
+  .footer-bottom-inner { flex-direction: column; text-align: center; gap: 0.5rem; }
+  .footer-legal-row { justify-content: center; }
+  .social-row { gap: 0.5rem; }
+
+  /* ── MODALS (all) ────────────────────────────────────── */
+  .modal-overlay { padding: 0.75rem; align-items: flex-end; }
+  .modal-content {
+    padding: 1.25rem;
+    border-radius: 16px 16px 0 0;
+    max-height: 90vh;
+    overflow-y: auto;
+    width: 100%;
+    max-width: 100% !important;
+  }
+  .modal-close { top: 0.75rem; right: 0.75rem; }
 }
 
 /* ── Extra small screens ≤ 400px ───────────────────────── */
@@ -1219,4 +1328,19 @@ a:hover { color: var(--blue-hover); }
   .stats-strip { grid-template-columns: 1fr 1fr; }
   .stat-num { font-size: 1.5rem; }
   .faith-tab-btn { font-size: 0.72rem; padding: 0.5rem 0.75rem; }
+
+  /* Stack action buttons */
+  .book-actions-row { flex-direction: column; }
+  .book-actions-row .btn { width: 100%; }
+  .stream-actions { flex-direction: column; }
+  .stream-actions .btn { width: 100%; justify-content: center; }
+  .bio-cta-row { flex-direction: column; }
+  .bio-cta-row .btn { width: 100%; justify-content: center; }
+  .faq-cta-btns { flex-direction: column; }
+  .faq-cta-btns .btn { width: 100%; justify-content: center; }
+
+  /* Tighter admin */
+  .admin-tab-btn { font-size: 0.68rem; padding: 0.35rem 0.55rem; }
+  .amount-select-btn { font-size: 0.75rem; }
+  .gallery-photos-grid { grid-template-columns: 1fr 1fr !important; }
 }
