@@ -36,7 +36,7 @@ const faqs = [
     icon: '📖',
     questions: [
       { q: 'Where is the ministry located?', a: 'Our ministry base is at Orile Ilugun, Opposite Adeaga Poultry, Abeokuta–Ibadan Expressway, Abeokuta, Ogun State, Nigeria.' },
-      { q: 'How can I contact the ministry directly?', a: 'Call us on +234 802 367 0737 or email contact@salvationoutreach.org. Office hours are Monday–Friday, 9 AM–5 PM WAT.' },
+      { q: 'How can I contact the ministry directly?', a: 'Call us on +234 802 367 0737 or email salvationseriesworldoutreach1@gmail.com. Office hours are Monday–Saturday, 8 AM–6 PM WAT.' },
       { q: 'Does the ministry have a statement of faith?', a: 'Yes. We believe in the inspired Word of God, the Trinity, salvation by grace through faith, divine healing, the baptism of the Holy Spirit, and the Great Commission. Visit our About page for the full statement.' },
       { q: 'How can I receive prayer?', a: 'Submit a prayer request through the Prayer Programs page or the Support page. You can also call our 24/7 prayer line. Our intercessory team stands in faith with you.' },
     ],

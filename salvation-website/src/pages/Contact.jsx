@@ -119,7 +119,7 @@ export default function Contact() {
             </p>
             <div className="prayer-phone">
               <span className="material-symbols-outlined phone-icon" style={{ color: 'var(--primary-crimson)', marginRight: '0.4rem' }}>call</span>
-              <a href="tel:18005557729" className="prayer-phone-link">+1 (800) 555-PRAY (7729)</a>
+              <a href="tel:+2348023670737" className="prayer-phone-link">+234 802 367 0737</a>
             </div>
           </div>
         </div>
