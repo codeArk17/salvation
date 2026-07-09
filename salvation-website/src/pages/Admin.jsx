@@ -2,6 +2,7 @@ import React, { useContext, useState, useRef } from 'react';
 import { AppContext } from '../context/AppContext';
 import * as api from '../api/index';
 import Swal from 'sweetalert2';
+import toast from 'react-hot-toast';
 
 export default function Admin() {
   const {
@@ -128,7 +129,7 @@ export default function Admin() {
   const handleUpdateStream = (e) => {
     e.preventDefault();
     setLiveStream(streamLive, streamUrl, streamTitleInput);
-    Swal.fire({ icon: 'success', title: 'Saved!', text: 'Stream settings updated.', timer: 2000, showConfirmButton: false });
+    toast.success('Stream settings saved!');
   };
 
   const handleEndStream = () => {
@@ -144,7 +145,7 @@ export default function Admin() {
       if (result.isConfirmed) {
         setStreamLive(false);
         setLiveStream(false, streamUrl, streamTitleInput);
-        Swal.fire({ icon: 'success', title: 'Stream Ended', text: 'Site is now showing offline.', timer: 2000, showConfirmButton: false });
+        toast.success('Stream ended. Site is now offline.');
       }
     });
   };
@@ -201,10 +202,10 @@ export default function Admin() {
       }
 
       await addOrUpdateBook(fd);
-      Swal.fire({ icon: 'success', title: 'Book Saved!', text: 'Your book has been published successfully.', timer: 2500, showConfirmButton: false });
+      toast.success('Book saved successfully!');
       resetBookForm();
     } catch (err) {
-      Swal.fire({ icon: 'error', title: 'Failed', text: err.message || 'Could not save book. Please try again.' });
+      toast.error(err.message || 'Could not save book. Please try again.');
     } finally {
       setBookUploading(false);
       setBookUploadProgress('');
@@ -234,16 +235,16 @@ export default function Admin() {
         // URL fallback (YouTube embed, external image)
         fd.append('url', galleryUrl.trim());
       } else {
-        Swal.fire({ icon: 'warning', title: 'Nothing to upload', text: 'Please select a file or enter a URL.' });
+        toast('Please select a file or enter a URL.', { icon: '⚠️' });
         setGalleryUploading(false);
         return;
       }
 
       await addMediaItem(fd, galleryMediaType);
-      Swal.fire({ icon: 'success', title: 'Uploaded!', text: 'Media item added to gallery successfully.', timer: 2500, showConfirmButton: false });
+      toast.success('Media uploaded successfully!');
       resetGalleryForm();
     } catch (err) {
-      Swal.fire({ icon: 'error', title: 'Upload Failed', text: err.message || 'Could not upload media. Please try again.' });
+      toast.error(err.message || 'Could not upload media. Please try again.');
     } finally {
       setGalleryUploading(false);
     }
@@ -282,10 +283,10 @@ export default function Admin() {
       if (editingContent) fd.append('_id', String(editingContent._id || editingContent.id));
 
       await addOrUpdateContent(fd);
-      Swal.fire({ icon: 'success', title: 'Article Saved!', text: 'Your content has been published.', timer: 2500, showConfirmButton: false });
+      toast.success('Article saved!');
       resetContentForm();
     } catch (err) {
-      Swal.fire({ icon: 'error', title: 'Failed', text: err.message || 'Could not save article. Please try again.' });
+      toast.error(err.message || 'Could not save article. Please try again.');
     } finally {
       setContentUploading(false);
     }
@@ -304,9 +305,9 @@ export default function Admin() {
     e.preventDefault();
     try {
       await addOrUpdateEvent({ ...(editingEvent || {}), title: eventTitle, date: eventDate, location: eventLocation, description: eventDesc });
-      Swal.fire({ icon: 'success', title: 'Event Saved!', timer: 2000, showConfirmButton: false });
+      toast.success('Event saved!');
       resetEventForm();
-    } catch (err) { Swal.fire({ icon: 'error', title: 'Failed', text: err.message }); }
+    } catch (err) { toast.error(err.message || 'Could not save event.'); }
   };
 
   // ─── Project handlers ─────────────────────────────────────────────────────────
@@ -316,9 +317,9 @@ export default function Admin() {
     e.preventDefault();
     try {
       await addOrUpdateProject({ ...(editingProject || {}), title: projectTitle, description: projectDesc, status: projectStatus, progress: parseInt(projectProgress) || 0 });
-      Swal.fire({ icon: 'success', title: 'Project Saved!', timer: 2000, showConfirmButton: false });
+      toast.success('Project saved!');
       resetProjectForm();
-    } catch (err) { Swal.fire({ icon: 'error', title: 'Failed', text: err.message }); }
+    } catch (err) { toast.error(err.message || 'Could not save project.'); }
   };
 
   // ─── Ledger stats ────────────────────────────────────────────────────────────
@@ -956,7 +957,7 @@ export default function Admin() {
                     {prayerFilter === 'Approved' && (
                       <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1rem' }}>
                         <input type="text" placeholder="Enter praise answer…" value={prayerAnswerText[pr._id || pr.id] || ''} onChange={e => setPrayerAnswerText(p => ({ ...p, [pr._id || pr.id]: e.target.value }))} className="form-input" style={{ padding: '0.45rem 0.75rem', fontSize: '0.85rem' }} />
-                        <button className="btn btn-sm btn-primary" onClick={() => { const ans = prayerAnswerText[pr._id || pr.id] || ''; if (!ans.trim()) { Swal.fire({ icon: 'warning', title: 'Enter an answer first.' }); return; } handlePrayerAction(pr._id || pr.id, 'Praise Report', ans); }}>Submit</button>
+                        <button className="btn btn-sm btn-primary" onClick={() => { const ans = prayerAnswerText[pr._id || pr.id] || ''; if (!ans.trim()) { toast('Enter an answer first.', { icon: '⚠️' }); return; } handlePrayerAction(pr._id || pr.id, 'Praise Report', ans); }}>Submit</button>
                       </div>
                     )}
                     <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>

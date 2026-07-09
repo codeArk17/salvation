@@ -1,6 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { AppContext } from '../context/AppContext';
 import client from '../api/client';
+import Swal from 'sweetalert2';
+import toast from 'react-hot-toast';
 
 const PAYSTACK_PUBLIC_KEY = import.meta.env.VITE_PAYSTACK_PUBLIC_KEY || '';
 
@@ -113,7 +115,7 @@ export default function Publications() {
 
   const handleFreeDownload = async (book) => {
     if (!book.downloadUrl || book.downloadUrl === '#') {
-      alert('Download link not available yet. Please contact us.');
+      toast('Download link not available yet. Please contact us.', { icon: 'ℹ️' });
       return;
     }
     // Use the force-download route for local uploads

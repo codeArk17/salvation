@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { AppProvider } from './context/AppContext';
+import { Toaster } from 'react-hot-toast';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import useScrollReveal from './hooks/useScrollReveal';
@@ -95,6 +96,25 @@ function App() {
 
   return (
     <AppProvider>
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          duration: 3500,
+          style: {
+            borderRadius: '10px',
+            background: '#1a1a2e',
+            color: '#fff',
+            fontSize: '0.9rem',
+            fontFamily: 'inherit',
+          },
+          success: {
+            iconTheme: { primary: '#c9973e', secondary: '#fff' },
+          },
+          error: {
+            iconTheme: { primary: '#a61c2e', secondary: '#fff' },
+          },
+        }}
+      />
       <div className="app-container">
         <Navbar currentHash={currentHash} />
         <main className="main-content">
