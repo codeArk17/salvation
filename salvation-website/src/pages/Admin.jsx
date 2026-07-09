@@ -929,8 +929,15 @@ export default function Admin() {
                       <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>edit</span>
                     </button>
                     <button className="btn btn-sm btn-danger" onClick={() => {
-                      Swal.fire({ title: 'Delete this project?', icon: 'warning', showCancelButton: true, confirmButtonColor: '#a61c2e', cancelButtonColor: '#6c757d', confirmButtonText: 'Delete' })
-                        .then(r => r.isConfirmed && deleteProject(proj._id || proj.id));
+                      toast((t) => (
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                          <span style={{ fontWeight: 600 }}>Delete this project?</span>
+                          <div style={{ display: 'flex', gap: '0.5rem' }}>
+                            <button onClick={() => { toast.dismiss(t.id); deleteProject(proj._id || proj.id); }} style={{ background: '#a61c2e', color: '#fff', border: 'none', borderRadius: 6, padding: '0.3rem 0.75rem', cursor: 'pointer', fontWeight: 600 }}>Delete</button>
+                            <button onClick={() => toast.dismiss(t.id)} style={{ background: '#444', color: '#fff', border: 'none', borderRadius: 6, padding: '0.3rem 0.75rem', cursor: 'pointer' }}>Cancel</button>
+                          </div>
+                        </div>
+                      ), { duration: 8000 });
                     }}>
                       <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>delete</span>
                     </button>
@@ -986,8 +993,15 @@ export default function Admin() {
                       </>}
                       {prayerFilter !== 'Pending' && <button className="btn btn-sm btn-outline-blue" onClick={() => handlePrayerAction(pr._id || pr.id, 'Pending')}>Move to Pending</button>}
                       <button className="btn btn-sm btn-danger" style={{ marginLeft: 'auto' }} onClick={() => {
-                        Swal.fire({ title: 'Delete this request?', icon: 'warning', showCancelButton: true, confirmButtonColor: '#a61c2e', cancelButtonColor: '#6c757d', confirmButtonText: 'Delete' })
-                          .then(r => r.isConfirmed && deletePrayerRequest(pr._id || pr.id));
+                        toast((t) => (
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                            <span style={{ fontWeight: 600 }}>Delete this prayer request?</span>
+                            <div style={{ display: 'flex', gap: '0.5rem' }}>
+                              <button onClick={() => { toast.dismiss(t.id); deletePrayerRequest(pr._id || pr.id); }} style={{ background: '#a61c2e', color: '#fff', border: 'none', borderRadius: 6, padding: '0.3rem 0.75rem', cursor: 'pointer', fontWeight: 600 }}>Delete</button>
+                              <button onClick={() => toast.dismiss(t.id)} style={{ background: '#444', color: '#fff', border: 'none', borderRadius: 6, padding: '0.3rem 0.75rem', cursor: 'pointer' }}>Cancel</button>
+                            </div>
+                          </div>
+                        ), { duration: 8000 });
                       }}>Delete</button>
                     </div>
                   </div>

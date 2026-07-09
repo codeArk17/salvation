@@ -299,11 +299,6 @@ export default function Support() {
               </label>
             </div>
 
-            {/* Donation Explanation Note */}
-            <div className="donation-terms-note">
-              <p>🔒 Secured by Paystack — Card, Bank Transfer & USSD accepted. 100% of designated funds go directly to missionary projects.</p>
-            </div>
-
             <button type="submit" className="btn btn-primary btn-block">
               Donate Now via Paystack
             </button>

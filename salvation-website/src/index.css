@@ -950,13 +950,7 @@ a:hover { color: var(--blue-hover); }
     margin-bottom: 1rem;
     font-weight: 800;
   }
-  .hero-sub {
-    font-size: 0.9rem;
-    line-height: 1.65;
-    margin-bottom: 1.75rem;
-    max-width: 100%;
-    opacity: 0.92;
-  }
+  .hero-sub { font-size: 0.9rem; line-height: 1.65; margin-bottom: 1.75rem; max-width: 100%; opacity: 0.92; display: none; }
   .hero-cta-row {
     flex-direction: column;
     gap: 0.65rem;
@@ -1348,7 +1342,7 @@ a:hover { color: var(--blue-hover); }
   .jm-hero { min-height: 480px; padding: 0 1rem 3rem; }
   .hero-eyebrow { font-size: 0.55rem; letter-spacing: 0.16em; }
   .hero-headline { font-size: 1.85rem; line-height: 1.12; }
-  .hero-sub { font-size: 0.84rem; line-height: 1.6; }
+  .hero-sub { font-size: 0.84rem; line-height: 1.6; display: none; }
   .hero-cta-row { flex-direction: column; width: 100%; gap: 0.6rem; }
   .btn-hero-watch,
   .btn-hero-donate,
