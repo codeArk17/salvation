@@ -1,6 +1,7 @@
 import React, { useContext, useState, useRef } from 'react';
 import { AppContext } from '../context/AppContext';
 import * as api from '../api/index';
+import Swal from 'sweetalert2';
 
 export default function Admin() {
   const {
@@ -127,14 +128,25 @@ export default function Admin() {
   const handleUpdateStream = (e) => {
     e.preventDefault();
     setLiveStream(streamLive, streamUrl, streamTitleInput);
-    alert('✅ Stream settings saved!');
+    Swal.fire({ icon: 'success', title: 'Saved!', text: 'Stream settings updated.', timer: 2000, showConfirmButton: false });
   };
 
   const handleEndStream = () => {
-    if (!window.confirm('End the live stream? This will set the site to offline.')) return;
-    setStreamLive(false);
-    setLiveStream(false, streamUrl, streamTitleInput);
-    alert('✅ Stream ended. Site is now showing offline.');
+    Swal.fire({
+      title: 'End the live stream?',
+      text: 'This will set the site to offline.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#a61c2e',
+      cancelButtonColor: '#6c757d',
+      confirmButtonText: 'Yes, end it',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setStreamLive(false);
+        setLiveStream(false, streamUrl, streamTitleInput);
+        Swal.fire({ icon: 'success', title: 'Stream Ended', text: 'Site is now showing offline.', timer: 2000, showConfirmButton: false });
+      }
+    });
   };
 
   // ─── Book handlers ────────────────────────────────────────────────────────────
@@ -189,10 +201,10 @@ export default function Admin() {
       }
 
       await addOrUpdateBook(fd);
-      alert('✅ Book saved successfully!');
+      Swal.fire({ icon: 'success', title: 'Book Saved!', text: 'Your book has been published successfully.', timer: 2500, showConfirmButton: false });
       resetBookForm();
     } catch (err) {
-      alert('❌ Error saving book: ' + err.message);
+      Swal.fire({ icon: 'error', title: 'Failed', text: err.message || 'Could not save book. Please try again.' });
     } finally {
       setBookUploading(false);
       setBookUploadProgress('');
@@ -222,17 +234,16 @@ export default function Admin() {
         // URL fallback (YouTube embed, external image)
         fd.append('url', galleryUrl.trim());
       } else {
-        setGalleryUploadMsg('❌ Please select a file or enter a URL.');
+        Swal.fire({ icon: 'warning', title: 'Nothing to upload', text: 'Please select a file or enter a URL.' });
         setGalleryUploading(false);
         return;
       }
 
       await addMediaItem(fd, galleryMediaType);
-      setGalleryUploadMsg('✅ Uploaded successfully!');
+      Swal.fire({ icon: 'success', title: 'Uploaded!', text: 'Media item added to gallery successfully.', timer: 2500, showConfirmButton: false });
       resetGalleryForm();
-      setTimeout(() => setGalleryUploadMsg(''), 4000);
     } catch (err) {
-      setGalleryUploadMsg('❌ Failed: ' + err.message);
+      Swal.fire({ icon: 'error', title: 'Upload Failed', text: err.message || 'Could not upload media. Please try again.' });
     } finally {
       setGalleryUploading(false);
     }
@@ -271,10 +282,10 @@ export default function Admin() {
       if (editingContent) fd.append('_id', String(editingContent._id || editingContent.id));
 
       await addOrUpdateContent(fd);
-      alert('✅ Article saved!');
+      Swal.fire({ icon: 'success', title: 'Article Saved!', text: 'Your content has been published.', timer: 2500, showConfirmButton: false });
       resetContentForm();
     } catch (err) {
-      alert('❌ Error saving article: ' + err.message);
+      Swal.fire({ icon: 'error', title: 'Failed', text: err.message || 'Could not save article. Please try again.' });
     } finally {
       setContentUploading(false);
     }
@@ -293,8 +304,9 @@ export default function Admin() {
     e.preventDefault();
     try {
       await addOrUpdateEvent({ ...(editingEvent || {}), title: eventTitle, date: eventDate, location: eventLocation, description: eventDesc });
-      alert('✅ Event saved!'); resetEventForm();
-    } catch (err) { alert('❌ Error: ' + err.message); }
+      Swal.fire({ icon: 'success', title: 'Event Saved!', timer: 2000, showConfirmButton: false });
+      resetEventForm();
+    } catch (err) { Swal.fire({ icon: 'error', title: 'Failed', text: err.message }); }
   };
 
   // ─── Project handlers ─────────────────────────────────────────────────────────
@@ -304,8 +316,9 @@ export default function Admin() {
     e.preventDefault();
     try {
       await addOrUpdateProject({ ...(editingProject || {}), title: projectTitle, description: projectDesc, status: projectStatus, progress: parseInt(projectProgress) || 0 });
-      alert('✅ Project saved!'); resetProjectForm();
-    } catch (err) { alert('❌ Error: ' + err.message); }
+      Swal.fire({ icon: 'success', title: 'Project Saved!', timer: 2000, showConfirmButton: false });
+      resetProjectForm();
+    } catch (err) { Swal.fire({ icon: 'error', title: 'Failed', text: err.message }); }
   };
 
   // ─── Ledger stats ────────────────────────────────────────────────────────────
@@ -530,7 +543,16 @@ export default function Admin() {
                     <button className="btn btn-sm btn-outline-blue" onClick={() => handleEditBook(b)} title="Edit">
                       <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>edit</span>
                     </button>
-                    <button className="btn btn-sm btn-danger" onClick={() => window.confirm('Delete this book?') && deleteBook(b._id || b.id)} title="Delete">
+                    <button className="btn btn-sm btn-danger" onClick={() => {
+                      Swal.fire({
+                        title: 'Delete this book?',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#a61c2e',
+                        cancelButtonColor: '#6c757d',
+                        confirmButtonText: 'Delete',
+                      }).then(r => r.isConfirmed && deleteBook(b._id || b.id));
+                    }} title="Delete">
                       <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>delete</span>
                     </button>
                   </div>
@@ -620,11 +642,6 @@ export default function Admin() {
                   </div>
                 </>
               )}
-              {galleryUploadMsg && (
-                <div style={{ padding: '0.6rem 1rem', background: galleryUploadMsg.startsWith('✅') ? 'rgba(22,163,74,0.08)' : galleryUploadMsg.startsWith('❌') ? 'rgba(220,38,38,0.08)' : 'rgba(26,58,107,0.06)', borderRadius: 6, marginBottom: '1rem', fontSize: '0.85rem', color: galleryUploadMsg.startsWith('✅') ? 'var(--success)' : galleryUploadMsg.startsWith('❌') ? 'var(--danger)' : 'var(--primary-blue)' }}>
-                  {galleryUploadMsg}
-                </div>
-              )}
               <button type="submit" className="btn btn-primary" disabled={galleryUploading}>
                 <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>upload</span>
                 {galleryUploading ? ' Uploading…' : ' Upload'}
@@ -659,7 +676,10 @@ export default function Admin() {
                     <h4>{item.title || '(untitled)'}</h4>
                     <span className="badge badge-info" style={{ fontSize: '0.62rem' }}>{item.category}</span>
                   </div>
-                  <button className="btn btn-sm btn-danger" onClick={() => window.confirm('Delete this item?') && deleteMediaItem(item._id || item.id, galleryFilter)} title="Delete">
+                  <button className="btn btn-sm btn-danger" onClick={() => {
+                      Swal.fire({ title: 'Delete this item?', icon: 'warning', showCancelButton: true, confirmButtonColor: '#a61c2e', cancelButtonColor: '#6c757d', confirmButtonText: 'Delete' })
+                        .then(r => r.isConfirmed && deleteMediaItem(item._id || item.id, galleryFilter));
+                    }} title="Delete">
                     <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>delete</span>
                   </button>
                 </div>
@@ -761,7 +781,10 @@ export default function Admin() {
                   </div>
                   <div className="admin-item-actions">
                     <button className="btn btn-sm btn-outline-blue" onClick={() => handleEditContent(c)}><span className="material-symbols-outlined" style={{ fontSize: '16px' }}>edit</span></button>
-                    <button className="btn btn-sm btn-danger" onClick={() => window.confirm('Delete this article?') && deleteContent(c._id || c.id)}><span className="material-symbols-outlined" style={{ fontSize: '16px' }}>delete</span></button>
+                    <button className="btn btn-sm btn-danger" onClick={() => {
+                      Swal.fire({ title: 'Delete this article?', icon: 'warning', showCancelButton: true, confirmButtonColor: '#a61c2e', cancelButtonColor: '#6c757d', confirmButtonText: 'Delete' })
+                        .then(r => r.isConfirmed && deleteContent(c._id || c.id));
+                    }}><span className="material-symbols-outlined" style={{ fontSize: '16px' }}>delete</span></button>
                   </div>
                 </div>
               ))}
@@ -816,7 +839,10 @@ export default function Admin() {
                     <button className="btn btn-sm btn-outline-blue" onClick={() => handleEditEvent(evt)}>
                       <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>edit</span>
                     </button>
-                    <button className="btn btn-sm btn-danger" onClick={() => window.confirm('Delete this event?') && deleteEvent(evt._id || evt.id)}>
+                    <button className="btn btn-sm btn-danger" onClick={() => {
+                      Swal.fire({ title: 'Delete this event?', icon: 'warning', showCancelButton: true, confirmButtonColor: '#a61c2e', cancelButtonColor: '#6c757d', confirmButtonText: 'Delete' })
+                        .then(r => r.isConfirmed && deleteEvent(evt._id || evt.id));
+                    }}>
                       <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>delete</span>
                     </button>
                   </div>
@@ -882,7 +908,10 @@ export default function Admin() {
                     <button className="btn btn-sm btn-outline-blue" onClick={() => handleEditProject(proj)}>
                       <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>edit</span>
                     </button>
-                    <button className="btn btn-sm btn-danger" onClick={() => window.confirm('Delete this project?') && deleteProject(proj._id || proj.id)}>
+                    <button className="btn btn-sm btn-danger" onClick={() => {
+                      Swal.fire({ title: 'Delete this project?', icon: 'warning', showCancelButton: true, confirmButtonColor: '#a61c2e', cancelButtonColor: '#6c757d', confirmButtonText: 'Delete' })
+                        .then(r => r.isConfirmed && deleteProject(proj._id || proj.id));
+                    }}>
                       <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>delete</span>
                     </button>
                   </div>
@@ -927,7 +956,7 @@ export default function Admin() {
                     {prayerFilter === 'Approved' && (
                       <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1rem' }}>
                         <input type="text" placeholder="Enter praise answer…" value={prayerAnswerText[pr._id || pr.id] || ''} onChange={e => setPrayerAnswerText(p => ({ ...p, [pr._id || pr.id]: e.target.value }))} className="form-input" style={{ padding: '0.45rem 0.75rem', fontSize: '0.85rem' }} />
-                        <button className="btn btn-sm btn-primary" onClick={() => { const ans = prayerAnswerText[pr._id || pr.id] || ''; if (!ans.trim()) return alert('Enter an answer first.'); handlePrayerAction(pr._id || pr.id, 'Praise Report', ans); }}>Submit</button>
+                        <button className="btn btn-sm btn-primary" onClick={() => { const ans = prayerAnswerText[pr._id || pr.id] || ''; if (!ans.trim()) { Swal.fire({ icon: 'warning', title: 'Enter an answer first.' }); return; } handlePrayerAction(pr._id || pr.id, 'Praise Report', ans); }}>Submit</button>
                       </div>
                     )}
                     <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
@@ -936,7 +965,10 @@ export default function Admin() {
                         <button className="btn btn-sm btn-outline-gold" onClick={() => { const a = window.prompt('Praise answer:'); if (a !== null) handlePrayerAction(pr._id || pr.id, 'Praise Report', a); }}>Mark Praise</button>
                       </>}
                       {prayerFilter !== 'Pending' && <button className="btn btn-sm btn-outline-blue" onClick={() => handlePrayerAction(pr._id || pr.id, 'Pending')}>Move to Pending</button>}
-                      <button className="btn btn-sm btn-danger" style={{ marginLeft: 'auto' }} onClick={() => window.confirm('Delete this request?') && deletePrayerRequest(pr._id || pr.id)}>Delete</button>
+                      <button className="btn btn-sm btn-danger" style={{ marginLeft: 'auto' }} onClick={() => {
+                        Swal.fire({ title: 'Delete this request?', icon: 'warning', showCancelButton: true, confirmButtonColor: '#a61c2e', cancelButtonColor: '#6c757d', confirmButtonText: 'Delete' })
+                          .then(r => r.isConfirmed && deletePrayerRequest(pr._id || pr.id));
+                      }}>Delete</button>
                     </div>
                   </div>
                 ))

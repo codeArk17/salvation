@@ -66,10 +66,16 @@ export default function Home() {
           <p className="hero-sub">Taking the undiluted gospel to the nations — through crusades, Bible education, healing, and humanitarian relief.</p>
           <div className="hero-cta-row">
             <a href="#live-tv" className="btn btn-hero-watch">
-              {streamState.isLive ? '🔴 Watch Live' : '▶ Watch Today\'s Teaching'}
+              {streamState.isLive
+                ? <><span className="material-symbols-outlined" style={{ fontSize: '18px', verticalAlign: 'middle' }}>sensors</span> Watch Live</>
+                : <><span className="material-symbols-outlined" style={{ fontSize: '18px', verticalAlign: 'middle' }}>play_circle</span> Watch Today's Teaching</>}
             </a>
-            <a href="#support" className="btn btn-hero-donate">Donate Now</a>
-            <a href="#prayer-programs" className="btn btn-hero-pray">🙏 Pray With Us</a>
+            <a href="#support" className="btn btn-hero-donate">
+              <span className="material-symbols-outlined" style={{ fontSize: '18px', verticalAlign: 'middle' }}>volunteer_activism</span> Donate Now
+            </a>
+            <a href="#prayer-programs" className="btn btn-hero-pray">
+              <span className="material-symbols-outlined" style={{ fontSize: '18px', verticalAlign: 'middle' }}>church</span> Pray With Us
+            </a>
           </div>
         </div>
       </section>
@@ -174,7 +180,7 @@ export default function Home() {
                 <div key={pr._id || pr.id || i} className={`prayer-preview-card${pr.status === 'Praise Report' ? ' praise' : ''}`}>
                   <div className="pp-header">
                     <strong>{pr.name}</strong>
-                    {pr.status === 'Praise Report' && <span className="pp-praise-tag">✨ Praise</span>}
+                    {pr.status === 'Praise Report' && <span className="pp-praise-tag"><span className="material-symbols-outlined" style={{ fontSize: '14px', verticalAlign: 'middle' }}>auto_awesome</span> Praise</span>}
                   </div>
                   <p>"{pr.text.length > 110 ? pr.text.slice(0, 110) + '…' : pr.text}"</p>
                   <span className="pp-count"><span className="material-symbols-outlined" style={{fontSize:'14px',verticalAlign:'middle'}}>favorite</span> {pr.prayCount || pr.count || 0} praying</span>
@@ -404,7 +410,7 @@ export default function Home() {
           </div>
           <div className="newsletter-form-wrap">
             {subscribed ? (
-              <div className="newsletter-success">🎉 Thank you for subscribing! You'll hear from us soon.</div>
+              <div className="newsletter-success"><span className="material-symbols-outlined" style={{ fontSize: '18px', verticalAlign: 'middle' }}>celebration</span> Thank you for subscribing! You'll hear from us soon.</div>
             ) : (
               <form onSubmit={handleSubscribe} className="newsletter-form">
                 <input

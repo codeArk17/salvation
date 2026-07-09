@@ -23,7 +23,7 @@ export default function Videos() {
         ) : (
           <div className="grid-2 gallery-videos-grid">
             {gallery.videos.map(video => (
-              <div key={video.id} className="card video-gallery-item text-left">
+              <div key={video._id || video.id} className="card video-gallery-item text-left">
                 <div className="video-iframe-wrapper">
                   <iframe
                     src={video.url}

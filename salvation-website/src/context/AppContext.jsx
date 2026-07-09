@@ -70,7 +70,7 @@ const SEED_PROJECTS = [
 const SEED_EVENTS = [
   { _id: 'ev-seed-1', id: 'ev-seed-1', title: 'Holy Fire Crusade', date: 'July 12–15, 2026', location: 'Kakamega Main Field', description: 'Outreach crusades featuring nightly salvation and healing services.' },
 ];
-const DONATION_GOAL = 30000000;
+const DONATION_GOAL = 100000000;
 
 // ─── Normalise helpers ─────────────────────────────────────────────────────────
 const norm = (item) => {
@@ -95,12 +95,9 @@ export const AppProvider = ({ children }) => {
   const [teamMembers, setTeamMembers] = useState([]);
   const [streamState, setStreamState] = useState(SEED_STREAM);
   const [donations,   setDonations]   = useState({
-    totalRaised: 14500000,
+    totalRaised: 0,
     goal: DONATION_GOAL,
-    ledger: [
-      { id: 'don-seed-1', name: 'Anonymous', amount: 150000, date: 'June 11, 2026', campaign: 'General Support' },
-      { id: 'don-seed-2', name: 'Arthur & Helen G.', amount: 500000, date: 'June 10, 2026', campaign: 'Clean Water Wells' },
-    ],
+    ledger: [],
   });
 
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(() => !!localStorage.getItem('ms_admin_token'));
@@ -133,7 +130,7 @@ export const AppProvider = ({ children }) => {
         const sumRes = await api.getDonationSummary();
         const { grandTotal, campaigns } = sumRes.data;
         const ledger = campaigns.map((c, i) => ({ id: `camp-${i}`, name: c._id, amount: c.total, date: '', campaign: c._id }));
-        setDonations({ totalRaised: grandTotal || 0, goal: DONATION_GOAL, ledger });
+        setDonations({ totalRaised: grandTotal ?? 0, goal: DONATION_GOAL, ledger });
       } catch { /* keep seed donations */ }
 
     } catch (err) {
