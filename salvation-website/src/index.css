@@ -901,6 +901,9 @@ a:hover { color: var(--blue-hover); }
   margin-top: 0.25rem;
 }
 
+/* ── Mobile-only line break helper ─────────────────────── */
+.hero-br-mobile { display: none; }
+
 /* ═══════════════════════════════════════════════════════════
    MOBILE RESPONSIVE — Comprehensive overrides for ≤ 768px
    Reduces font sizes, collapses grids, tightens spacing
@@ -930,19 +933,44 @@ a:hover { color: var(--blue-hover); }
 
   /* ── HOME — Hero ─────────────────────────────────────── */
   .jm-hero {
-    min-height: 420px;
-    padding: 0 1.25rem 3rem;
+    min-height: 520px;
+    padding: 0 1.25rem 3.5rem;
     align-items: flex-end;
   }
-  .hero-eyebrow { font-size: 0.62rem; margin-bottom: 0.6rem; }
-  .hero-headline { font-size: 1.75rem; margin-bottom: 0.9rem; }
-  .hero-sub { font-size: 0.88rem; margin-bottom: 1.4rem; }
-  .hero-cta-row { gap: 0.6rem; }
+  .hero-br-mobile { display: inline; }
+  .hero-eyebrow {
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    margin-bottom: 0.75rem;
+    opacity: 0.85;
+  }
+  .hero-headline {
+    font-size: 2.1rem;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    font-weight: 800;
+  }
+  .hero-sub {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    margin-bottom: 1.75rem;
+    max-width: 100%;
+    opacity: 0.92;
+  }
+  .hero-cta-row {
+    flex-direction: column;
+    gap: 0.65rem;
+    width: 100%;
+  }
   .btn-hero-watch,
   .btn-hero-donate,
   .btn-hero-pray {
-    padding: 0.6rem 1rem;
-    font-size: 0.78rem;
+    width: 100%;
+    justify-content: center;
+    padding: 0.85rem 1rem;
+    font-size: 0.85rem;
+    border-radius: 10px;
+    gap: 0.5rem;
   }
 
   /* ── HOME — Today's Feature ──────────────────────────── */
@@ -1317,12 +1345,14 @@ a:hover { color: var(--blue-hover); }
   h2 { font-size: 1.2rem;  }
   h3 { font-size: 1.05rem; }
 
-  .jm-hero { min-height: 360px; padding: 0 1rem 2.5rem; }
-  .hero-headline { font-size: 1.5rem; }
-  .hero-cta-row { flex-direction: column; width: 100%; }
+  .jm-hero { min-height: 480px; padding: 0 1rem 3rem; }
+  .hero-eyebrow { font-size: 0.55rem; letter-spacing: 0.16em; }
+  .hero-headline { font-size: 1.85rem; line-height: 1.12; }
+  .hero-sub { font-size: 0.84rem; line-height: 1.6; }
+  .hero-cta-row { flex-direction: column; width: 100%; gap: 0.6rem; }
   .btn-hero-watch,
   .btn-hero-donate,
-  .btn-hero-pray { width: 100%; justify-content: center; }
+  .btn-hero-pray { width: 100%; justify-content: center; padding: 0.8rem 1rem; font-size: 0.82rem; }
 
   .donate-amount-grid { grid-template-columns: repeat(2, 1fr); }
   .stats-strip { grid-template-columns: 1fr 1fr; }

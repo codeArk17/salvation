@@ -133,21 +133,18 @@ export default function Admin() {
   };
 
   const handleEndStream = () => {
-    Swal.fire({
-      title: 'End the live stream?',
-      text: 'This will set the site to offline.',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#a61c2e',
-      cancelButtonColor: '#6c757d',
-      confirmButtonText: 'Yes, end it',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        setStreamLive(false);
-        setLiveStream(false, streamUrl, streamTitleInput);
-        toast.success('Stream ended. Site is now offline.');
-      }
-    });
+    toast((t) => (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+        <span style={{ fontWeight: 600 }}>End the live stream?</span>
+        <small style={{ opacity: 0.8 }}>This will set the site to offline.</small>
+        <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.25rem' }}>
+          <button onClick={() => { toast.dismiss(t.id); setStreamLive(false); setLiveStream(false, streamUrl, streamTitleInput); toast.success('Stream ended. Site is now offline.'); }}
+            style={{ background: '#a61c2e', color: '#fff', border: 'none', borderRadius: 6, padding: '0.3rem 0.75rem', cursor: 'pointer', fontWeight: 600 }}>End</button>
+          <button onClick={() => toast.dismiss(t.id)}
+            style={{ background: '#444', color: '#fff', border: 'none', borderRadius: 6, padding: '0.3rem 0.75rem', cursor: 'pointer' }}>Cancel</button>
+        </div>
+      </div>
+    ), { duration: 10000 });
   };
 
   // ─── Book handlers ────────────────────────────────────────────────────────────
@@ -545,14 +542,15 @@ export default function Admin() {
                       <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>edit</span>
                     </button>
                     <button className="btn btn-sm btn-danger" onClick={() => {
-                      Swal.fire({
-                        title: 'Delete this book?',
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#a61c2e',
-                        cancelButtonColor: '#6c757d',
-                        confirmButtonText: 'Delete',
-                      }).then(r => r.isConfirmed && deleteBook(b._id || b.id));
+                      toast((t) => (
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                          <span style={{ fontWeight: 600 }}>Delete this book?</span>
+                          <div style={{ display: 'flex', gap: '0.5rem' }}>
+                            <button onClick={() => { toast.dismiss(t.id); deleteBook(b._id || b.id); }} style={{ background: '#a61c2e', color: '#fff', border: 'none', borderRadius: 6, padding: '0.3rem 0.75rem', cursor: 'pointer', fontWeight: 600 }}>Delete</button>
+                            <button onClick={() => toast.dismiss(t.id)} style={{ background: '#444', color: '#fff', border: 'none', borderRadius: 6, padding: '0.3rem 0.75rem', cursor: 'pointer' }}>Cancel</button>
+                          </div>
+                        </div>
+                      ), { duration: 8000 });
                     }} title="Delete">
                       <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>delete</span>
                     </button>
@@ -678,8 +676,15 @@ export default function Admin() {
                     <span className="badge badge-info" style={{ fontSize: '0.62rem' }}>{item.category}</span>
                   </div>
                   <button className="btn btn-sm btn-danger" onClick={() => {
-                      Swal.fire({ title: 'Delete this item?', icon: 'warning', showCancelButton: true, confirmButtonColor: '#a61c2e', cancelButtonColor: '#6c757d', confirmButtonText: 'Delete' })
-                        .then(r => r.isConfirmed && deleteMediaItem(item._id || item.id, galleryFilter));
+                      toast((t) => (
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                          <span style={{ fontWeight: 600 }}>Delete this item?</span>
+                          <div style={{ display: 'flex', gap: '0.5rem' }}>
+                            <button onClick={() => { toast.dismiss(t.id); deleteMediaItem(item._id || item.id, galleryFilter); }} style={{ background: '#a61c2e', color: '#fff', border: 'none', borderRadius: 6, padding: '0.3rem 0.75rem', cursor: 'pointer', fontWeight: 600 }}>Delete</button>
+                            <button onClick={() => toast.dismiss(t.id)} style={{ background: '#444', color: '#fff', border: 'none', borderRadius: 6, padding: '0.3rem 0.75rem', cursor: 'pointer' }}>Cancel</button>
+                          </div>
+                        </div>
+                      ), { duration: 8000 });
                     }} title="Delete">
                     <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>delete</span>
                   </button>
@@ -783,8 +788,15 @@ export default function Admin() {
                   <div className="admin-item-actions">
                     <button className="btn btn-sm btn-outline-blue" onClick={() => handleEditContent(c)}><span className="material-symbols-outlined" style={{ fontSize: '16px' }}>edit</span></button>
                     <button className="btn btn-sm btn-danger" onClick={() => {
-                      Swal.fire({ title: 'Delete this article?', icon: 'warning', showCancelButton: true, confirmButtonColor: '#a61c2e', cancelButtonColor: '#6c757d', confirmButtonText: 'Delete' })
-                        .then(r => r.isConfirmed && deleteContent(c._id || c.id));
+                      toast((t) => (
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                          <span style={{ fontWeight: 600 }}>Delete this article?</span>
+                          <div style={{ display: 'flex', gap: '0.5rem' }}>
+                            <button onClick={() => { toast.dismiss(t.id); deleteContent(c._id || c.id); }} style={{ background: '#a61c2e', color: '#fff', border: 'none', borderRadius: 6, padding: '0.3rem 0.75rem', cursor: 'pointer', fontWeight: 600 }}>Delete</button>
+                            <button onClick={() => toast.dismiss(t.id)} style={{ background: '#444', color: '#fff', border: 'none', borderRadius: 6, padding: '0.3rem 0.75rem', cursor: 'pointer' }}>Cancel</button>
+                          </div>
+                        </div>
+                      ), { duration: 8000 });
                     }}><span className="material-symbols-outlined" style={{ fontSize: '16px' }}>delete</span></button>
                   </div>
                 </div>
@@ -841,8 +853,15 @@ export default function Admin() {
                       <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>edit</span>
                     </button>
                     <button className="btn btn-sm btn-danger" onClick={() => {
-                      Swal.fire({ title: 'Delete this event?', icon: 'warning', showCancelButton: true, confirmButtonColor: '#a61c2e', cancelButtonColor: '#6c757d', confirmButtonText: 'Delete' })
-                        .then(r => r.isConfirmed && deleteEvent(evt._id || evt.id));
+                      toast((t) => (
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                          <span style={{ fontWeight: 600 }}>Delete this event?</span>
+                          <div style={{ display: 'flex', gap: '0.5rem' }}>
+                            <button onClick={() => { toast.dismiss(t.id); deleteEvent(evt._id || evt.id); }} style={{ background: '#a61c2e', color: '#fff', border: 'none', borderRadius: 6, padding: '0.3rem 0.75rem', cursor: 'pointer', fontWeight: 600 }}>Delete</button>
+                            <button onClick={() => toast.dismiss(t.id)} style={{ background: '#444', color: '#fff', border: 'none', borderRadius: 6, padding: '0.3rem 0.75rem', cursor: 'pointer' }}>Cancel</button>
+                          </div>
+                        </div>
+                      ), { duration: 8000 });
                     }}>
                       <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>delete</span>
                     </button>

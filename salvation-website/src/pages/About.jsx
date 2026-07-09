@@ -63,7 +63,7 @@ export default function About() {
 
           <div className="bio-text-col">
             <span className="section-tag">THE MAN BEHIND THE MINISTRY</span>
-            <h2 className="bio-heading">Brother Ifeanyi Raphael Solomon Ohiri</h2>
+            <h2 className="bio-heading">Brother Ifeanyi Solomon Raphael Ohiri</h2>
             <div className="bio-gold-rule" />
 
             <p className="bio-lead">
@@ -72,7 +72,7 @@ export default function About() {
             </p>
 
             <p>
-              Brother Ifeanyi Raphael Solomon Ohiri is a devoted minister of God whose life reflects a deep passion for the Gospel of Jesus Christ and the advancement of God's Kingdom. Called to serve with humility, faith, and dedication, he has committed himself to the work of evangelism, discipleship, and the nurturing of believers in their spiritual journey.
+              Brother Ifeanyi Solomon Raphael Ohiri is a devoted minister of God whose life reflects a deep passion for the Gospel of Jesus Christ and the advancement of God's Kingdom. Called to serve with humility, faith, and dedication, he has committed himself to the work of evangelism, discipleship, and the nurturing of believers in their spiritual journey.
             </p>
             <p>
               As a missionary, Brother Ifeanyi carries the message of salvation beyond the walls of the church, reaching people from different backgrounds with the love, hope, and transforming power of Christ. His ministry emphasizes winning souls, strengthening faith, and inspiring others to live according to biblical principles and the leading of the Holy Spirit.
@@ -81,7 +81,7 @@ export default function About() {
               He also serves as a preceding ambassador of Salvation Series World Outreach, representing the vision and mission of the ministry with zeal and integrity. Through preaching, teaching, prayer, and compassionate service, he continues to encourage individuals and communities to embrace God's purpose for their lives.
             </p>
             <p>
-              Brother Ifeanyi Raphael Solomon Ohiri remains committed to being a vessel in God's hands, advancing the cause of Christ and leaving a lasting impact on lives for the glory of God.
+              Brother Ifeanyi Solomon Raphael Ohiri remains committed to being a vessel in God's hands, advancing the cause of Christ and leaving a lasting impact on lives for the glory of God.
             </p>
 
             <div className="bio-affiliation-row">

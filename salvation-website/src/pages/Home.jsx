@@ -63,7 +63,7 @@ export default function Home() {
         <div className="jm-hero-content animate-fade-in">
           <span className="hero-eyebrow">SALVATION SERIES WORLD OUTREACH</span>
           <h1 className="hero-headline">Sharing Christ.<br />Changing Lives.</h1>
-          <p className="hero-sub">Taking the undiluted gospel to the nations — through crusades, Bible education, healing, and humanitarian relief.</p>
+          <p className="hero-sub">Taking the undiluted gospel to the nations —<br className="hero-br-mobile" /> through crusades, Bible education, healing,<br className="hero-br-mobile" /> and humanitarian relief.</p>
           <div className="hero-cta-row">
             <a href="#live-tv" className="btn btn-hero-watch">
               {streamState.isLive
