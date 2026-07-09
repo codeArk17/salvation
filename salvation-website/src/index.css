@@ -1197,7 +1197,41 @@ a:hover { color: var(--blue-hover); }
   .offline-hero h2 { font-size: 1.2rem; }
   .offline-notice { font-size: 0.88rem; }
 
-  /* ── UPDATES / PUBLICATIONS / SUPPORT / CONTACT ─────── */
+  /* ── General centering helpers for mobile ──────────────── */
+  .section-heading-row { text-align: center; }
+  .section-heading-row .btn { margin: 0 auto; }
+
+  /* ── Ensure no horizontal overflow ─────────────────────── */
+  .home-page, .about-page, .contact-page,
+  .publications-page, .gallery-page, .support-page,
+  .updates-page, .videos-page, .counseling-page,
+  .bible-school-page, .prayer-programs-page, .faq-page,
+  .team-page, .legal-page {
+    overflow-x: hidden;
+  }
+
+  /* ── Fix any inline-styled CTA rows ─────────────────────── */
+  [class*="cta-row"], [class*="actions-row"], [class*="btn-row"] {
+    flex-wrap: wrap;
+  }
+  [class*="cta-row"] .btn, [class*="actions-row"] .btn {
+    flex: 1 1 auto;
+    min-width: 140px;
+    justify-content: center;
+  }
+
+  /* ── Phone number overflow fix ───────────────────────── */
+  .prayer-phone-link {
+    font-size: 1rem !important;
+    word-break: break-all;
+  }
+
+  /* ── Newsletter subscribe button ─────────────────────── */
+  .newsletter-form .btn,
+  .newsletter-form button[type="submit"] {
+    width: 100%;
+    justify-content: center;
+  }
   .filter-bar { padding: 1rem 1.1rem; }
   .filter-controls { flex-direction: column; align-items: stretch; gap: 0.75rem; }
   .search-box-container { max-width: 100%; }
