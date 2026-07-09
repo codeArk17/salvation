@@ -935,7 +935,9 @@ a:hover { color: var(--blue-hover); }
   .jm-hero {
     min-height: 520px;
     padding: 0 1.25rem 3.5rem;
-    align-items: flex-end;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
   }
   .hero-br-mobile { display: inline; }
   .hero-eyebrow {
@@ -943,18 +945,22 @@ a:hover { color: var(--blue-hover); }
     letter-spacing: 0.18em;
     margin-bottom: 0.75rem;
     opacity: 0.85;
+    display: block;
+    text-align: center;
   }
   .hero-headline {
     font-size: 2.1rem;
     line-height: 1.15;
     margin-bottom: 1rem;
     font-weight: 800;
+    text-align: center;
   }
   .hero-sub { font-size: 0.9rem; line-height: 1.65; margin-bottom: 1.75rem; max-width: 100%; opacity: 0.92; display: none; }
   .hero-cta-row {
     flex-direction: column;
     gap: 0.65rem;
     width: 100%;
+    align-items: center;
   }
   .btn-hero-watch,
   .btn-hero-donate,
@@ -1339,11 +1345,11 @@ a:hover { color: var(--blue-hover); }
   h2 { font-size: 1.2rem;  }
   h3 { font-size: 1.05rem; }
 
-  .jm-hero { min-height: 480px; padding: 0 1rem 3rem; }
-  .hero-eyebrow { font-size: 0.55rem; letter-spacing: 0.16em; }
-  .hero-headline { font-size: 1.85rem; line-height: 1.12; }
+  .jm-hero { min-height: 480px; padding: 0 1rem 3rem; align-items: center; justify-content: center; text-align: center; }
+  .hero-eyebrow { font-size: 0.55rem; letter-spacing: 0.16em; text-align: center; }
+  .hero-headline { font-size: 1.85rem; line-height: 1.12; text-align: center; }
   .hero-sub { font-size: 0.84rem; line-height: 1.6; display: none; }
-  .hero-cta-row { flex-direction: column; width: 100%; gap: 0.6rem; }
+  .hero-cta-row { flex-direction: column; width: 100%; gap: 0.6rem; align-items: center; }
   .btn-hero-watch,
   .btn-hero-donate,
   .btn-hero-pray { width: 100%; justify-content: center; padding: 0.8rem 1rem; font-size: 0.82rem; }
