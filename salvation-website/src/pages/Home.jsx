@@ -884,9 +884,11 @@ export default function Home() {
           }
           .hero-eyebrow {
             text-align: center;
-            font-size: 0.6rem;
-            letter-spacing: 0.2em;
+            font-size: 0.65rem;
+            font-weight: 900;
+            letter-spacing: 0.22em;
             margin-bottom: 0;
+            margin-top: 1rem;
             align-self: center;
           }
           .hero-headline {
