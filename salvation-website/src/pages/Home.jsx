@@ -862,37 +862,55 @@ export default function Home() {
         }
         @media (max-width: 640px) {
           .jm-hero {
-            padding: 0 1.25rem 3rem;
+            padding: 0;
             min-height: 100svh;
-            align-items: center;
-            justify-content: center;
+            align-items: stretch;
+            justify-content: flex-start;
             text-align: center;
           }
           .jm-hero-overlay {
-            background: linear-gradient(to bottom, rgba(10,20,50,0.75) 0%, rgba(10,20,50,0.85) 100%);
+            background: linear-gradient(to bottom, rgba(10,20,50,0.75) 0%, rgba(10,20,50,0.55) 45%, rgba(10,20,50,0.85) 100%);
           }
           .jm-hero-content {
             max-width: 100%;
+            width: 100%;
+            height: 100svh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
             text-align: center;
+            padding: 2.5rem 1.25rem 3rem;
           }
-          .hero-eyebrow { text-align: center; }
-          .hero-headline { font-size: 2rem; text-align: center; }
+          .hero-eyebrow {
+            text-align: center;
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            margin-bottom: 0;
+            align-self: center;
+          }
+          .hero-headline {
+            font-size: 2.1rem;
+            text-align: center;
+            margin-bottom: 0;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
           .hero-sub { display: none; }
           .hero-cta-row {
             flex-direction: column;
             align-items: center;
             width: 100%;
             gap: 0.65rem;
+            margin-top: auto;
           }
           .btn-hero-watch,
           .btn-hero-donate,
           .btn-hero-pray {
             width: 100%;
-            max-width: 300px;
+            max-width: 320px;
             justify-content: center;
             display: flex;
             align-items: center;
