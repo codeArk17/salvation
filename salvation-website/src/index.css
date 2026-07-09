@@ -1408,3 +1408,69 @@ a:hover { color: var(--blue-hover); }
   .amount-select-btn { font-size: 0.75rem; }
   .gallery-photos-grid { grid-template-columns: 1fr 1fr !important; }
 }
+
+/* ── iPhone SE / small phones ≤ 375px ──────────────────── */
+@media (max-width: 375px) {
+  .jm-hero {
+    min-height: 100svh;
+    padding: 0 1.1rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .jm-hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.52rem;
+    letter-spacing: 0.2em;
+    text-align: center;
+    display: block;
+    width: 100%;
+    margin-bottom: 0.65rem;
+  }
+
+  .hero-headline {
+    font-size: 1.75rem;
+    line-height: 1.12;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .hero-sub { display: none; }
+
+  .hero-cta-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 0.6rem;
+    margin: 0 auto;
+  }
+
+  .btn-hero-watch,
+  .btn-hero-donate,
+  .btn-hero-pray {
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1rem;
+    font-size: 0.82rem;
+    border-radius: 10px;
+    text-align: center;
+  }
+}
