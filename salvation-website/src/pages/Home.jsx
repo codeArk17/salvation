@@ -861,9 +861,43 @@ export default function Home() {
           .events-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 640px) {
-          .jm-hero { padding: 0 1.25rem 3rem; min-height: 420px; }
-          .hero-headline { font-size: 2rem; }
-          .hero-cta-row { flex-direction: column; }
+          .jm-hero {
+            padding: 0 1.25rem 3rem;
+            min-height: 100svh;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+          }
+          .jm-hero-overlay {
+            background: linear-gradient(to bottom, rgba(10,20,50,0.75) 0%, rgba(10,20,50,0.85) 100%);
+          }
+          .jm-hero-content {
+            max-width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+          }
+          .hero-eyebrow { text-align: center; }
+          .hero-headline { font-size: 2rem; text-align: center; }
+          .hero-sub { display: none; }
+          .hero-cta-row {
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            gap: 0.65rem;
+          }
+          .btn-hero-watch,
+          .btn-hero-donate,
+          .btn-hero-pray {
+            width: 100%;
+            max-width: 300px;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+          }
           .jfy-inner, .books-grid { grid-template-columns: 1fr; }
           .newsletter-form { flex-direction: column; }
           .missions-img { height: 260px; }
