@@ -429,6 +429,11 @@ export default function Contact() {
           .form-wrapper-card {
             padding: 1.5rem;
           }
+          .contact-grid { grid-template-columns: 1fr; }
+          .prayer-phone { width: 100%; box-sizing: border-box; }
+          .prayer-phone-link { font-size: 1rem; word-break: break-all; }
+          .contact-methods { gap: 1rem; }
+          .contact-item { gap: 0.6rem; }
         }
       `}</style>
 

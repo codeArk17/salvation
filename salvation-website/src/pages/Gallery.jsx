@@ -198,6 +198,17 @@ export default function Gallery() {
           color: white;
           font-size: 1.8rem;
         }
+
+        @media (max-width: 768px) {
+          .lightbox-content { padding: 1rem; border-radius: 16px 16px 0 0; }
+          .lightbox-close-btn { top: 0.5rem; right: 0.5rem; color: #fff; font-size: 1.4rem; background: rgba(0,0,0,0.5); border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; }
+          .lightbox-image { max-height: 55vh; border-radius: 8px; }
+          .lightbox-caption h3 { font-size: 1rem; color: #fff; }
+          .photo-category-bar { gap: 0.5rem; }
+          .category-pill { font-size: 0.78rem; padding: 0.4rem 0.85rem; }
+          .gallery-photos-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 0.5rem; }
+          .gallery-photo-item { height: 150px; }
+        }
       `}</style>
 
     </div>

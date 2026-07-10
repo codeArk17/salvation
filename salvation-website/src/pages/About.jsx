@@ -120,13 +120,13 @@ export default function About() {
         {/* ── MISSION & VISION ───────────────────────────────────── */}
         <section className="mv-section">
           <div className="mv-card reveal-zoom">
-            <span className="mv-icon">🎯</span>
+            <span className="material-symbols-outlined mv-icon" style={{ color: 'var(--primary-blue)', fontSize: '2rem' }}>track_changes</span>
             <span className="section-tag">PURPOSE</span>
             <h3>Our Mission</h3>
             <p>To preach the undiluted gospel of Jesus Christ, minister healing and deliverance by the power of the Holy Spirit, and establish self-sustaining local assemblies that multiply and reach the nations.</p>
           </div>
           <div className="mv-card mv-card-gold reveal-zoom">
-            <span className="mv-icon">🌍</span>
+            <span className="material-symbols-outlined mv-icon" style={{ color: 'var(--primary-gold)', fontSize: '2rem' }}>public</span>
             <span className="section-tag">DIRECTION</span>
             <h3>Our Vision</h3>
             <p>To see every unreached community in West Africa and beyond saturated with the life-transforming power of the gospel — through crusades, church plants, Bible training, and Holy Spirit-led outreach.</p>
@@ -256,7 +256,7 @@ export default function About() {
                   </div>
                   <div className="event-details">
                     <h4>{evt.title}</h4>
-                    <p className="event-location">📍 {evt.location}</p>
+                    <p className="event-location"><span className="material-symbols-outlined" style={{fontSize:'14px',verticalAlign:'middle',marginRight:'3px'}}>location_on</span>{evt.location}</p>
                     <p className="event-desc">{evt.description}</p>
                   </div>
                   <a href="#contact" className="btn btn-sm btn-outline-gold event-rsvp">RSVP</a>
@@ -933,10 +933,47 @@ export default function About() {
           .event-date-box { min-width: 100%; }
           .bio-portrait { height: 320px; }
           .stats-strip { grid-template-columns: repeat(2,1fr); }
+          .about-hero { padding: 3.5rem 1.25rem 3rem; }
+          .about-hero-title { font-size: 1.8rem; }
+          .about-hero-sub { font-size: 0.9rem; }
+          .bio-section { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 0 2rem; }
+          .bio-image-col { position: static; }
+          .bio-heading { font-size: 1.4rem; }
+          .bio-gold-rule { margin: 1rem 0 1.25rem; }
+          .bio-lead { font-size: 0.92rem; }
+          .bio-text-col p { font-size: 0.88rem; }
+          .bio-affiliation-row { padding: 1rem; }
+          .bio-aff-value { font-size: 0.85rem; }
+          .bio-cta-row { flex-direction: column; gap: 0.6rem; }
+          .bio-cta-row .btn { width: 100%; justify-content: center; }
+          .values-section .grid-4 { grid-template-columns: 1fr 1fr; gap: 1rem; }
+          .value-card { padding: 1.25rem; }
+          .timeline-spine { left: 16px; }
+          .timeline-item, .timeline-item.right { width: 100%; margin-left: 0; padding-left: 3rem; padding-right: 0; justify-content: flex-start; }
+          .timeline-node { right: auto; left: -8px; }
+          .timeline-item.right .timeline-node { left: -8px; }
+          .timeline-card { max-width: 100%; padding: 1rem; }
+          .tl-year { font-size: 1.1rem; }
+          .faith-layout { grid-template-columns: 1fr; }
+          .faith-tabs-list { flex-direction: row; overflow-x: auto; border-right: none; border-bottom: 1px solid var(--glass-border); padding: 0 0 0.5rem; gap: 0; }
+          .faith-tab-btn { white-space: nowrap; border-left: none; border-bottom: 3px solid transparent; padding: 0.6rem 1rem; font-size: 0.8rem; text-align: center; }
+          .faith-tab-btn.active { border-left: none; border-bottom-color: var(--primary-gold); }
+          .faith-content { padding: 1.5rem; }
+          .faith-content-title { font-size: 1.15rem; }
+          .faith-content-text { font-size: 0.9rem; }
+          .projects-section .grid-3, .events-section .grid-3 { grid-template-columns: 1fr; }
+          .about-cta-banner { padding: 3rem 1.25rem; }
+          .about-cta-banner h2 { font-size: 1.4rem; }
+          .about-cta-banner p { font-size: 0.88rem; }
+          .about-body { padding: 0 1rem; }
+          .mv-card { padding: 1.5rem; }
+          .event-rsvp { width: 100%; justify-content: center; margin-top: 0.5rem; }
         }
         @media (max-width: 480px) {
           .stats-strip { grid-template-columns: 1fr 1fr; }
           .stat-num { font-size: 1.8rem; }
+          .values-section .grid-4 { grid-template-columns: 1fr; }
+          .bio-portrait { height: 260px; }
         }
       `}</style>
     </div>

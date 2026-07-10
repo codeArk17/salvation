@@ -108,6 +108,8 @@ export const AppProvider = ({ children }) => {
   const fetchAll = useCallback(async () => {
     setLoading(true);
     setApiError(null);
+    // Wake up Render free tier before main requests
+    try { await api.getStream(); } catch { /* ignore cold-start failure */ }
     try {
       const [booksRes, contentRes, photosRes, videosRes, streamRes, projectsRes, eventsRes, prayersRes, sermonsRes] = await Promise.all([
         api.getBooks(), api.getContent(),

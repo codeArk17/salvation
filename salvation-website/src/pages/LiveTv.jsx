@@ -17,10 +17,26 @@ function randomID(len = 5) {
 
 function normalizeStreamUrl(url) {
   if (!url) return url;
+  // Facebook — already embed format
   if (url.includes('facebook.com/plugins/video.php')) return url;
+  // Facebook — regular video URL → convert to embed
   if (url.includes('facebook.com') && (url.includes('/videos/') || url.includes('share/v/'))) {
     return `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(url)}&show_text=false&width=560&autoplay=true`;
   }
+  // YouTube watch URL → convert to embed
+  if (url.includes('youtube.com/watch')) {
+    try {
+      const u = new URL(url);
+      const v = u.searchParams.get('v');
+      if (v) return `https://www.youtube.com/embed/${v}?autoplay=1`;
+    } catch { /* fall through */ }
+  }
+  // YouTube short URL youtu.be/ID
+  if (url.includes('youtu.be/')) {
+    const id = url.split('youtu.be/')[1]?.split('?')[0];
+    if (id) return `https://www.youtube.com/embed/${id}?autoplay=1`;
+  }
+  // Already an embed URL — return as-is
   return url;
 }
 

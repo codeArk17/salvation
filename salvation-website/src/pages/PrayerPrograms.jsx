@@ -129,13 +129,13 @@ export default function PrayerPrograms() {
                 </div>
                 <div className="program-details">
                   <div className="detail-line">
-                    <strong>⏰ Time:</strong> <span>{prog.time}</span>
+                    <strong><span className="material-symbols-outlined" style={{fontSize:'15px',verticalAlign:'middle',marginRight:'4px'}}>schedule</span>Time:</strong> <span>{prog.time}</span>
                   </div>
                   <div className="detail-line">
-                    <strong>📅 Schedule:</strong> <span>{prog.days}</span>
+                    <strong><span className="material-symbols-outlined" style={{fontSize:'15px',verticalAlign:'middle',marginRight:'4px'}}>calendar_month</span>Schedule:</strong> <span>{prog.days}</span>
                   </div>
                   <div className="detail-line">
-                    <strong>📡 Platform:</strong> <span>{prog.platform}</span>
+                    <strong><span className="material-symbols-outlined" style={{fontSize:'15px',verticalAlign:'middle',marginRight:'4px'}}>wifi</span>Platform:</strong> <span>{prog.platform}</span>
                   </div>
                   <p className="program-focus-desc">{prog.focus}</p>
                 </div>

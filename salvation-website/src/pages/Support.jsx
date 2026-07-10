@@ -42,6 +42,7 @@ export default function Support() {
   // Volunteer Form States
   const [volunteerName, setVolunteerName] = useState('');
   const [volunteerEmail, setVolunteerEmail] = useState('');
+  const [volunteerMessage, setVolunteerMessage] = useState('');
   const [volunteerInterest, setVolunteerInterest] = useState('Mission Trip Participation');
   const [volunteerSubmitted, setVolunteerSubmitted] = useState(false);
 
@@ -150,13 +151,14 @@ export default function Support() {
     e.preventDefault();
     if (volunteerName && volunteerEmail) {
       try {
-        await submitVolunteer({ name: volunteerName, email: volunteerEmail, interest: volunteerInterest });
+        await submitVolunteer({ name: volunteerName, email: volunteerEmail, interest: volunteerInterest, message: volunteerMessage });
       } catch (err) {
         console.warn('Volunteer API error (non-blocking):', err.message);
       }
       setVolunteerSubmitted(true);
       setVolunteerName('');
       setVolunteerEmail('');
+      setVolunteerMessage('');
       setTimeout(() => setVolunteerSubmitted(false), 5000);
     }
   };
@@ -313,7 +315,7 @@ export default function Support() {
           
           {volunteerSubmitted ? (
             <div className="subscribe-success animate-fade-in" style={{ padding: '2rem', textAlign: 'center' }}>
-              <h3>🎉 Inquiry Submitted!</h3>
+              <h3><span className="material-symbols-outlined" style={{fontSize:'1.8rem',verticalAlign:'middle',color:'var(--primary-gold)'}}>celebration</span> Inquiry Submitted!</h3>
               <p style={{ marginTop: '0.5rem', color: 'var(--text-primary)' }}>Thank you for your willingness to serve. Our missions director will review your interest and reach out via email shortly.</p>
             </div>
           ) : (
@@ -361,6 +363,8 @@ export default function Support() {
                 <textarea
                   placeholder="Tell us about your background, why you want to join us, or any questions you have..."
                   className="form-textarea"
+                  value={volunteerMessage}
+                  onChange={(e) => setVolunteerMessage(e.target.value)}
                 ></textarea>
               </div>
 
@@ -387,7 +391,7 @@ export default function Support() {
             
             {prayerSubmitted ? (
               <div className="subscribe-success animate-fade-in" style={{ padding: '1.5rem', textAlign: 'center' }}>
-                <h3>🙏 Prayer Request Received</h3>
+                <h3><span className="material-symbols-outlined" style={{fontSize:'1.8rem',verticalAlign:'middle',color:'var(--primary-blue)'}}>church</span> Prayer Request Received</h3>
                 <p style={{ marginTop: '0.5rem', color: 'var(--text-primary)' }}>Thank you. Your request has been queued for moderation. Our intercessors are already praying for your needs.</p>
               </div>
             ) : (
@@ -949,6 +953,23 @@ export default function Support() {
             padding: 1rem;
             font-size: 0.75rem;
           }
+          .goal-info-row {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.75rem;
+          }
+          .goal-figures {
+            align-items: baseline;
+            gap: 0.35rem;
+          }
+          .raised-txt { font-size: 1.6rem; }
+          .target-txt { font-size: 1rem; }
+          .goal-progress-meta { flex-direction: column; gap: 0.25rem; align-items: flex-start; }
+          .support-header { margin-bottom: 2rem; }
+          .prayer-wall-section h2 { font-size: 1.2rem; }
+          .wall-intro { font-size: 0.85rem; margin-bottom: 2rem; }
+          .prayer-item-card { padding: 1rem; }
+          .prayer-actions-row { flex-wrap: wrap; gap: 0.5rem; }
         }
       `}</style>
 
