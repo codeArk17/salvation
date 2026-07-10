@@ -54,10 +54,10 @@ export default function Footer() {
         <div className="footer-col brand-col">
           <div className="footer-logo">
             <img
-              src="/pastor.jpg"
+              src="https://res.cloudinary.com/dhoqtwst9/image/upload/v1781277989/salvation-removebg-preview_z2vplu.png"
               alt="Salvation Series World Outreach"
               className="footer-logo-img"
-              style={{ borderRadius: '50%', objectFit: 'cover', width: '80px', height: '80px' }}
+              style={{ borderRadius: 0, objectFit: 'contain', width: 'auto', height: '80px' }}
             />
           </div>
           <p className="footer-tagline">
@@ -221,10 +221,11 @@ export default function Footer() {
 
         .footer-logo { margin-bottom: 1rem; }
         .footer-logo-img {
-          height: 110px;
+          height: 80px;
           width: auto;
           object-fit: contain;
           display: block;
+          border-radius: 0;
           filter: brightness(0) invert(1);
         }
         .footer-tagline {

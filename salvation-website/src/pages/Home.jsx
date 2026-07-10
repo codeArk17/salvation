@@ -448,7 +448,7 @@ export default function Home() {
           margin-left: -50vw; margin-right: -50vw;
           margin-top: -2rem;
           min-height: 620px;
-          background: url('/salvation.jpg') center center / cover no-repeat;
+          background: url('/pastor.jpg') center center / cover no-repeat;
           display: flex; align-items: flex-end; justify-content: flex-start;
           padding: 0 4rem 5rem;
         }
