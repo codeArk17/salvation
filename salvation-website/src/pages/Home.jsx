@@ -856,9 +856,10 @@ export default function Home() {
             align-items: stretch;
             justify-content: flex-start;
             text-align: center;
+            background: url('/pastor.jpg') center 5% / auto 100% no-repeat, linear-gradient(135deg, #0a1832 0%, #0f2042 60%, #081428 100%) !important;
           }
           .jm-hero-overlay {
-            background: linear-gradient(to bottom, rgba(10,20,50,0.75) 0%, rgba(10,20,50,0.55) 45%, rgba(10,20,50,0.85) 100%);
+            background: linear-gradient(to bottom, rgba(8,16,40,0.82) 0%, rgba(8,16,40,0.55) 40%, rgba(8,16,40,0.88) 100%);
           }
           .jm-hero-content {
             max-width: 100%;
