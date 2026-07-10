@@ -46,7 +46,7 @@ export default function Home() {
   // Featured book
   const featuredBook = books[0];
   // Donation total
-  const fundPercent = Math.min(Math.round(((donations?.totalRaised || 14500) / (donations?.goal || 30000)) * 100), 100);
+  const fundPercent = Math.min(Math.round(((donations?.totalRaised || 0) / (donations?.goal || 1000000000)) * 100), 100);
 
   const presetAmounts = ['1000', '2000', '5000', '10000'];
 

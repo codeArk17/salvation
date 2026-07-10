@@ -70,7 +70,7 @@ const SEED_PROJECTS = [
 const SEED_EVENTS = [
   { _id: 'ev-seed-1', id: 'ev-seed-1', title: 'Holy Fire Crusade', date: 'July 12–15, 2026', location: 'Kakamega Main Field', description: 'Outreach crusades featuring nightly salvation and healing services.' },
 ];
-const DONATION_GOAL = 100000000;
+const DONATION_GOAL = 1000000000;
 
 // ─── Normalise helpers ─────────────────────────────────────────────────────────
 const norm = (item) => {

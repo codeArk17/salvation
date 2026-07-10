@@ -37,9 +37,10 @@ export default function Navbar({ currentHash }) {
         {/* Brand Logo */}
         <a href="#home" className="nav-logo" onClick={handleLinkClick}>
           <img
-            src="https://res.cloudinary.com/dhoqtwst9/image/upload/v1781277989/salvation-removebg-preview_z2vplu.png"
+            src="/pastor.jpg"
             alt="Salvation Series World Outreach"
             className="nav-logo-img"
+            style={{ borderRadius: '50%', objectFit: 'cover', width: '52px', height: '52px' }}
           />
         </a>
 
