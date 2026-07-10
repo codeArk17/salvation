@@ -98,7 +98,7 @@ export default function Contact() {
                 <span className="material-symbols-outlined contact-icon" style={{ color: 'var(--primary-blue)' }}>mail</span>
                 <div className="contact-text">
                   <h5>Email Address</h5>
-                  <p>salvationseriesworldoutreach1@gmail.com</p>
+                  <p>salvationseriesworldoutreach5@gmail.com</p>
                 </div>
               </div>
 

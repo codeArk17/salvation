@@ -329,18 +329,7 @@ export default function Home() {
         <div className="testimonials-inner">
           <span className="section-tag">GOD IS STILL WORKING</span>
           <h2 className="section-h2">What God Is Doing</h2>
-          <div className="testimonial-carousel">
-            <div className="testimonial-card animate-fade-in" key={activeTestimonial}>
-              <p className="testimonial-quote">"{testimonials[activeTestimonial].text}"</p>
-              <span className="testimonial-name">— {testimonials[activeTestimonial].name}</span>
-            </div>
-            <div className="testimonial-dots">
-              {testimonials.map((_, i) => (
-                <button key={i} onClick={() => setActiveTestimonial(i)} className={`tc-dot${i === activeTestimonial ? ' active' : ''}`} aria-label={`Testimonial ${i + 1}`} />
-              ))}
-            </div>
-          </div>
-          <a href="#updates" className="btn btn-outline-blue">Read More Testimonies</a>
+          <a href="#updates" className="btn btn-outline-blue" style={{ marginTop: '1rem' }}>Read More Testimonies</a>
         </div>
       </section>
 

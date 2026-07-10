@@ -176,7 +176,7 @@ export default function Footer() {
           </div>
           <div className="footer-contact-item">
             <span className="material-symbols-outlined footer-contact-icon">mail</span>
-            <span>salvationseriesworldoutreach1@gmail.com</span>
+            <span>salvationseriesworldoutreach5@gmail.com</span>
           </div>
         </div>
       </div>
