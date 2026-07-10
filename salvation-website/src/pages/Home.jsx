@@ -447,16 +447,16 @@ export default function Home() {
           left: 50%; right: 50%;
           margin-left: -50vw; margin-right: -50vw;
           margin-top: -2rem;
-          min-height: 620px;
-          background: url('/pastor.jpg') center center / cover no-repeat;
+          min-height: 700px;
+          background: url('/pastor.jpg') right 8% / 65% auto no-repeat, linear-gradient(135deg, #0a1832 0%, #0f2042 60%, #081428 100%);
           display: flex; align-items: flex-end; justify-content: flex-start;
           padding: 0 4rem 5rem;
         }
         .jm-hero-overlay {
           position: absolute; inset: 0;
-          background: linear-gradient(to right, rgba(10,20,50,0.82) 40%, rgba(10,20,50,0.3) 100%);
+          background: linear-gradient(to right, rgba(8,16,40,0.97) 38%, rgba(8,16,40,0.6) 62%, rgba(8,16,40,0.1) 100%);
         }
-        .jm-hero-content { position: relative; z-index: 2; max-width: 600px; }
+        .jm-hero-content { position: relative; z-index: 2; max-width: 560px; }
         .hero-eyebrow {
           font-size: 0.75rem; font-weight: 800; letter-spacing: 0.2em;
           color: var(--primary-gold); display: block; margin-bottom: 1rem;
