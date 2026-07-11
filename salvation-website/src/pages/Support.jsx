@@ -11,10 +11,9 @@ function useSquadScript() {
   useEffect(() => {
     if (window.squad) { setReady(true); return; }
     const s = document.createElement('script');
-    s.src = SQUAD_ENV === 'live'
-      ? 'https://checkout.squadco.com/widget/squad.min.js'
-      : 'https://sandbox-checkout-d.squadco.com/widget/squad.min.js';
+    s.src = 'https://checkout.squadco.com/widget/squad.min.js';
     s.onload = () => setReady(true);
+    s.onerror = () => console.error('Failed to load Squad script');
     document.head.appendChild(s);
   }, []);
   return ready;
