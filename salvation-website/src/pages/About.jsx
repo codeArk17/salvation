@@ -36,7 +36,7 @@ export default function About() {
         <div className="about-hero-overlay" />
         <div className="about-hero-content text-center">
           <span className="about-hero-tag">OUR STORY</span>
-          <h1 className="about-hero-title">About the Ministry</h1>
+          <h1 className="about-hero-title">About the Missionary</h1>
           <p className="about-hero-sub">
             Discover the man, the calling, and the mission that drives Salvation Series World Outreach.
           </p>
@@ -77,12 +77,6 @@ export default function About() {
             <p>
               As a missionary, Brother Ifeanyi carries the message of salvation beyond the walls of the church, reaching people from different backgrounds with the love, hope, and transforming power of Christ. His ministry emphasizes winning souls, strengthening faith, and inspiring others to live according to biblical principles and the leading of the Holy Spirit.
             </p>
-            <p>
-              He also serves as a preceding ambassador of Salvation Series World Outreach, representing the vision and mission of the ministry with zeal and integrity. Through preaching, teaching, prayer, and compassionate service, he continues to encourage individuals and communities to embrace God's purpose for their lives.
-            </p>
-            <p>
-              Brother Ifeanyi Solomon Raphael Ohiri remains committed to being a vessel in God's hands, advancing the cause of Christ and leaving a lasting impact on lives for the glory of God.
-            </p>
 
             <div className="bio-affiliation-row">
               <div className="bio-aff-item">
@@ -105,10 +99,10 @@ export default function About() {
         {/* ── STATS STRIP ────────────────────────────────────────── */}
         <section className="stats-strip">
           {[
-            { num: '1000+', label: 'Salvations Recorded' },
+            { num: '10,000+', label: 'Salvations Recorded' },
             { num: '50+',   label: 'Crusades Conducted' },
-            { num: '12+',   label: 'Churches Planted' },
-            { num: '5+',    label: 'States Reached' },
+            { num: '40+',   label: 'Churches Planted' },
+            { num: '10+',    label: 'States Reached' },
           ].map((s, i) => (
             <div key={i} className={`stat-item reveal-left reveal-delay-${i + 1}`}>
               <span className="stat-num">{s.num}</span>
@@ -123,13 +117,13 @@ export default function About() {
             <span className="material-symbols-outlined mv-icon" style={{ color: 'var(--primary-blue)', fontSize: '2rem' }}>track_changes</span>
             <span className="section-tag">PURPOSE</span>
             <h3>Our Mission</h3>
-            <p>To preach the undiluted gospel of Jesus Christ, minister healing and deliverance by the power of the Holy Spirit, and establish self-sustaining local assemblies that multiply and reach the nations.</p>
+            <p>He serves as a preceding ambassador of Salvation Series World Outreach, representing the vision and mission of the ministry with zeal and integrity. Through preaching, teaching, prayer, and compassionate service, he continues to encourage individuals and communities to embrace God's purpose for their lives.</p>
           </div>
           <div className="mv-card mv-card-gold reveal-zoom">
             <span className="material-symbols-outlined mv-icon" style={{ color: 'var(--primary-gold)', fontSize: '2rem' }}>public</span>
             <span className="section-tag">DIRECTION</span>
             <h3>Our Vision</h3>
-            <p>To see every unreached community in West Africa and beyond saturated with the life-transforming power of the gospel — through crusades, church plants, Bible training, and Holy Spirit-led outreach.</p>
+            <p>Brother Ifeanyi Solomon Raphael Ohiri remains committed to being a vessel in God's hands, advancing the cause of Christ and leaving a lasting impact on lives for the glory of God — reaching every unreached community through crusades, church plants, Bible training, and Holy Spirit-led outreach.</p>
           </div>
         </section>
 
@@ -205,6 +199,48 @@ export default function About() {
               </blockquote>
             </div>
           </div>
+        </section>
+
+        {/* ── TESTIMONIES ─────────────────────────────────────────── */}
+        <section className="testimonies-section reveal">
+          <div className="text-center" style={{ marginBottom: '2.5rem' }}>
+            <span className="section-tag">HIS MIGHTY WORKS</span>
+            <h2 className="section-title">Testimonies of God's Power</h2>
+            <div className="section-rule" />
+          </div>
+          <div className="grid-2">
+            {[
+              {
+                num: '01',
+                title: 'Debt Cancelled by Government',
+                text: 'A woman joined our live Facebook broadcast burdened by a debt of $500,000. A few days after the broadcast, her debt was completely cleared by the United States government. To God be all the glory.',
+              },
+              {
+                num: '02',
+                title: 'Seven-Day Fast — Nation Shaken',
+                text: 'The Lord instructed the ministry to embark on a seven-day prayer and fasting for Nigeria, declaring that one week afterward we would witness His mighty hand. We obeyed, and the Lord moved mightily, just as He had spoken.',
+              },
+              {
+                num: '03',
+                title: 'Demonic River Dried Up',
+                text: 'The co-founders confronted a demonic river near the ministry headquarters known for claiming at least three lives every year through mysterious circumstances. They prayed fervently, and by God\'s mighty power, the river dried up. Hallelujah!',
+              },
+              {
+                num: '04',
+                title: 'Lives Transformed',
+                text: 'By the grace and power of God, many lives have been transformed. Criminals, traditionalists, and many others have repented, surrendered their lives to Jesus Christ, and experienced the saving power of the Gospel.',
+              },
+            ].map((t, i) => (
+              <div key={i} className="testimony-card card reveal-zoom">
+                <span className="testimony-num">{t.num}</span>
+                <h4>{t.title}</h4>
+                <p>{t.text}</p>
+              </div>
+            ))}
+          </div>
+          <p style={{ textAlign: 'center', fontStyle: 'italic', color: 'var(--text-muted)', marginTop: '2rem', fontSize: '0.9rem' }}>
+            These are only a few of the many testimonies of God's mighty works through this ministry. To Him alone be all the glory, honor, and praise forever.
+          </p>
         </section>
 
         {/* ── PROJECTS DIRECTORY ──────────────────────────────────── */}
@@ -771,6 +807,37 @@ export default function About() {
           font-weight: 700;
           font-size: 0.82rem;
           color: var(--primary-gold);
+        }
+
+        /* ── Testimonies ── */
+        .testimonies-section {
+          padding: 4rem 0;
+          border-bottom: 1px solid var(--glass-border);
+        }
+        .testimony-card {
+          padding: 2rem;
+          border-left: 4px solid var(--primary-gold);
+          display: flex;
+          flex-direction: column;
+          gap: 0.75rem;
+        }
+        .testimony-num {
+          font-family: var(--font-serif);
+          font-size: 1.8rem;
+          font-weight: 700;
+          color: rgba(201,151,62,0.25);
+          line-height: 1;
+        }
+        .testimony-card h4 {
+          font-size: 1.05rem;
+          color: var(--primary-blue);
+          margin: 0;
+        }
+        .testimony-card p {
+          font-size: 0.92rem;
+          line-height: 1.7;
+          color: var(--text-secondary);
+          margin: 0;
         }
 
         /* ── Projects ── */

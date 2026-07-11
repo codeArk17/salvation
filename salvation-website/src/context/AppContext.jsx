@@ -64,8 +64,9 @@ const SEED_PRAYERS = [
 
 const SEED_STREAM = { isLive: false, streamUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', streamTitle: 'Sunday Morning Outreach Service' };
 const SEED_PROJECTS = [
-  { _id: 'proj-seed-1', id: 'proj-seed-1', title: 'Clean Water Wells', description: 'Drilling 5 new wells.', status: 'Current', progress: 60 },
-  { _id: 'proj-seed-2', id: 'proj-seed-2', title: 'Outreach Truck Sound System', description: 'A portable sound rig.', status: 'Completed', progress: 100 },
+  { _id: 'proj-seed-1', id: 'proj-seed-1', title: 'Win One Billion Souls', description: 'To win one billion souls for Jesus Christ through every available means — crusades, media, missions, and church planting.', status: 'Current', progress: 5 },
+  { _id: 'proj-seed-2', id: 'proj-seed-2', title: 'Raise End-Time Warriors', description: 'To raise end-time warriors in every sphere of life — equipped with the Word, the Spirit, and the boldness to advance the Kingdom.', status: 'Current', progress: 30 },
+  { _id: 'proj-seed-3', id: 'proj-seed-3', title: 'Free Quality Education', description: 'To provide free, quality education for students from the primary level through the university — transforming communities through knowledge.', status: 'Current', progress: 15 },
 ];
 const SEED_EVENTS = [
   { _id: 'ev-seed-1', id: 'ev-seed-1', title: 'Holy Fire Crusade', date: 'July 12–15, 2026', location: 'Kakamega Main Field', description: 'Outreach crusades featuring nightly salvation and healing services.' },

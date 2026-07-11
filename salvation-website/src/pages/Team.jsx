@@ -2,71 +2,78 @@ import React from 'react';
 
 const teamMembers = [
   {
-    name: 'Evangelist Daniel Sterling',
+    name: 'Bro Ifeanyi Solomon Raphael Ohiri',
     role: 'Founder & Lead Missionary',
-    bio: 'Called to full-time missions in 2015, Daniel leads open-air crusades across East Africa and oversees all ministry operations, church planting, and partner relations.',
-    emoji: '🙏',
+    bio: 'Called to full-time missions, Bro Ifeanyi leads open-air crusades, oversees all ministry operations, church planting, and partner relations across West Africa and beyond.',
+    icon: 'church',
     category: 'Leadership',
   },
   {
-    name: 'Sarah Sterling',
-    role: 'Co-Founder & Ministry Director',
-    bio: 'Former high school counselor turned missions director, Sarah oversees the Bible School curriculum, women\'s ministry, and humanitarian relief programmes.',
-    emoji: '✝️',
+    name: 'Prophetess Flora Ebere Ohiri',
+    role: 'Co-Founder & Lead Missionary',
+    bio: 'Prophetess Flora co-leads the ministry, overseeing women\'s ministry, intercession, and humanitarian programmes with zeal and grace.',
+    icon: 'volunteer_activism',
     category: 'Leadership',
   },
   {
-    name: 'Pastor Emmanuel Okafor',
-    role: 'Field Coordinator – East Africa',
-    bio: 'Emmanuel coordinates local church plants, trains indigenous pastors, and manages field logistics across Kenya and Uganda.',
-    emoji: '🌍',
+    name: 'Bro Ifeanyi Solomon Raphael Ohiri',
+    role: 'Board Chairman',
+    bio: 'As Board Chairman, Bro Ifeanyi provides strategic governance, accountability, and directional leadership for the entire ministry.',
+    icon: 'gavel',
+    category: 'Board',
+  },
+  {
+    name: 'Prophetess Flora Ebere Ohiri',
+    role: 'Board Member',
+    bio: 'Provides spiritual oversight and governance support for all ministry activities and decisions.',
+    icon: 'star',
+    category: 'Board',
+  },
+  {
+    name: 'Pastor Wheto Samuel',
+    role: 'Board Member',
+    bio: 'Brings pastoral experience and doctrinal accountability to the board, ensuring the ministry stays aligned with biblical principles.',
+    icon: 'menu_book',
+    category: 'Board',
+  },
+  {
+    name: 'Pastor Kemi Orioye',
+    role: 'Board Member',
+    bio: 'Oversees ministry welfare, community engagement, and supports the board with insights from pastoral field experience.',
+    icon: 'groups',
+    category: 'Board',
+  },
+  {
+    name: 'Apostle Dare Odubela',
+    role: 'Board Member',
+    bio: 'Provides apostolic authority and strategic spiritual direction for the ministry\'s expansion and outreach initiatives.',
+    icon: 'auto_awesome',
+    category: 'Board',
+  },
+  {
+    name: 'Pastor Adekunle',
+    role: 'Medical Outreach Lead',
+    bio: 'Coordinates free medical outreach programmes, providing healthcare services to underserved communities during crusades and missions.',
+    icon: 'medical_services',
     category: 'Field Team',
   },
   {
-    name: 'Sister Grace Mwangi',
-    role: 'Women & Children Outreach Lead',
-    bio: 'Grace runs the children\'s Bible clubs, women\'s health clinics, and discipleship groups across rural communities in the ministry\'s core mission zone.',
-    emoji: '💛',
+    name: 'Lady/Evangelist Funmi Takuro',
+    role: 'Finance Minister',
+    bio: 'Manages the financial stewardship of the ministry, ensuring full transparency, accountability, and integrity in all financial matters.',
+    icon: 'account_balance',
     category: 'Field Team',
   },
   {
-    name: 'Dr. James Adeyemi',
-    role: 'Medical Outreach Volunteer',
-    bio: 'A medical doctor who volunteers his skills twice yearly on mission trips, providing free medical care and dental services to remote villagers.',
-    emoji: '🏥',
-    category: 'Volunteers',
-  },
-  {
-    name: 'Ruth Peterside',
-    role: 'Prayer & Intercession Coordinator',
-    bio: 'Ruth leads the 24/7 intercessory team, coordinates prayer vigils, and manages the global prayer partner network.',
-    emoji: '🔥',
-    category: 'Volunteers',
-  },
-  {
-    name: 'Bishop Solomon Alabi',
-    role: 'Board Chair',
-    bio: 'Oversees governance and accountability for the ministry, bringing 30 years of pastoral experience and strategic leadership.',
-    emoji: '📖',
-    category: 'Board',
-  },
-  {
-    name: 'Mrs. Adaeze Nwosu',
-    role: 'Board Member – Finance',
-    bio: 'A certified accountant who ensures full financial transparency, regulatory compliance, and stewardship of all donor contributions.',
-    emoji: '📊',
-    category: 'Board',
-  },
-  {
-    name: 'Rev. Timothy Bello',
-    role: 'Board Member – Theology',
-    bio: 'Provides theological oversight and doctrinal accountability for all teaching and ministry publications.',
-    emoji: '📜',
-    category: 'Board',
+    name: 'Bro Ohiri Bright',
+    role: 'Media Team',
+    bio: 'Handles all media production, broadcasts, and digital content for the ministry — capturing and sharing the gospel through every platform.',
+    icon: 'videocam',
+    category: 'Field Team',
   },
 ];
 
-const categories = ['Leadership', 'Field Team', 'Volunteers', 'Board'];
+const categories = ['Leadership', 'Board', 'Field Team'];
 
 export default function Team() {
   return (
@@ -77,7 +84,7 @@ export default function Team() {
         <span className="section-tag">THE PEOPLE BEHIND THE MISSION</span>
         <h2>Our Team</h2>
         <p className="lead-desc">
-          Meet the missionaries, coordinators, volunteers, and board members who make the work of Salvation Series World Outreach possible.
+          Meet the missionaries, board members, and field workers who make the work of Salvation Series World Outreach possible.
         </p>
       </section>
 
@@ -93,7 +100,9 @@ export default function Team() {
             <div className="grid-3">
               {members.map((member, idx) => (
                 <div key={idx} className="card team-card text-center">
-                  <div className="member-avatar">{member.emoji}</div>
+                  <div className="member-avatar">
+                    <span className="material-symbols-outlined" style={{ fontSize: '2rem', color: 'var(--primary-blue)' }}>{member.icon}</span>
+                  </div>
                   <h4 className="member-name">{member.name}</h4>
                   <span className="member-role">{member.role}</span>
                   <p className="member-bio">{member.bio}</p>
@@ -120,105 +129,27 @@ export default function Team() {
       </section>
 
       <style>{`
-        .team-page {
-          padding-bottom: 3rem;
-        }
-        .page-hero {
-          margin-bottom: 3.5rem;
-          padding: 2rem 1rem 0;
-        }
-        .lead-desc {
-          font-size: 1.1rem;
-          max-width: 680px;
-          margin: 0.75rem auto 0;
-          color: var(--text-secondary);
-        }
-
-        .team-category-section {
-          margin-bottom: 3.5rem;
-        }
-        .category-header {
-          display: flex;
-          align-items: center;
-          gap: 1.25rem;
-          margin-bottom: 2rem;
-        }
-        .category-title {
-          font-family: var(--font-serif);
-          font-size: 1.3rem;
-          color: var(--primary-blue);
-          white-space: nowrap;
-          margin: 0;
-          padding: 0;
-        }
-        .category-line {
-          flex-grow: 1;
-          height: 1px;
-          background: linear-gradient(to right, var(--primary-gold), transparent);
-        }
-
-        .team-card {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          padding: 2rem 1.5rem;
-          text-align: center;
-          gap: 0.5rem;
-        }
-        .member-avatar {
-          font-size: 3rem;
-          width: 80px;
-          height: 80px;
-          background: linear-gradient(135deg, rgba(26,58,107,0.06), rgba(201,151,62,0.08));
-          border: 2px solid var(--glass-border);
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-bottom: 0.75rem;
-        }
-        .member-name {
-          font-size: 1.1rem;
-          color: var(--primary-blue);
-          margin: 0;
-        }
-        .member-role {
-          font-size: 0.8rem;
-          font-weight: 700;
-          color: var(--primary-gold);
-          text-transform: uppercase;
-          letter-spacing: 0.06em;
-          display: block;
-          margin-bottom: 0.5rem;
-        }
-        .member-bio {
-          font-size: 0.88rem;
-          color: var(--text-secondary);
-          line-height: 1.6;
-          margin: 0;
-        }
-
-        .team-cta-section {
-          margin-top: 2rem;
-        }
-        .cta-inner {
-          max-width: 640px;
-          margin: 0 auto;
-          padding: 3rem 2rem;
-          background: linear-gradient(135deg, rgba(26,58,107,0.03), rgba(201,151,62,0.04));
-        }
-        .cta-inner h3 {
-          font-size: 1.6rem;
-          margin-bottom: 0.75rem;
-        }
-        .cta-inner p {
-          margin-bottom: 1.75rem;
-        }
-        .cta-btns {
-          display: flex;
-          justify-content: center;
-          gap: 1rem;
-          flex-wrap: wrap;
+        .team-page { padding-bottom: 3rem; }
+        .page-hero { margin-bottom: 3.5rem; padding: 2rem 1rem 0; }
+        .lead-desc { font-size: 1.1rem; max-width: 680px; margin: 0.75rem auto 0; color: var(--text-secondary); }
+        .team-category-section { margin-bottom: 3.5rem; }
+        .category-header { display: flex; align-items: center; gap: 1.25rem; margin-bottom: 2rem; }
+        .category-title { font-family: var(--font-serif); font-size: 1.3rem; color: var(--primary-blue); white-space: nowrap; margin: 0; padding: 0; }
+        .category-line { flex-grow: 1; height: 1px; background: linear-gradient(to right, var(--primary-gold), transparent); }
+        .team-card { display: flex; flex-direction: column; align-items: center; padding: 2rem 1.5rem; text-align: center; gap: 0.5rem; }
+        .member-avatar { width: 80px; height: 80px; background: linear-gradient(135deg, rgba(26,58,107,0.06), rgba(201,151,62,0.08)); border: 2px solid var(--glass-border); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 0.75rem; }
+        .member-name { font-size: 1rem; color: var(--primary-blue); margin: 0; }
+        .member-role { font-size: 0.78rem; font-weight: 700; color: var(--primary-gold); text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-bottom: 0.5rem; }
+        .member-bio { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin: 0; }
+        .team-cta-section { margin-top: 2rem; }
+        .cta-inner { max-width: 640px; margin: 0 auto; padding: 3rem 2rem; background: linear-gradient(135deg, rgba(26,58,107,0.03), rgba(201,151,62,0.04)); }
+        .cta-inner h3 { font-size: 1.6rem; margin-bottom: 0.75rem; }
+        .cta-inner p { margin-bottom: 1.75rem; }
+        .cta-btns { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+        @media (max-width: 768px) {
+          .grid-3 { grid-template-columns: 1fr; }
+          .category-header { gap: 0.75rem; }
+          .team-card { padding: 1.5rem 1rem; }
         }
       `}</style>
     </div>

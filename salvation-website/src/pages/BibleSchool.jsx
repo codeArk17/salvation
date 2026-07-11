@@ -8,9 +8,10 @@ export default function BibleSchool() {
   const [submittedEnrollment, setSubmittedEnrollment] = useState(false);
 
   const coursesList = [
-    { code: "BS-101", title: "Foundations of Salvation", duration: "6 Weeks", level: "Beginner", desc: "Understanding the scriptural mechanics of salvation, justification, repentance, and new birth." },
-    { code: "BS-201", title: "Authority of the Believer", duration: "8 Weeks", level: "Intermediate", desc: "Equipping students with spiritual tools to walk in divine authority, prayer warfare, and healing." },
-    { code: "BS-301", title: "Missions & Pioneer Evangelism", duration: "10 Weeks", level: "Advanced", desc: "Practical strategies for open-air crusades, church planting, cross-cultural missions, and community outreach." }
+    { code: "PSC-101", title: "Pastoral Class", duration: "2 Years", level: "Advanced", desc: "In-depth pastoral training covering leadership, shepherding, counselling, and building a local assembly. Designed to raise mature pastors for the harvest field." },
+    { code: "EVC-201", title: "Evangelical Class", duration: "6 Months", level: "Beginner", desc: "Equipping believers with the tools of evangelism — soul winning, open-air preaching, and sharing the gospel effectively in any context." },
+    { code: "PHP-301", title: "Prophetic Class", duration: "2 Years", level: "Advanced", desc: "Deep training in the prophetic ministry — hearing God's voice, operating in gifts of the Spirit, and functioning as an end-time prophetic voice." },
+    { code: "SEC-401", title: "Situation Ethics Class", duration: "1 Year", level: "Intermediate", desc: "Practical application of biblical ethics to real-life situations — decision making, moral leadership, and integrity in ministry and daily life." }
   ];
 
   const handleEnrollSubmit = async (e) => {
