@@ -1,6 +1,7 @@
 import React, { useContext, useState, useRef } from 'react';
 import { AppContext } from '../context/AppContext';
 import * as api from '../api/index';
+import { changeAdminPassword } from '../api/index';
 import Swal from 'sweetalert2';
 import toast from 'react-hot-toast';
 
@@ -319,7 +320,27 @@ export default function Admin() {
     } catch (err) { toast.error(err.message || 'Could not save project.'); }
   };
 
-  // ─── Ledger stats ────────────────────────────────────────────────────────────
+  // ── Security / Change Password ────────────────────────────────────────────
+  const [oldPwd,    setOldPwd]    = useState('');
+  const [newPwd,    setNewPwd]    = useState('');
+  const [confirmPwd, setConfirmPwd] = useState('');
+  const [pwdLoading, setPwdLoading] = useState(false);
+
+  const handleChangePassword = async (e) => {
+    e.preventDefault();
+    if (newPwd !== confirmPwd) { toast.error('New passwords do not match.'); return; }
+    if (newPwd.length < 6) { toast.error('Password must be at least 6 characters.'); return; }
+    setPwdLoading(true);
+    try {
+      const res = await changeAdminPassword(oldPwd, newPwd);
+      toast.success('Password changed! Update it on Render too.');
+      setOldPwd(''); setNewPwd(''); setConfirmPwd('');
+    } catch (err) {
+      toast.error(err.response?.data?.error || 'Failed to change password.');
+    } finally {
+      setPwdLoading(false);
+    }
+  };────
   const donationByCampaign = (donations?.ledger || []).reduce((acc, d) => {
     acc[d.campaign] = (acc[d.campaign] || 0) + d.amount;
     return acc;
@@ -334,6 +355,7 @@ export default function Admin() {
     { id: 'Projects', label: 'Projects',     icon: 'construction' },
     { id: 'Prayers',  label: 'Prayers',      icon: 'volunteer_activism' },
     { id: 'Ledger',   label: 'Ledger',       icon: 'payments' },
+    { id: 'Security', label: 'Security',     icon: 'lock' },
   ];
 
   const CATEGORIES = ['General', 'Outreach', 'Community', 'Crusades', 'Trips', 'Events'];
@@ -1051,6 +1073,33 @@ export default function Admin() {
                 ))
               }
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── SECURITY TAB ─────────────────────────────────────────────────────────── */}
+      {activeTab === 'Security' && (
+        <div className="admin-panel animate-fade-in" style={{ maxWidth: 480 }}>
+          <div className="card">
+            <h3><span className="material-symbols-outlined" style={{ fontSize: '20px', verticalAlign: 'middle', marginRight: '0.5rem' }}>lock</span>Change Admin Password</h3>
+            <p className="form-sub-desc">Update your admin password. After changing, remember to also update <strong>ADMIN_PASSWORD</strong> on your Render dashboard to make it permanent.</p>
+            <form onSubmit={handleChangePassword}>
+              <div className="form-group">
+                <label className="form-label">Current Password</label>
+                <input type="password" value={oldPwd} onChange={e => setOldPwd(e.target.value)} className="form-input" placeholder="Enter current password" required />
+              </div>
+              <div className="form-group">
+                <label className="form-label">New Password</label>
+                <input type="password" value={newPwd} onChange={e => setNewPwd(e.target.value)} className="form-input" placeholder="At least 6 characters" required minLength={6} />
+              </div>
+              <div className="form-group">
+                <label className="form-label">Confirm New Password</label>
+                <input type="password" value={confirmPwd} onChange={e => setConfirmPwd(e.target.value)} className="form-input" placeholder="Repeat new password" required minLength={6} />
+              </div>
+              <button type="submit" className="btn btn-primary" disabled={pwdLoading}>
+                {pwdLoading ? 'Changing…' : 'Change Password'}
+              </button>
+            </form>
           </div>
         </div>
       )}

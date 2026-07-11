@@ -9,7 +9,8 @@
 import client from './client';
 
 // ─── Auth ──────────────────────────────────────────────────────
-export const loginAdmin  = (password) => client.post('/auth/login', { password });
+export const loginAdmin          = (password) => client.post('/auth/login', { password });
+export const changeAdminPassword = (oldPassword, newPassword) => client.post('/auth/change-password', { oldPassword, newPassword });
 
 // ─── Books ─────────────────────────────────────────────────────
 export const getBooks   = ()          => client.get('/books');
