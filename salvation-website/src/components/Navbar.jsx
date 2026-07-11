@@ -252,7 +252,7 @@ export default function Navbar({ currentHash }) {
           max-width: 1280px;
           margin: 0 auto;
           padding: 0 1.5rem;
-          height: 100px;
+          height: 70px;
         }
         .nav-logo {
           display: flex;
@@ -261,7 +261,7 @@ export default function Navbar({ currentHash }) {
           flex-shrink: 0;
         }
         .nav-logo-img {
-          height: 90px;
+          height: 60px;
           width: auto;
           object-fit: contain;
           display: block;
