@@ -66,7 +66,7 @@ export default function Support() {
     const finalAmount = donateAmount === 'custom' ? parseFloat(customAmount) : parseFloat(donateAmount);
     if (!finalAmount || finalAmount <= 0) { setPayError('Please enter a valid amount.'); return; }
     if (!donorEmail.trim()) { setPayError('Email address is required for payment.'); return; }
-    if (!squadReady) { setPayError('Payment system is loading, please waitâ€¦'); return; }
+    if (!squadReady) { setPayError('Payment system is loading, please wait...'); return; }
     if (!SQUAD_PUBLIC_KEY || SQUAD_PUBLIC_KEY.includes('xxxxx')) {
       setPayError('Squad is not configured yet. Add VITE_SQUAD_PUBLIC_KEY to your .env file.');
       return;
@@ -182,9 +182,9 @@ export default function Support() {
             <h3>Annual Harvest Mission Goal</h3>
           </div>
           <div className="goal-figures">
-            <span className="raised-txt">â‚¦{donations.totalRaised.toLocaleString()}</span>
+            <span className="raised-txt">₦{donations.totalRaised.toLocaleString()}</span>
             <span className="divider-slash">/</span>
-            <span className="target-txt">â‚¦{donations.goal.toLocaleString()}</span>
+            <span className="target-txt">₦{donations.goal.toLocaleString()}</span>
           </div>
         </div>
         
@@ -218,7 +218,7 @@ export default function Support() {
                   className={`amount-select-btn ${donateAmount === amt ? 'active' : ''}`}
                   onClick={() => setDonateAmount(amt)}
                 >
-                  â‚¦{parseInt(amt).toLocaleString()}
+                  ₦{parseInt(amt).toLocaleString()}
                 </button>
               ))}
               <button
@@ -233,7 +233,7 @@ export default function Support() {
             {/* Custom Amount input */}
             {donateAmount === 'custom' && (
               <div className="form-group animate-fade-in">
-                <label className="form-label">Custom Amount (â‚¦)</label>
+                <label className="form-label">Custom Amount (₦)</label>
                 <input
                   type="number"
                   placeholder="Enter amount"
@@ -278,7 +278,7 @@ export default function Support() {
               >
                 <option value="General Support">General Support (Where Needed Most)</option>
                 <option value="Clean Water Wells">Clean Water Wells Project</option>
-                <option value="Bible Distribution">Bible Distribution (â‚¦2,500 per Bible)</option>
+                <option value="Bible Distribution">Bible Distribution (₦2,500 per Bible)</option>
                 <option value="Outreach Crusades">Open-Air Crusades Fund</option>
                 <option value="Children Education & Sponsorship">Children Education & Sponsorship</option>
               </select>
@@ -451,7 +451,7 @@ export default function Support() {
                         className="btn btn-sm btn-outline-gold pray-increment-btn"
                         onClick={() => incrementPrayCount(pr.id)}
                       >
-                        â¤ï¸ I Prayed for This ({pr.count})
+                        ❤️ I Prayed for This  ({pr.count})
                       </button>
                     </div>
                   </div>
