@@ -340,7 +340,8 @@ export default function Admin() {
     } finally {
       setPwdLoading(false);
     }
-  };────
+  };
+
   const donationByCampaign = (donations?.ledger || []).reduce((acc, d) => {
     acc[d.campaign] = (acc[d.campaign] || 0) + d.amount;
     return acc;
