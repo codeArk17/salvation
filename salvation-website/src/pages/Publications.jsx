@@ -4,14 +4,17 @@ import client from '../api/client';
 import Swal from 'sweetalert2';
 import toast from 'react-hot-toast';
 
-const PAYSTACK_PUBLIC_KEY = import.meta.env.VITE_PAYSTACK_PUBLIC_KEY || '';
+const SQUAD_PUBLIC_KEY = import.meta.env.VITE_SQUAD_PUBLIC_KEY || '';
+const SQUAD_ENV = import.meta.env.VITE_SQUAD_ENV || 'sandbox';
 
-function usePaystackScript() {
-  const [ready, setReady] = useState(!!window.PaystackPop);
+function useSquadScript() {
+  const [ready, setReady] = useState(!!window.squad);
   useEffect(() => {
-    if (window.PaystackPop) { setReady(true); return; }
+    if (window.squad) { setReady(true); return; }
     const s = document.createElement('script');
-    s.src = 'https://js.paystack.co/v1/inline.js';
+    s.src = SQUAD_ENV === 'live'
+      ? 'https://checkout.squadco.com/widget/squad.min.js'
+      : 'https://sandbox-checkout-d.squadco.com/widget/squad.min.js';
     s.onload = () => setReady(true);
     document.head.appendChild(s);
   }, []);
@@ -26,7 +29,7 @@ const MOCK_CHAPTER_TEXT = {
 
 export default function Publications() {
   const { books, receiveDonation } = useContext(AppContext);
-  const paystackReady = usePaystackScript();
+  const squadReady = useSquadScript();
 
   const [selectedBook,        setSelectedBook]        = useState(null);
   const [previewChapterIndex, setPreviewChapterIndex] = useState(0);
@@ -54,33 +57,24 @@ export default function Publications() {
     setPayError('');
   };
 
-  // ── Real Paystack payment ─────────────────────────────────
-  const handlePaystackPay = (e) => {
+  // ── Squad payment for book purchase ─────────────────────
+  const handleSquadPay = (e) => {
     e.preventDefault();
-    if (!paystackReady) { setPayError('Payment system loading, please wait…'); return; }
-    if (!PAYSTACK_PUBLIC_KEY || PAYSTACK_PUBLIC_KEY.includes('xxxxx')) {
-      setPayError('Paystack is not configured. Add VITE_PAYSTACK_PUBLIC_KEY to your .env file.');
+    if (!squadReady) { setPayError('Payment system loading, please wait…'); return; }
+    if (!SQUAD_PUBLIC_KEY || SQUAD_PUBLIC_KEY.includes('xxxxx')) {
+      setPayError('Squad is not configured. Add VITE_SQUAD_PUBLIC_KEY to your .env file.');
       return;
     }
     setPayError('');
 
-    const handler = window.PaystackPop.setup({
-      key:      PAYSTACK_PUBLIC_KEY,
-      email:    buyerEmail,
-      amount:   checkoutBook.price * 100, // kobo
-      currency: 'NGN',
-      ref:      'SSWO-BOOK-' + Date.now(),
-      metadata: {
-        custom_fields: [
-          { display_name: 'Customer Name', variable_name: 'buyer_name', value: buyerName },
-          { display_name: 'Book Title',    variable_name: 'book_title', value: checkoutBook.title },
-        ],
-      },
-      callback: async (response) => {
+    const squadInstance = new window.squad({
+      onClose:  () => {},
+      onLoad:   () => squadInstance.open(),
+      onSuccess: async (response) => {
         setVerifying(true);
         try {
-          const res = await client.post('/paystack/verify', {
-            reference: response.reference,
+          const res = await client.post('/squad/verify', {
+            reference: response.transaction_ref || response.reference,
             bookId:    checkoutBook._id || checkoutBook.id,
           });
           const { downloadUrl, amountPaid, reference, paidAt } = res.data;
@@ -102,15 +96,23 @@ export default function Publications() {
           setPayError(
             'Payment received but verification failed: ' +
             (err.response?.data?.error || err.message) +
-            '. Contact support with ref: ' + response.reference
+            '. Contact support with ref: ' + (response.transaction_ref || response.reference)
           );
         } finally {
           setVerifying(false);
         }
       },
-      onClose: () => {},
+      key:             SQUAD_PUBLIC_KEY,
+      email:           buyerEmail,
+      amount:          checkoutBook.price * 100,
+      currency_code:   'NGN',
+      transaction_ref: 'SSWO-BOOK-' + Date.now(),
+      customer_name:   buyerName || 'Anonymous',
+      metadata: { book_title: checkoutBook.title },
     });
-    handler.openIframe();
+
+    squadInstance.setup();
+    squadInstance.open();
   };
 
   const handleFreeDownload = async (book) => {
@@ -292,7 +294,7 @@ export default function Publications() {
                   </div>
                 </div>
 
-                <form onSubmit={handlePaystackPay} style={{ marginTop: '1.5rem' }}>
+                <form onSubmit={handleSquadPay} style={{ marginTop: '1.5rem' }}>
                   <div className="form-group">
                     <label className="form-label">Your Name *</label>
                     <input
@@ -329,8 +331,8 @@ export default function Publications() {
 
                   <div style={{ display: 'flex', gap: '0.75rem' }}>
                     <button type="button" className="btn btn-secondary" onClick={closeCheckout} style={{ flex: 1 }}>Cancel</button>
-                    <button type="submit" className="btn btn-primary" style={{ flex: 2 }} disabled={!paystackReady}>
-                      {paystackReady ? `Pay ₦${checkoutBook.price.toLocaleString()}` : 'Loading…'}
+                    <button type="submit" className="btn btn-primary" style={{ flex: 2 }} disabled={!squadReady}>
+                      {squadReady ? `Pay ₦${checkoutBook.price.toLocaleString()}` : 'Loading…'}
                     </button>
                   </div>
                 </form>

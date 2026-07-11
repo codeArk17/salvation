@@ -3,14 +3,17 @@ import { AppContext } from '../context/AppContext';
 import { submitVolunteer } from '../api/index';
 import client from '../api/client';
 
-const PAYSTACK_PUBLIC_KEY = import.meta.env.VITE_PAYSTACK_PUBLIC_KEY || '';
+const SQUAD_PUBLIC_KEY = import.meta.env.VITE_SQUAD_PUBLIC_KEY || '';
+const SQUAD_ENV = import.meta.env.VITE_SQUAD_ENV || 'sandbox';
 
-function usePaystackScript() {
-  const [ready, setReady] = useState(!!window.PaystackPop);
+function useSquadScript() {
+  const [ready, setReady] = useState(!!window.squad);
   useEffect(() => {
-    if (window.PaystackPop) { setReady(true); return; }
+    if (window.squad) { setReady(true); return; }
     const s = document.createElement('script');
-    s.src = 'https://js.paystack.co/v1/inline.js';
+    s.src = SQUAD_ENV === 'live'
+      ? 'https://checkout.squadco.com/widget/squad.min.js'
+      : 'https://sandbox-checkout-d.squadco.com/widget/squad.min.js';
     s.onload = () => setReady(true);
     document.head.appendChild(s);
   }, []);
@@ -19,7 +22,7 @@ function usePaystackScript() {
 
 export default function Support() {
   const { donations, receiveDonation, prayers, submitPrayerRequest, incrementPrayCount } = useContext(AppContext);
-  const paystackReady = usePaystackScript();
+  const squadReady = useSquadScript();
 
   // Donation Form States
   const [donateAmount,      setDonateAmount]      = useState('5000');
@@ -58,38 +61,27 @@ export default function Support() {
     setPaymentModalOpen(true);
   };
 
-  // Launch Paystack popup
-  const handlePaystackPay = (e) => {
+  // Launch Squad payment
+  const handleSquadPay = (e) => {
     e.preventDefault();
     const finalAmount = donateAmount === 'custom' ? parseFloat(customAmount) : parseFloat(donateAmount);
     if (!finalAmount || finalAmount <= 0) { setPayError('Please enter a valid amount.'); return; }
     if (!donorEmail.trim()) { setPayError('Email address is required for payment.'); return; }
-    if (!paystackReady) { setPayError('Payment system is loading, please wait…'); return; }
-    if (!PAYSTACK_PUBLIC_KEY || PAYSTACK_PUBLIC_KEY.includes('xxxxx')) {
-      setPayError('Paystack is not configured yet. Add VITE_PAYSTACK_PUBLIC_KEY to your .env file.');
+    if (!squadReady) { setPayError('Payment system is loading, please wait…'); return; }
+    if (!SQUAD_PUBLIC_KEY || SQUAD_PUBLIC_KEY.includes('xxxxx')) {
+      setPayError('Squad is not configured yet. Add VITE_SQUAD_PUBLIC_KEY to your .env file.');
       return;
     }
     setPayError('');
 
-    const handler = window.PaystackPop.setup({
-      key:      PAYSTACK_PUBLIC_KEY,
-      email:    donorEmail,
-      amount:   finalAmount * 100, // kobo
-      currency: 'NGN',
-      ref:      'SSWO-DON-' + Date.now(),
-      metadata: {
-        custom_fields: [
-          { display_name: 'Donor Name',  variable_name: 'donor_name', value: donorName || 'Anonymous' },
-          { display_name: 'Campaign',    variable_name: 'campaign',   value: campaign },
-          { display_name: 'Giving Type', variable_name: 'type',       value: isMonthly ? 'Monthly' : 'One-Time' },
-        ],
-      },
-      callback: async (response) => {
+    const squadInstance = new window.squad({
+      onClose:  () => { /* user dismissed */ },
+      onLoad:   () => squadInstance.open(),
+      onSuccess: async (response) => {
         setVerifying(true);
         try {
-          // Verify server-side
-          const res = await client.post('/paystack/verify-donation', {
-            reference: response.reference,
+          const res = await client.post('/squad/verify-donation', {
+            reference: response.transaction_ref || response.reference,
           });
           const { amountPaid, reference, paidAt } = res.data;
 
@@ -106,24 +98,29 @@ export default function Support() {
             type:     isMonthly ? 'Monthly Partnership' : 'One-Time Giving',
           });
           setPaymentSuccess(true);
-
-          // Reset form
           setDonorName(''); setDonorEmail(''); setCustomAmount('');
           setDonateAmount('5000'); setIsMonthly(false);
         } catch (err) {
           setPayError(
             'Payment received but verification failed: ' +
             (err.response?.data?.error || err.message) +
-            '. Please contact support with ref: ' + response.reference
+            '. Please contact support with ref: ' + (response.transaction_ref || response.reference)
           );
         } finally {
           setVerifying(false);
         }
       },
-      onClose: () => { /* user dismissed popup */ },
+      key:           SQUAD_PUBLIC_KEY,
+      email:         donorEmail,
+      amount:        finalAmount * 100, // kobo
+      currency_code: 'NGN',
+      transaction_ref: 'SSWO-DON-' + Date.now(),
+      customer_name:  donorName || 'Anonymous',
+      metadata: { campaign, type: isMonthly ? 'Monthly' : 'One-Time' },
     });
 
-    handler.openIframe();
+    squadInstance.setup();
+    squadInstance.open();
   };
 
   // Close payment modal
@@ -491,7 +488,7 @@ export default function Support() {
                   </p>
                 </div>
 
-                <form onSubmit={handlePaystackPay}>
+                <form onSubmit={handleSquadPay}>
                   <div className="form-group">
                     <label className="form-label">Your Name</label>
                     <input type="text" value={donorName} onChange={e => setDonorName(e.target.value)} placeholder="Anonymous Partner" className="form-input" />
@@ -513,8 +510,8 @@ export default function Support() {
 
                   <div className="payment-modal-actions">
                     <button type="button" className="btn btn-secondary" onClick={closePaymentModal}>Cancel</button>
-                    <button type="submit" className="btn btn-primary" disabled={!paystackReady}>
-                      {paystackReady
+                    <button type="submit" className="btn btn-primary" disabled={!squadReady}>
+                      {squadReady
                         ? `Pay ₦${(donateAmount === 'custom' ? parseFloat(customAmount || 0) : parseFloat(donateAmount)).toLocaleString()}`
                         : 'Loading…'}
                     </button>
