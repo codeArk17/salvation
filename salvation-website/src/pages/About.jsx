@@ -306,7 +306,7 @@ export default function About() {
         <section className="about-cta-banner reveal">
           <div className="cta-banner-inner text-center">
             <span className="section-tag" style={{ color: 'rgba(255,255,255,0.7)' }}>JOIN THE MISSION</span>
-            <h2 style={{ color: '#fff' }}>How Can You Pray for You?</h2>
+            <h2 style={{ color: '#fff' }}>How Can We Pray for You?</h2>
             <p style={{ color: 'rgba(255,255,255,0.85)', maxWidth: '560px', margin: '0 auto 2rem' }}>
               We know you have a lot on your mind. God is always here — and so are we. Whatever you are carrying, let us pray with you.
             </p>

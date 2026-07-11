@@ -179,7 +179,7 @@ export default function Support() {
       <section className="goal-tracking-section card text-center reveal">
         <div className="goal-info-row">
           <div>
-            <span className="goal-label">MOCK CAMPAIGN GOAL</span>
+            <span className="goal-label">ANNUAL HARVEST MISSION GOAL</span>
             <h3>Annual Harvest Mission Goal</h3>
           </div>
           <div className="goal-figures">
@@ -299,7 +299,7 @@ export default function Support() {
             </div>
 
             <button type="submit" className="btn btn-primary btn-block">
-              Donate Now via Paystack
+              Donate Now
             </button>
 
           </form>
