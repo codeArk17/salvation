@@ -26,18 +26,18 @@ const SEED_BOOKS = [
 const SEED_CONTENT = [
   {
     _id: 'content-seed-1', id: 'content-seed-1',
-    type: 'Blog', title: 'Radical Simplicity in the Villages',
-    excerpt: 'Deep reflections on our recent journey to the remote villages and what their joy taught us.',
+    type: 'Blog', title: 'A Debt of $500,000 Cancelled by God',
+    excerpt: 'A woman joined our live Facebook broadcast burdened by a debt of $500,000. A few days later, her debt was completely cleared by the United States government.',
     date: 'June 10, 2026',
-    content: 'During our week in the sub-counties, we encountered believers who possess virtually nothing in terms of worldly goods, yet their faces radiated a joy that surpasses understanding...',
+    content: 'A woman joined our live broadcast on Facebook with a complaint that she was burdened by a debt of $500,000. A few days after the broadcast, her debt was completely cleared by the United States government. This is the faithfulness of God. He hears every cry, and He answers in ways that are far beyond what we can ask or imagine. To God be all the glory.',
     image: 'https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&q=80&w=800',
   },
   {
     _id: 'content-seed-2', id: 'content-seed-2',
-    type: 'Testimony', title: 'Miraculous Healing: Blind Eyes Opened',
-    excerpt: "A testament to God's raw healing power: Grace's sight was restored during our Friday night crusade.",
+    type: 'Testimony', title: 'A Demonic River Dried Up by the Power of God',
+    excerpt: 'A river near our ministry headquarters was known for claiming at least three lives every year. We prayed, and by His mighty power, the river dried up.',
     date: 'June 05, 2026',
-    content: 'During our Friday evening open-air crusade in Kakamega, a woman named Grace came to the stage weeping. She had been blind in her left eye since a farming accident six years ago...',
+    content: 'The Lord used the co-founders of the ministry to confront a demonic river located near the ministry headquarters known as the Camp Ground. The river was widely known for claiming at least three lives every year through mysterious circumstances. The co-founders prayed fervently to the Lord, and by His mighty power, the river dried up completely. Hallelujah! This is the God we serve.',
     image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=800',
   },
 ];

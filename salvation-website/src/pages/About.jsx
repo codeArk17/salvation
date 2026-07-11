@@ -16,9 +16,9 @@ export default function About() {
 
   const timelineMilestones = [
     { year: '2010', title: 'The Calling', desc: 'Bro Ifeanyi Ohiri received a clear divine mandate to preach the undiluted gospel of Jesus Christ and to minister healing and deliverance to the nations.' },
-    { year: '2013', title: 'First Open-Air Crusade', desc: 'Launched the first open-air healing crusade in Ogun State, resulting in remarkable salvations, healings, and deliverances that confirmed the calling.' },
+    { year: '2013', title: 'First Open Air Crusade', desc: 'Launched the first open air healing crusade in Ogun State, resulting in remarkable salvations, healings, and deliverances that confirmed the calling.' },
     { year: '2017', title: 'Ministry Expansion', desc: 'The ministry extended its reach to other states across Nigeria, establishing prayer cells, outreach teams, and Bible training for local ministers.' },
-    { year: '2022', title: 'Salvation Series Founded', desc: 'Salvation Series World Outreach was formally established at its current base on the Abeokuta–Ibadan Expressway, with a mandate to the nations.' },
+    { year: '2022', title: 'Salvation Series Founded', desc: 'Salvation Series World Outreach was formally established at its current base on the Abeokuta Ibadan Expressway, with a mandate to the nations.' },
   ];
 
   const coreValues = [
@@ -212,23 +212,23 @@ export default function About() {
             {[
               {
                 num: '01',
-                title: 'Debt Cancelled by Government',
+                title: 'A Debt of $500,000 Cancelled',
                 text: 'A woman joined our live Facebook broadcast burdened by a debt of $500,000. A few days after the broadcast, her debt was completely cleared by the United States government. To God be all the glory.',
               },
               {
                 num: '02',
-                title: 'Seven-Day Fast — Nation Shaken',
-                text: 'The Lord instructed the ministry to embark on a seven-day prayer and fasting for Nigeria, declaring that one week afterward we would witness His mighty hand. We obeyed, and the Lord moved mightily, just as He had spoken.',
+                title: 'Seven Days of Prayer and Fasting for Nigeria',
+                text: 'The Lord instructed the members of the ministry to embark on a seven-day prayer and fasting for Nigeria, declaring that one week afterward we would witness the mighty hand of the Lord God. We obeyed, and the Lord moved mightily just as He had spoken.',
               },
               {
                 num: '03',
-                title: 'Demonic River Dried Up',
-                text: 'The co-founders confronted a demonic river near the ministry headquarters known for claiming at least three lives every year through mysterious circumstances. They prayed fervently, and by God\'s mighty power, the river dried up. Hallelujah!',
+                title: 'A River That Claimed Lives Every Year Was Dried Up',
+                text: 'The Lord used the co-founders of the ministry to confront a demonic river located near the ministry headquarters. The river was widely known for claiming at least three lives every year. They prayed fervently to the Lord, and by His mighty power, the river dried up. Hallelujah!',
               },
               {
                 num: '04',
-                title: 'Lives Transformed',
-                text: 'By the grace and power of God, many lives have been transformed. Criminals, traditionalists, and many others have repented, surrendered their lives to Jesus Christ, and experienced the saving power of the Gospel.',
+                title: 'Criminals and Traditionalists Surrendered to Jesus',
+                text: 'By the grace and power of God, many lives have been transformed through the ministry. Criminals, traditionalists, and many others have repented, surrendered their lives to Jesus Christ, and experienced the saving power of the Gospel.',
               },
             ].map((t, i) => (
               <div key={i} className="testimony-card card reveal-zoom">
