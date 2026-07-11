@@ -465,7 +465,7 @@ export default function Support() {
 
       {/* Paystack Payment Modal */}
       {paymentModalOpen && (
-        <div className="modal-overlay">
+        <div className="modal-overlay" style={{ alignItems: 'center', justifyContent: 'center' }}>
           <div className="modal-content payment-modal-content">
             <button className="modal-close" onClick={closePaymentModal}>✕</button>
 
@@ -829,7 +829,9 @@ export default function Support() {
 
         /* Payment Simulation Styling */
         .payment-modal-content {
-          max-width: 500px;
+          max-width: 460px;
+          max-height: 85vh;
+          overflow-y: auto;
         }
         .payment-icon {
           font-size: 3.5rem;

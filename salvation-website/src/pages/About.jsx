@@ -15,10 +15,10 @@ export default function About() {
   ];
 
   const timelineMilestones = [
-    { year: '2010', title: 'The Calling', desc: 'Bro Ifeanyi Ohiri received a clear divine mandate to preach the undiluted gospel of Jesus Christ and to minister healing and deliverance to the nations.' },
-    { year: '2013', title: 'First Open Air Crusade', desc: 'Launched the first open air healing crusade in Ogun State, resulting in remarkable salvations, healings, and deliverances that confirmed the calling.' },
-    { year: '2017', title: 'Ministry Expansion', desc: 'The ministry extended its reach to other states across Nigeria, establishing prayer cells, outreach teams, and Bible training for local ministers.' },
-    { year: '2022', title: 'Salvation Series Founded', desc: 'Salvation Series World Outreach was formally established at its current base on the Abeokuta Ibadan Expressway, with a mandate to the nations.' },
+    { year: '2002', title: 'The Calling', desc: 'Bro Ifeanyi Ohiri received a clear divine mandate to preach the undiluted gospel of Jesus Christ and to minister healing and deliverance to the nations.' },
+    { year: '2005', title: 'First Open Air Crusade', desc: 'Launched the first open air healing crusade in Ogun State, resulting in remarkable salvations, healings, and deliverances that confirmed the calling.' },
+    { year: '2005', title: 'Ministry Expansion', desc: 'The ministry extended its reach to other states across Nigeria, establishing prayer cells, outreach teams, and Bible training for local ministers.' },
+    { year: '2011', title: 'Salvation Series Founded', desc: 'Salvation Series World Outreach was formally established at its current base on the Abeokuta Ibadan Expressway, with a mandate to the nations.' },
   ];
 
   const coreValues = [
