@@ -326,7 +326,7 @@ export default function Publications() {
 
                   <div style={{ background: 'var(--bg-800)', border: '1px solid var(--glass-border)', borderRadius: 6, padding: '0.6rem 0.9rem', marginBottom: '1.25rem', fontSize: '0.78rem', color: 'var(--text-muted)' }}>
                     <span className="material-symbols-outlined" style={{ fontSize: '14px', verticalAlign: 'middle', marginRight: '0.35rem' }}>lock</span>
-                    Secured by Paystack — Card, Bank Transfer & USSD accepted
+                    Secured by Squad. Card, Bank Transfer and USSD accepted.
                   </div>
 
                   <div style={{ display: 'flex', gap: '0.75rem' }}>

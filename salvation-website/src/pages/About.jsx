@@ -123,7 +123,7 @@ export default function About() {
             <span className="material-symbols-outlined mv-icon" style={{ color: 'var(--primary-gold)', fontSize: '2rem' }}>public</span>
             <span className="section-tag">DIRECTION</span>
             <h3>Our Vision</h3>
-            <p>Brother Ifeanyi Solomon Raphael Ohiri remains committed to being a vessel in God's hands, advancing the cause of Christ and leaving a lasting impact on lives for the glory of God — reaching every unreached community through crusades, church plants, Bible training, and Holy Spirit-led outreach.</p>
+            <p>Brother Ifeanyi Solomon Raphael Ohiri remains committed to being a vessel in God's hands, advancing the cause of Christ and leaving a lasting impact on lives for the glory of God. Reaching every unreached community through crusades, church plants, Bible training, and Holy Spirit-led outreach.</p>
           </div>
         </section>
 

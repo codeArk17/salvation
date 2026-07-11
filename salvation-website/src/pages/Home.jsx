@@ -126,7 +126,7 @@ export default function Home() {
           <h2 className="mission-headline">Raising End-Time Generals for the Harvest</h2>
           <p className="mission-body">
             To spread the gospel of Jesus Christ, equip believers with biblical knowledge, provide spiritual counseling,
-            and create platforms for worship, prayer, and fellowship — transforming lives and communities one soul at a time.
+            and create platforms for worship, prayer, and fellowship, transforming lives and communities one soul at a time.
           </p>
           <a href="#about" className="btn btn-outline-blue">Learn About Our Mission</a>
         </div>
@@ -139,7 +139,7 @@ export default function Home() {
             <span className="material-symbols-outlined jfy-icon" style={{ color: 'var(--primary-blue)' }}>menu_book</span>
             <div>
               <h4>Join Our Bible School</h4>
-              <p>Free online discipleship training — new semester starting next month. Enrol today.</p>
+              <p>Free online discipleship training. New semester starting next month. Enrol today.</p>
               <span className="jfy-link">Register Now →</span>
             </div>
           </div>
@@ -168,7 +168,7 @@ export default function Home() {
           <div className="prayer-cta-col text-center reveal-left">
             <span className="section-tag">INTERCESSION</span>
             <h2>How Can We Pray for You?</h2>
-            <p>We know you have a lot on your mind. God is always here for you — and so are we.</p>
+            <p>We know you have a lot on your mind. God is always here for you and so are we.</p>
             <div className="prayer-cta-btns">
               <a href="#prayer-programs" className="btn btn-primary">Submit a Prayer Request</a>
               <a href="#prayer-programs" className="btn btn-outline-gold">View Prayer Wall</a>
@@ -230,7 +230,7 @@ export default function Home() {
             <span className="section-tag light">GIVE A DONATION</span>
             <h2 className="donate-headline">Help Share the Hope of Christ</h2>
             <p className="donate-desc">
-              Every contribution — no matter the size — makes a lasting difference for individuals, families and entire communities.
+              Every contribution, no matter the size, makes a lasting difference for individuals, families and entire communities.
             </p>
             <div className="donate-amount-grid">
               {presetAmounts.map(amt => (
@@ -294,15 +294,8 @@ export default function Home() {
               <div className="impact-feat">
                 <span className="material-symbols-outlined impact-feat-icon">church</span>
                 <div>
-                  <strong>Crusades & Church Planting</strong>
-                  <p>Open-air healing meetings and local assembly establishment</p>
-                </div>
-              </div>
-              <div className="impact-feat">
-                <span className="material-symbols-outlined impact-feat-icon">water_drop</span>
-                <div>
-                  <strong>Clean Water Projects</strong>
-                  <p>Drilling wells that bring physical and spiritual living water</p>
+                  <strong>Crusades and Church Planting</strong>
+                  <p>Open air healing meetings and local assembly establishment</p>
                 </div>
               </div>
               <div className="impact-feat">

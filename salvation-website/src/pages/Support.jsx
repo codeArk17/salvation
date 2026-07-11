@@ -505,7 +505,7 @@ export default function Support() {
                   )}
 
                   <div className="donation-terms-note" style={{ marginBottom: '1.25rem' }}>
-                    <p>🔒 Secured by Paystack — Card, Bank Transfer & USSD accepted</p>
+                    <p>Secured by Squad. Card, Bank Transfer and USSD accepted.</p>
                   </div>
 
                   <div className="payment-modal-actions">

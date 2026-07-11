@@ -67,7 +67,7 @@ const teamMembers = [
   {
     name: 'Bro Ohiri Bright',
     role: 'Media Team',
-    bio: 'Handles all media production, broadcasts, and digital content for the ministry — capturing and sharing the gospel through every platform.',
+    bio: 'Handles all media production, broadcasts, and digital content for the ministry, capturing and sharing the gospel through every platform.',
     icon: 'videocam',
     category: 'Field Team',
   },
@@ -119,7 +119,7 @@ export default function Team() {
           <span className="section-tag">JOIN THE HARVEST</span>
           <h3>Want to Serve With Us?</h3>
           <p>
-            Whether you are a medical professional, a prayer warrior, a musician, or simply willing to serve — there is a place for you on this team.
+            Whether you are a medical professional, a prayer warrior, a musician, or simply willing to serve, there is a place for you on this team.
           </p>
           <div className="cta-btns">
             <a href="#support" className="btn btn-primary">Apply as Volunteer</a>
