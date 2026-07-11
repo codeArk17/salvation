@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+﻿import React, { useContext, useState, useEffect } from 'react';
 import { AppContext } from '../context/AppContext';
 import { submitVolunteer } from '../api/index';
 import client from '../api/client';
@@ -66,7 +66,7 @@ export default function Support() {
     const finalAmount = donateAmount === 'custom' ? parseFloat(customAmount) : parseFloat(donateAmount);
     if (!finalAmount || finalAmount <= 0) { setPayError('Please enter a valid amount.'); return; }
     if (!donorEmail.trim()) { setPayError('Email address is required for payment.'); return; }
-    if (!squadReady) { setPayError('Payment system is loading, please wait…'); return; }
+    if (!squadReady) { setPayError('Payment system is loading, please waitâ€¦'); return; }
     if (!SQUAD_PUBLIC_KEY || SQUAD_PUBLIC_KEY.includes('xxxxx')) {
       setPayError('Squad is not configured yet. Add VITE_SQUAD_PUBLIC_KEY to your .env file.');
       return;
@@ -182,9 +182,9 @@ export default function Support() {
             <h3>Annual Harvest Mission Goal</h3>
           </div>
           <div className="goal-figures">
-            <span className="raised-txt">₦{donations.totalRaised.toLocaleString()}</span>
+            <span className="raised-txt">â‚¦{donations.totalRaised.toLocaleString()}</span>
             <span className="divider-slash">/</span>
-            <span className="target-txt">₦{donations.goal.toLocaleString()}</span>
+            <span className="target-txt">â‚¦{donations.goal.toLocaleString()}</span>
           </div>
         </div>
         
@@ -218,7 +218,7 @@ export default function Support() {
                   className={`amount-select-btn ${donateAmount === amt ? 'active' : ''}`}
                   onClick={() => setDonateAmount(amt)}
                 >
-                  ₦{parseInt(amt).toLocaleString()}
+                  â‚¦{parseInt(amt).toLocaleString()}
                 </button>
               ))}
               <button
@@ -233,7 +233,7 @@ export default function Support() {
             {/* Custom Amount input */}
             {donateAmount === 'custom' && (
               <div className="form-group animate-fade-in">
-                <label className="form-label">Custom Amount (₦)</label>
+                <label className="form-label">Custom Amount (â‚¦)</label>
                 <input
                   type="number"
                   placeholder="Enter amount"
@@ -278,7 +278,7 @@ export default function Support() {
               >
                 <option value="General Support">General Support (Where Needed Most)</option>
                 <option value="Clean Water Wells">Clean Water Wells Project</option>
-                <option value="Bible Distribution">Bible Distribution (₦2,500 per Bible)</option>
+                <option value="Bible Distribution">Bible Distribution (â‚¦2,500 per Bible)</option>
                 <option value="Outreach Crusades">Open-Air Crusades Fund</option>
                 <option value="Children Education & Sponsorship">Children Education & Sponsorship</option>
               </select>
@@ -376,7 +376,7 @@ export default function Support() {
       {/* Prayer Request Submission Form & Approved Prayer Requests Wall */}
       <section className="prayer-wall-section">
         <h2 className="section-title">The Prayer Wall</h2>
-        <p className="text-center wall-intro">"For where two or three are gathered together in my name, there am I in the midst of them." — Matthew 18:20</p>
+        <p className="text-center wall-intro">"For where two or three are gathered together in my name, there am I in the midst of them." â€” Matthew 18:20</p>
         
         <div className="grid-2 prayer-grid">
           
@@ -451,7 +451,7 @@ export default function Support() {
                         className="btn btn-sm btn-outline-gold pray-increment-btn"
                         onClick={() => incrementPrayCount(pr.id)}
                       >
-                        ❤️ I Prayed for This ({pr.count})
+                        â¤ï¸ I Prayed for This ({pr.count})
                       </button>
                     </div>
                   </div>
@@ -467,23 +467,23 @@ export default function Support() {
       {paymentModalOpen && (
         <div className="modal-overlay" style={{ alignItems: 'center', justifyContent: 'center' }}>
           <div className="modal-content payment-modal-content">
-            <button className="modal-close" onClick={closePaymentModal}>✕</button>
+            <button className="modal-close" onClick={closePaymentModal}>âœ•</button>
 
             {verifying ? (
               <div className="text-center" style={{ padding: '3rem 1rem' }}>
                 <div className="spinner" />
-                <p style={{ marginTop: '1rem', color: 'var(--text-secondary)' }}>Verifying your payment…</p>
+                <p style={{ marginTop: '1rem', color: 'var(--text-secondary)' }}>Verifying your paymentâ€¦</p>
               </div>
 
             ) : !paymentSuccess ? (
               <div className="payment-simulation">
-                <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-                  <span style={{ fontSize: '2.5rem' }}>�</span>
+                <div style={{ textAlign: 'center', marginBottom: "0.85rem" }}>
+                  <span className="material-symbols-outlined" style={{ fontSize: "1.75rem", color: "var(--primary-gold)", display: "block" }}>volunteer_activism</span>
                   <h3 style={{ margin: '0.5rem 0 0.25rem' }}>Complete Your Donation</h3>
                   <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
                     <strong style={{ color: 'var(--primary-gold)' }}>
-                      ₦{(donateAmount === 'custom' ? parseFloat(customAmount || 0) : parseFloat(donateAmount)).toLocaleString()}
-                    </strong> — {campaign}
+                      â‚¦{(donateAmount === 'custom' ? parseFloat(customAmount || 0) : parseFloat(donateAmount)).toLocaleString()}
+                    </strong> â€” {campaign}
                   </p>
                 </div>
 
@@ -499,7 +499,7 @@ export default function Support() {
 
                   {payError && (
                     <div style={{ background: 'rgba(220,38,38,0.08)', border: '1px solid rgba(220,38,38,0.3)', color: 'var(--danger)', padding: '0.75rem 1rem', borderRadius: 6, fontSize: '0.85rem', marginBottom: '1rem' }}>
-                      ⚠️ {payError}
+                      âš ï¸ {payError}
                     </div>
                   )}
 
@@ -511,8 +511,8 @@ export default function Support() {
                     <button type="button" className="btn btn-secondary" onClick={closePaymentModal}>Cancel</button>
                     <button type="submit" className="btn btn-primary" disabled={!squadReady}>
                       {squadReady
-                        ? `Pay ₦${(donateAmount === 'custom' ? parseFloat(customAmount || 0) : parseFloat(donateAmount)).toLocaleString()}`
-                        : 'Loading…'}
+                        ? `Pay â‚¦${(donateAmount === 'custom' ? parseFloat(customAmount || 0) : parseFloat(donateAmount)).toLocaleString()}`
+                        : 'Loadingâ€¦'}
                     </button>
                   </div>
                 </form>
@@ -520,9 +520,9 @@ export default function Support() {
 
             ) : (
               <div className="payment-receipt-view text-center animate-fade-in">
-                <span className="success-checkmark">✅</span>
+                <span className="success-checkmark">âœ…</span>
                 <h3 className="success-title">Donation Successful!</h3>
-                <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>
+                <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: "0.85rem" }}>
                   Thank you for your generous gift. Your contribution is making an eternal impact.
                 </p>
 
@@ -546,7 +546,7 @@ export default function Support() {
                       ))}
                       <div className="receipt-total-row">
                         <span>Amount Paid:</span>
-                        <strong className="receipt-amt-big">₦{generatedReceipt.amount.toLocaleString()}</strong>
+                        <strong className="receipt-amt-big">â‚¦{generatedReceipt.amount.toLocaleString()}</strong>
                       </div>
                     </div>
                     <div className="receipt-footer text-center">
@@ -829,9 +829,10 @@ export default function Support() {
 
         /* Payment Simulation Styling */
         .payment-modal-content {
-          max-width: 460px;
-          max-height: 85vh;
+          max-width: 420px;
+          max-height: 75vh;
           overflow-y: auto;
+          padding: 1.5rem;
         }
         .payment-icon {
           font-size: 3.5rem;
@@ -974,3 +975,4 @@ export default function Support() {
     </div>
   );
 }
+
