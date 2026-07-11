@@ -321,10 +321,13 @@ export default function Admin() {
   };
 
   // ── Security / Change Password ────────────────────────────────────────────
-  const [oldPwd,    setOldPwd]    = useState('');
-  const [newPwd,    setNewPwd]    = useState('');
-  const [confirmPwd, setConfirmPwd] = useState('');
-  const [pwdLoading, setPwdLoading] = useState(false);
+  const [oldPwd,      setOldPwd]      = useState('');
+  const [newPwd,      setNewPwd]      = useState('');
+  const [confirmPwd,  setConfirmPwd]  = useState('');
+  const [pwdLoading,  setPwdLoading]  = useState(false);
+  const [showOldPwd,     setShowOldPwd]     = useState(false);
+  const [showNewPwd,     setShowNewPwd]     = useState(false);
+  const [showConfirmPwd, setShowConfirmPwd] = useState(false);
 
   const handleChangePassword = async (e) => {
     e.preventDefault();
@@ -1087,15 +1090,30 @@ export default function Admin() {
             <form onSubmit={handleChangePassword}>
               <div className="form-group">
                 <label className="form-label">Current Password</label>
-                <input type="password" value={oldPwd} onChange={e => setOldPwd(e.target.value)} className="form-input" placeholder="Enter current password" required />
+                <div style={{ position: 'relative' }}>
+                  <input type={showOldPwd ? 'text' : 'password'} value={oldPwd} onChange={e => setOldPwd(e.target.value)} className="form-input" placeholder="Enter current password" required style={{ paddingRight: '2.5rem' }} />
+                  <button type="button" onClick={() => setShowOldPwd(p => !p)} style={{ position: 'absolute', right: '0.75rem', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted)' }}>
+                    <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>{showOldPwd ? 'visibility_off' : 'visibility'}</span>
+                  </button>
+                </div>
               </div>
               <div className="form-group">
                 <label className="form-label">New Password</label>
-                <input type="password" value={newPwd} onChange={e => setNewPwd(e.target.value)} className="form-input" placeholder="At least 6 characters" required minLength={6} />
+                <div style={{ position: 'relative' }}>
+                  <input type={showNewPwd ? 'text' : 'password'} value={newPwd} onChange={e => setNewPwd(e.target.value)} className="form-input" placeholder="At least 6 characters" required minLength={6} style={{ paddingRight: '2.5rem' }} />
+                  <button type="button" onClick={() => setShowNewPwd(p => !p)} style={{ position: 'absolute', right: '0.75rem', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted)' }}>
+                    <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>{showNewPwd ? 'visibility_off' : 'visibility'}</span>
+                  </button>
+                </div>
               </div>
               <div className="form-group">
                 <label className="form-label">Confirm New Password</label>
-                <input type="password" value={confirmPwd} onChange={e => setConfirmPwd(e.target.value)} className="form-input" placeholder="Repeat new password" required minLength={6} />
+                <div style={{ position: 'relative' }}>
+                  <input type={showConfirmPwd ? 'text' : 'password'} value={confirmPwd} onChange={e => setConfirmPwd(e.target.value)} className="form-input" placeholder="Repeat new password" required minLength={6} style={{ paddingRight: '2.5rem' }} />
+                  <button type="button" onClick={() => setShowConfirmPwd(p => !p)} style={{ position: 'absolute', right: '0.75rem', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted)' }}>
+                    <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>{showConfirmPwd ? 'visibility_off' : 'visibility'}</span>
+                  </button>
+                </div>
               </div>
               <button type="submit" className="btn btn-primary" disabled={pwdLoading}>
                 {pwdLoading ? 'Changing…' : 'Change Password'}
