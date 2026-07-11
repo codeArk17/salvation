@@ -54,7 +54,7 @@ export default function Footer() {
         <div className="footer-col brand-col">
           <div className="footer-logo">
             <img
-              src="https://res.cloudinary.com/dhoqtwst9/image/upload/v1781277989/salvation-removebg-preview_z2vplu.png"
+              src="https://res.cloudinary.com/dhoqtwst9/image/upload/v1783776437/content/wfteq8egz7b4ayn6mbwn.png"
               alt="Salvation Series World Outreach"
               className="footer-logo-img"
               style={{ borderRadius: 0, objectFit: 'contain', width: 'auto', height: '80px' }}

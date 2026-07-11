@@ -329,8 +329,8 @@ export default function About() {
           left: 50%; right: 50%;
           margin-left: -50vw; margin-right: -50vw;
           margin-top: -2rem;
-          background: linear-gradient(135deg, #0f2035 0%, #1a3a6b 60%, #0f2035 100%);
-          padding: 5rem 1.5rem 4rem;
+          background: url('https://res.cloudinary.com/dhoqtwst9/image/upload/v1783770487/gallery/kuu68tefse7mz2cm5r6h.jpg') center center / cover no-repeat;
+          padding: 6rem 1.5rem 5rem;
           text-align: center;
           overflow: hidden;
         }
@@ -338,8 +338,7 @@ export default function About() {
           content: '';
           position: absolute;
           inset: 0;
-          background: url('/salvation.jpg') center/cover no-repeat;
-          opacity: 0.12;
+          background: rgba(10, 20, 50, 0.72);
         }
         .about-hero-overlay {
           display: none;

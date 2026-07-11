@@ -37,7 +37,7 @@ export default function Navbar({ currentHash }) {
         {/* Brand Logo */}
         <a href="#home" className="nav-logo" onClick={handleLinkClick}>
           <img
-            src="https://res.cloudinary.com/dhoqtwst9/image/upload/v1781277989/salvation-removebg-preview_z2vplu.png"
+            src="https://res.cloudinary.com/dhoqtwst9/image/upload/v1783776437/content/wfteq8egz7b4ayn6mbwn.png"
             alt="Salvation Series World Outreach"
             className="nav-logo-img"
           />
