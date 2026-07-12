@@ -19,8 +19,8 @@ function normalizeStreamUrl(url) {
   if (!url) return url;
   // Facebook — already embed format
   if (url.includes('facebook.com/plugins/video.php')) return url;
-  // Facebook — regular video URL → convert to embed
-  if (url.includes('facebook.com') && (url.includes('/videos/') || url.includes('share/v/'))) {
+  // Facebook — any facebook.com video/live URL → convert to embed
+  if (url.includes('facebook.com')) {
     return `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(url)}&show_text=false&width=560&autoplay=true`;
   }
   // YouTube watch URL → convert to embed
@@ -30,6 +30,11 @@ function normalizeStreamUrl(url) {
       const v = u.searchParams.get('v');
       if (v) return `https://www.youtube.com/embed/${v}?autoplay=1`;
     } catch { /* fall through */ }
+  }
+  // YouTube live URL → convert to embed
+  if (url.includes('youtube.com/live/')) {
+    const id = url.split('youtube.com/live/')[1]?.split('?')[0];
+    if (id) return `https://www.youtube.com/embed/${id}?autoplay=1`;
   }
   // YouTube short URL youtu.be/ID
   if (url.includes('youtu.be/')) {
