@@ -22,4 +22,15 @@ client.interceptors.request.use((config) => {
   return config;
 });
 
+// Auto-clear stale token on 401 responses
+client.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      localStorage.removeItem('ms_admin_token');
+    }
+    return Promise.reject(error);
+  }
+);
+
 export default client;

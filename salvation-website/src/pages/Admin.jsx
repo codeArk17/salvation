@@ -82,12 +82,25 @@ export default function Admin() {
   const [projectStatus,   setProjectStatus]   = useState('Current');
   const [projectProgress, setProjectProgress] = useState('0');
 
+  // ── Security / Change Password ────────────────────────────────────────────
+  const [oldPwd,         setOldPwd]         = useState('');
+  const [newPwd,         setNewPwd]         = useState('');
+  const [confirmPwd,     setConfirmPwd]     = useState('');
+  const [pwdLoading,     setPwdLoading]     = useState(false);
+  const [showOldPwd,     setShowOldPwd]     = useState(false);
+  const [showNewPwd,     setShowNewPwd]     = useState(false);
+  const [showConfirmPwd, setShowConfirmPwd] = useState(false);
+
   // ─── Login ────────────────────────────────────────────────────────────────────
   const handleLogin = async (e) => {
     e.preventDefault();
     const ok = await loginAdmin(password);
-    if (ok) { setLoginError(false); setPassword(''); }
-    else setLoginError(true);
+    if (ok) {
+      setLoginError(false);
+      setPassword('');
+    } else {
+      setLoginError(true);
+    }
   };
 
   if (!isAdminLoggedIn) {
@@ -320,15 +333,6 @@ export default function Admin() {
     } catch (err) { toast.error(err.message || 'Could not save project.'); }
   };
 
-  // ── Security / Change Password ────────────────────────────────────────────
-  const [oldPwd,      setOldPwd]      = useState('');
-  const [newPwd,      setNewPwd]      = useState('');
-  const [confirmPwd,  setConfirmPwd]  = useState('');
-  const [pwdLoading,  setPwdLoading]  = useState(false);
-  const [showOldPwd,     setShowOldPwd]     = useState(false);
-  const [showNewPwd,     setShowNewPwd]     = useState(false);
-  const [showConfirmPwd, setShowConfirmPwd] = useState(false);
-
   const handleChangePassword = async (e) => {
     e.preventDefault();
     if (newPwd !== confirmPwd) { toast.error('New passwords do not match.'); return; }
@@ -375,7 +379,7 @@ export default function Admin() {
             Manage content, upload media, and moderate the ministry site.
           </p>
         </div>
-        <button className="btn btn-sm btn-danger" onClick={logoutAdmin}>
+        <button className="btn btn-sm btn-danger" onClick={() => { logoutAdmin(); window.location.hash = '#home'; setTimeout(() => { window.location.hash = '#admin'; }, 10); }}>
           <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>logout</span> Exit
         </button>
       </div>
@@ -1083,7 +1087,7 @@ export default function Admin() {
 
       {/* ── SECURITY TAB ─────────────────────────────────────────────────────────── */}
       {activeTab === 'Security' && (
-        <div className="admin-panel animate-fade-in" style={{ maxWidth: 480 }}>
+        <div className="admin-panel animate-fade-in" style={{ maxWidth: 480, margin: '0 auto' }}>
           <div className="card">
             <h3><span className="material-symbols-outlined" style={{ fontSize: '20px', verticalAlign: 'middle', marginRight: '0.5rem' }}>lock</span>Change Admin Password</h3>
             <p className="form-sub-desc">Update your admin password. After changing, remember to also update <strong>ADMIN_PASSWORD</strong> on your Render dashboard to make it permanent.</p>

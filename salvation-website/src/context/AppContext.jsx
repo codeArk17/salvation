@@ -149,7 +149,9 @@ export const AppProvider = ({ children }) => {
   // Admin: full prayer list
   const fetchAllPrayers = useCallback(async () => {
     if (!isAdminLoggedIn) return;
-    try { const res = await api.getAllPrayers(); if (res.data.length) setPrayers(normArr(res.data)); } catch { /* ignore */ }
+    try { const res = await api.getAllPrayers(); if (res.data.length) setPrayers(normArr(res.data)); } catch (err) {
+      if (err.response?.status === 401) { localStorage.removeItem('ms_admin_token'); setIsAdminLoggedIn(false); }
+    }
   }, [isAdminLoggedIn]);
   useEffect(() => { fetchAllPrayers(); }, [fetchAllPrayers]);
 
@@ -161,7 +163,9 @@ export const AppProvider = ({ children }) => {
       const ledger = normArr(res.data);
       const totalRaised = ledger.reduce((s, d) => s + (d.amount || 0), 0);
       setDonations({ totalRaised, goal: DONATION_GOAL, ledger });
-    } catch { /* ignore */ }
+    } catch (err) {
+      if (err.response?.status === 401) { localStorage.removeItem('ms_admin_token'); setIsAdminLoggedIn(false); }
+    }
   }, [isAdminLoggedIn]);
   useEffect(() => { fetchLedger(); }, [fetchLedger]);
 

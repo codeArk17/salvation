@@ -329,7 +329,8 @@ export default function About() {
           left: 50%; right: 50%;
           margin-left: -50vw; margin-right: -50vw;
           margin-top: -2rem;
-          background: url('https://res.cloudinary.com/dhoqtwst9/image/upload/v1783770487/gallery/kuu68tefse7mz2cm5r6h.jpg') center center / cover no-repeat;
+          background: url('https://res.cloudinary.com/dhoqtwst9/image/upload/v1783770487/gallery/kuu68tefse7mz2cm5r6h.jpg') center 30% / contain no-repeat, var(--bg-950);
+          background-attachment: fixed;
           padding: 6rem 1.5rem 5rem;
           text-align: center;
           overflow: hidden;

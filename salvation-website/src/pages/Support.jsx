@@ -1,4 +1,4 @@
-﻿import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { AppContext } from '../context/AppContext';
 import { submitVolunteer } from '../api/index';
 import client from '../api/client';
@@ -466,7 +466,7 @@ export default function Support() {
       {/* Paystack Payment Modal */}
       {paymentModalOpen && (
         <div className="modal-overlay" style={{ alignItems: 'center', justifyContent: 'center' }}>
-          <div className="modal-content payment-modal-content">
+          <div className="modal-content payment-modal-content" style={{ padding: '1.25rem 2rem' }}>
             <button className="modal-close" onClick={closePaymentModal}>âœ•</button>
 
             {verifying ? (
@@ -477,9 +477,9 @@ export default function Support() {
 
             ) : !paymentSuccess ? (
               <div className="payment-simulation">
-                <div style={{ textAlign: 'center', marginBottom: "0.85rem" }}>
-                  <span className="material-symbols-outlined" style={{ fontSize: "1.75rem", color: "var(--primary-gold)", display: "block" }}>volunteer_activism</span>
-                  <h3 style={{ margin: '0.5rem 0 0.25rem' }}>Complete Your Donation</h3>
+                <div style={{ textAlign: 'center', marginBottom: "0.4rem" }}>
+                  <span className="material-symbols-outlined" style={{ fontSize: "1.5rem", color: "var(--primary-gold)", display: "block" }}>volunteer_activism</span>
+                  <h3 style={{ margin: '0.25rem 0 0.15rem' }}>Complete Your Donation</h3>
                   <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
                     <strong style={{ color: 'var(--primary-gold)' }}>
                       â‚¦{(donateAmount === 'custom' ? parseFloat(customAmount || 0) : parseFloat(donateAmount)).toLocaleString()}
@@ -503,7 +503,7 @@ export default function Support() {
                     </div>
                   )}
 
-                  <div className="donation-terms-note" style={{ marginBottom: '1.25rem' }}>
+                  <div className="donation-terms-note" style={{ marginBottom: '0.75rem' }}>
                     <p>Secured by Squad. Card, Bank Transfer and USSD accepted.</p>
                   </div>
 
@@ -520,7 +520,7 @@ export default function Support() {
 
             ) : (
               <div className="payment-receipt-view text-center animate-fade-in">
-                <span className="success-checkmark">âœ…</span>
+                <span className="success-checkmark">âœ...</span>
                 <h3 className="success-title">Donation Successful!</h3>
                 <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: "0.85rem" }}>
                   Thank you for your generous gift. Your contribution is making an eternal impact.
@@ -568,7 +568,8 @@ export default function Support() {
 
       <style>{`
         .support-header {
-          margin-bottom: 3rem;
+          margin-top: -1rem;
+          margin-bottom: 2rem;
         }
         .goal-tracking-section {
           padding: 2.5rem;
@@ -829,10 +830,72 @@ export default function Support() {
 
         /* Payment Simulation Styling */
         .payment-modal-content {
-          max-width: 420px;
-          max-height: 75vh;
+          max-width: 680px;
+          width: 90vw;
+          min-height: 600px;
+          max-height: 90vh;
           overflow-y: auto;
-          padding: 1.5rem;
+          padding: 2.5rem 2.5rem 2rem !important;
+          display: flex;
+          flex-direction: column;
+        }
+        .payment-simulation {
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+          gap: 0;
+        }
+        .payment-simulation > div:first-child {
+          text-align: center;
+          padding: 1.25rem 0 1rem;
+          border-bottom: 1px solid var(--glass-border);
+          margin-bottom: 1.5rem;
+        }
+        .payment-simulation > div:first-child .material-symbols-outlined {
+          font-size: 2.2rem !important;
+          color: var(--primary-gold);
+          display: block;
+          margin-bottom: 0.5rem;
+        }
+        .payment-simulation > div:first-child h3 {
+          font-size: 1.3rem;
+          margin: 0 0 0.4rem !important;
+          color: var(--text-primary);
+        }
+        .payment-simulation > div:first-child p {
+          font-size: 0.92rem;
+          color: var(--text-secondary);
+          margin: 0;
+        }
+        .payment-simulation > div:first-child p strong {
+          color: var(--primary-gold);
+          font-size: 1rem;
+        }
+        .payment-simulation form .form-group {
+          margin-bottom: 1.25rem;
+        }
+        .payment-simulation form .form-label {
+          margin-bottom: 0.4rem;
+          display: block;
+          font-size: 0.85rem;
+          font-weight: 600;
+        }
+        .payment-simulation form .form-input {
+          padding: 0.75rem 1rem;
+          font-size: 0.95rem;
+        }
+        .donation-terms-note {
+          background-color: rgba(255, 255, 255, 0.02);
+          border: 1px dashed var(--glass-border);
+          padding: 0.85rem 1rem;
+          border-radius: var(--border-radius-sm);
+          margin-bottom: 1.75rem;
+          margin-top: 0.25rem;
+        }
+        .donation-terms-note p {
+          font-size: 0.78rem;
+          margin: 0;
+          color: var(--text-secondary);
         }
         .payment-icon {
           font-size: 3.5rem;
@@ -848,8 +911,15 @@ export default function Support() {
         }
         .payment-modal-actions {
           display: flex;
-          justify-content: center;
-          gap: 1.25rem;
+          justify-content: stretch;
+          gap: 1rem;
+          margin-top: auto;
+          padding-top: 0.5rem;
+        }
+        .payment-modal-actions .btn {
+          flex: 1;
+          padding: 0.85rem 1rem;
+          font-size: 0.95rem;
         }
         
         /* Spinner */
@@ -946,7 +1016,19 @@ export default function Support() {
             grid-template-columns: repeat(2, 1fr);
           }
           .payment-modal-content {
-            padding: 1.5rem;
+            max-width: 96vw !important;
+            width: 96vw !important;
+            min-height: 580px !important;
+            max-height: 90vh !important;
+            border-radius: 16px !important;
+            padding: 1.5rem 1.5rem !important;
+            margin: 0 auto;
+          }
+          /* Pull card to top of screen on mobile so it's immediately visible */
+          .modal-overlay:has(.payment-modal-content) {
+            align-items: flex-start !important;
+            padding-top: 14rem !important;
+            padding-bottom: 1rem !important;
           }
           .receipt-card {
             padding: 1rem;
