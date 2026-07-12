@@ -376,7 +376,7 @@ export default function Support() {
       {/* Prayer Request Submission Form & Approved Prayer Requests Wall */}
       <section className="prayer-wall-section">
         <h2 className="section-title">The Prayer Wall</h2>
-        <p className="text-center wall-intro">"For where two or three are gathered together in my name, there am I in the midst of them." â€" Matthew 18:20</p>
+        <p className="text-center wall-intro">"For where two or three are gathered together in my name, there am I in the midst of them." — Matthew 18:20</p>
         
         <div className="grid-2 prayer-grid">
           
@@ -482,8 +482,8 @@ export default function Support() {
                   <h3 style={{ margin: '0.25rem 0 0.15rem' }}>Complete Your Donation</h3>
                   <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
                     <strong style={{ color: 'var(--primary-gold)' }}>
-                      â‚¦{(donateAmount === 'custom' ? parseFloat(customAmount || 0) : parseFloat(donateAmount)).toLocaleString()}
-                    </strong> â€" {campaign}
+                      ₦{(donateAmount === 'custom' ? parseFloat(customAmount || 0) : parseFloat(donateAmount)).toLocaleString()}
+                    </strong> — {campaign}
                   </p>
                 </div>
 
@@ -511,7 +511,7 @@ export default function Support() {
                     <button type="button" className="btn btn-secondary" onClick={closePaymentModal}>Cancel</button>
                     <button type="submit" className="btn btn-primary" disabled={!squadReady}>
                       {squadReady
-                        ? `Pay â‚¦${(donateAmount === 'custom' ? parseFloat(customAmount || 0) : parseFloat(donateAmount)).toLocaleString()}`
+                        ? `Pay ₦${(donateAmount === 'custom' ? parseFloat(customAmount || 0) : parseFloat(donateAmount)).toLocaleString()}`
                         : 'Loadingâ€¦'}
                     </button>
                   </div>
@@ -546,7 +546,7 @@ export default function Support() {
                       ))}
                       <div className="receipt-total-row">
                         <span>Amount Paid:</span>
-                        <strong className="receipt-amt-big">â‚¦{generatedReceipt.amount.toLocaleString()}</strong>
+                        <strong className="receipt-amt-big">₦{generatedReceipt.amount.toLocaleString()}</strong>
                       </div>
                     </div>
                     <div className="receipt-footer text-center">

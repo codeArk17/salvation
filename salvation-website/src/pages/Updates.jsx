@@ -177,7 +177,7 @@ export default function Updates() {
           position: relative;
           border-radius: var(--border-radius-md);
           overflow: hidden;
-          height: 350px;
+          height: 260px;
           border: 1px solid var(--glass-border);
         }
         .featured-img {
@@ -347,10 +347,31 @@ export default function Updates() {
             max-width: 100%;
           }
           .featured-img-wrapper {
-            height: 200px;
+            height: 180px;
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            border-radius: var(--border-radius-sm);
+          }
+          .featured-img {
+            object-fit: cover;
+            object-position: center top;
+          }
+          .featured-article-section .featured-grid {
+            grid-template-columns: 1fr !important;
+            gap: 1rem;
+          }
+          .featured-article-section {
+            padding: 1rem !important;
+          }
+          .featured-article-section:hover .featured-img {
+            transform: none;
+          }
+          .article-card:hover .article-img {
+            transform: none;
           }
           .featured-text-col {
-            padding: 1rem 0.5rem;
+            padding: 0.25rem 0;
           }
           .modal-hero-img {
             height: 220px;

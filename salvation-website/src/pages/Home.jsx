@@ -277,8 +277,8 @@ export default function Home() {
                 <div className="donate-goal-bar-fill" style={{ width: `${fundPercent}%` }} />
               </div>
               <div className="donate-goal-meta">
-                <span>₦{(donations?.totalRaised || 14500).toLocaleString()} raised</span>
-                <span>{fundPercent}% of ₦{(donations?.goal || 30000).toLocaleString()} goal</span>
+                <span>₦{(donations?.totalRaised || 0).toLocaleString()} raised</span>
+                <span>{fundPercent}% of ₦{(donations?.goal || 1000000000).toLocaleString()} goal</span>
               </div>
             </div>
           </div>
