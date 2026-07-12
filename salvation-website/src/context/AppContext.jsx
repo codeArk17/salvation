@@ -101,9 +101,37 @@ export const AppProvider = ({ children }) => {
     ledger: [],
   });
 
-  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(() => !!localStorage.getItem('ms_admin_token'));
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
+  const [authChecked, setAuthChecked] = useState(false); // true once token validation is done
   const [loading,  setLoading]  = useState(true);
   const [apiError, setApiError] = useState(null);
+
+  // Listen for 401s from the axios interceptor and reset admin state
+  useEffect(() => {
+    const handler = () => { setIsAdminLoggedIn(false); };
+    window.addEventListener('admin-unauthorized', handler);
+    return () => window.removeEventListener('admin-unauthorized', handler);
+  }, []);
+
+  // Validate stored token on mount — uses existing /auth/login to verify
+  useEffect(() => {
+    const storedToken = localStorage.getItem('ms_admin_token');
+    if (!storedToken) {
+      setAuthChecked(true);
+      return;
+    }
+    // Send the stored token as the password to verify it's still valid
+    api.loginAdmin(storedToken)
+      .then(() => {
+        setIsAdminLoggedIn(true);
+        setAuthChecked(true);
+      })
+      .catch(() => {
+        localStorage.removeItem('ms_admin_token');
+        setIsAdminLoggedIn(false);
+        setAuthChecked(true);
+      });
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // ── Initial fetch ────────────────────────────────────────────────────────────
   const fetchAll = useCallback(async () => {
@@ -146,18 +174,14 @@ export const AppProvider = ({ children }) => {
 
   useEffect(() => { fetchAll(); }, [fetchAll]);
 
-  // Admin: full prayer list
+  // Admin data fetchers — called explicitly, never auto-fired
   const fetchAllPrayers = useCallback(async () => {
-    if (!isAdminLoggedIn) return;
     try { const res = await api.getAllPrayers(); if (res.data.length) setPrayers(normArr(res.data)); } catch (err) {
       if (err.response?.status === 401) { localStorage.removeItem('ms_admin_token'); setIsAdminLoggedIn(false); }
     }
-  }, [isAdminLoggedIn]);
-  useEffect(() => { fetchAllPrayers(); }, [fetchAllPrayers]);
+  }, []);
 
-  // Admin: full ledger
   const fetchLedger = useCallback(async () => {
-    if (!isAdminLoggedIn) return;
     try {
       const res = await api.getAllDonations();
       const ledger = normArr(res.data);
@@ -166,8 +190,7 @@ export const AppProvider = ({ children }) => {
     } catch (err) {
       if (err.response?.status === 401) { localStorage.removeItem('ms_admin_token'); setIsAdminLoggedIn(false); }
     }
-  }, [isAdminLoggedIn]);
-  useEffect(() => { fetchLedger(); }, [fetchLedger]);
+  }, []);
 
   // ── Auth ─────────────────────────────────────────────────────────────────────
   const loginAdmin = async (password) => {
@@ -414,7 +437,8 @@ export const AppProvider = ({ children }) => {
       projects, addOrUpdateProject, deleteProject,
       events, addOrUpdateEvent, deleteEvent,
       streamState, setLiveStream,
-      isAdminLoggedIn, loginAdmin, logoutAdmin,
+      isAdminLoggedIn, authChecked, loginAdmin, logoutAdmin,
+      fetchAllPrayers, fetchLedger,
       loading, apiError,
     }}>
       {children}

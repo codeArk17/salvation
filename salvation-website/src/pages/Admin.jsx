@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef } from 'react';
+import React, { useContext, useState, useRef, useEffect } from 'react';
 import { AppContext } from '../context/AppContext';
 import * as api from '../api/index';
 import { changeAdminPassword } from '../api/index';
@@ -15,8 +15,17 @@ export default function Admin() {
     projects, addOrUpdateProject, deleteProject,
     events, addOrUpdateEvent, deleteEvent,
     streamState, setLiveStream,
-    isAdminLoggedIn, loginAdmin, logoutAdmin,
+    isAdminLoggedIn, authChecked, loginAdmin, logoutAdmin,
+    fetchAllPrayers, fetchLedger,
   } = useContext(AppContext);
+
+  // Load admin data once session is confirmed (restored from token or fresh login)
+  useEffect(() => {
+    if (authChecked && isAdminLoggedIn) {
+      fetchAllPrayers();
+      fetchLedger();
+    }
+  }, [authChecked, isAdminLoggedIn]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // ── Auth ────────────────────────────────────────────────────────────────────
   const [password,   setPassword]   = useState('');
@@ -102,6 +111,15 @@ export default function Admin() {
       setLoginError(true);
     }
   };
+
+  // Wait for token validation before rendering anything — prevents flash
+  if (!authChecked) {
+    return (
+      <div style={{ padding: '6rem 1.5rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <div className="spinner" style={{ width: 36, height: 36, border: '4px solid var(--glass-border)', borderTopColor: 'var(--primary-blue)', borderRadius: '50%', animation: 'spin 0.7s linear infinite' }} />
+      </div>
+    );
+  }
 
   if (!isAdminLoggedIn) {
     return (

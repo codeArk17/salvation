@@ -28,6 +28,8 @@ client.interceptors.response.use(
   (error) => {
     if (error.response?.status === 401) {
       localStorage.removeItem('ms_admin_token');
+      // Notify the app to reset admin state
+      window.dispatchEvent(new Event('admin-unauthorized'));
     }
     return Promise.reject(error);
   }

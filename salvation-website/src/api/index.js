@@ -10,6 +10,7 @@ import client from './client';
 
 // ─── Auth ──────────────────────────────────────────────────────
 export const loginAdmin          = (password) => client.post('/auth/login', { password });
+export const verifyAdminToken    = ()          => client.get('/auth/verify');
 export const changeAdminPassword = (oldPassword, newPassword) => client.post('/auth/change-password', { oldPassword, newPassword });
 
 // ─── Books ─────────────────────────────────────────────────────
