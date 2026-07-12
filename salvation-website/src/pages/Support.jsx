@@ -376,7 +376,7 @@ export default function Support() {
       {/* Prayer Request Submission Form & Approved Prayer Requests Wall */}
       <section className="prayer-wall-section">
         <h2 className="section-title">The Prayer Wall</h2>
-        <p className="text-center wall-intro">"For where two or three are gathered together in my name, there am I in the midst of them." â€” Matthew 18:20</p>
+        <p className="text-center wall-intro">"For where two or three are gathered together in my name, there am I in the midst of them." â€" Matthew 18:20</p>
         
         <div className="grid-2 prayer-grid">
           
@@ -467,12 +467,12 @@ export default function Support() {
       {paymentModalOpen && (
         <div className="modal-overlay" style={{ alignItems: 'center', justifyContent: 'center' }}>
           <div className="modal-content payment-modal-content" style={{ padding: '1.25rem 2rem' }}>
-            <button className="modal-close" onClick={closePaymentModal}>âœ•</button>
+            <button className="modal-close" onClick={closePaymentModal}>✕</button>
 
             {verifying ? (
               <div className="text-center" style={{ padding: '3rem 1rem' }}>
                 <div className="spinner" />
-                <p style={{ marginTop: '1rem', color: 'var(--text-secondary)' }}>Verifying your paymentâ€¦</p>
+                <p style={{ marginTop: '1rem', color: 'var(--text-secondary)' }}>Verifying your payment...</p>
               </div>
 
             ) : !paymentSuccess ? (
@@ -483,7 +483,7 @@ export default function Support() {
                   <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
                     <strong style={{ color: 'var(--primary-gold)' }}>
                       â‚¦{(donateAmount === 'custom' ? parseFloat(customAmount || 0) : parseFloat(donateAmount)).toLocaleString()}
-                    </strong> â€” {campaign}
+                    </strong> â€" {campaign}
                   </p>
                 </div>
 
