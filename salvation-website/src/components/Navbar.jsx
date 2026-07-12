@@ -306,30 +306,30 @@ export default function Navbar({ currentHash }) {
         .nav-dropdown { position: relative; display: inline-block; }
         .dropdown-menu {
           position: absolute;
-          top: calc(100% + 6px);
+          top: calc(100% + 4px);
           left: 50%;
           transform: translateX(-50%);
           background: #fff;
-          border: 1px solid var(--glass-border);
-          box-shadow: 0 12px 28px rgba(26, 58, 107, 0.12);
-          border-radius: var(--border-radius-sm);
-          padding: 0.5rem 0;
-          min-width: 170px;
+          border: 1px solid #e5e7eb;
+          box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+          border-radius: 8px;
+          padding: 0.3rem 0;
+          min-width: 150px;
           text-align: left;
           z-index: 300;
         }
         .dropdown-item {
           display: block;
-          padding: 0.55rem 1.1rem;
-          color: var(--text-secondary);
-          font-size: 0.85rem;
+          padding: 0.45rem 1rem;
+          color: #374151;
+          font-size: 0.82rem;
           font-weight: 500;
-          transition: var(--transition-fast);
+          transition: background 0.15s;
           text-decoration: none;
           white-space: nowrap;
         }
         .dropdown-item:hover {
-          background: var(--blue-light);
+          background: #f3f4f6;
           color: var(--primary-blue);
         }
 
