@@ -845,6 +845,11 @@ export default function Home() {
           .events-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 640px) {
+          .feature-card:hover .feature-img { transform: none; }
+          .feature-card:hover { transform: none; box-shadow: none; }
+          .feature-img-wrap { height: 160px; }
+          .cc-img-wrap { height: 150px; }
+          .content-card:hover .cc-img { transform: none; }
           .jm-hero {
             padding: 0;
             min-height: 100svh;
